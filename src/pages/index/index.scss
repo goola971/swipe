@@ -1,0 +1,21 @@
+@use "../../Mixin.scss" as *;
+
+section {
+    @include dflex(center, center, 0, column);
+    width: 100%;
+    height: 100dvh;
+    padding: 2vh 2vw;
+}
+
+// hero section
+
+.hero {
+    gap: 2vh;
+    justify-content: end;
+    h2 {
+        font-size: 3vw;
+        font-weight: 500;
+        width: 50%;
+        text-align: center;
+    }
+}

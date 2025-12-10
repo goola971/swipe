@@ -1,0 +1,22 @@
+// logo font
+@import url("./Fonts/Satoshi/css/satoshi.css");
+
+// main font
+@import url("./Fonts/switzer/css/switzer.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Switzer-Variable", sans-serif;
+}
+button {
+    font-family: "Switzer-Variable", sans-serif;
+}
+
+h1 {
+    font-family: "Satoshi-Black", sans-serif;
+}
