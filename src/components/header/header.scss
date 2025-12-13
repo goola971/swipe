@@ -3,7 +3,13 @@
 .header {
     @include dflex(center, space-between);
     padding: 2vh 2vw;
-
+    position: sticky;
+    top: 0;
+    width: 100%;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(0.4vw);
     h1 {
         cursor: pointer;
         font-size: 1.5vw;
@@ -109,9 +115,20 @@
 // Tablet
 @media screen and (max-width: 1024px) {
     .header {
+        h1 {
+            font-size: 3vw;
+        }
         .navContainer {
             nav {
                 border-right: none;
+                margin: 0;
+                ul {
+                    li {
+                        a {
+                            font-size: 1.5vw;
+                        }
+                    }
+                }
             }
 
             .connexion {
@@ -137,6 +154,9 @@
 // Mobile
 @media screen and (max-width: 768px) {
     .header {
+        h1 {
+            font-size: 5vw;
+        }
         .navContainer {
             display: none;
         }

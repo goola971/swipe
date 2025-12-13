@@ -1,31 +1,33 @@
 import "./header.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { type JSX } from "react";
 import { Link } from "react-router-dom";
 
 function Header(): JSX.Element {
     const [visible, setVisible] = useState(true);
-    const [lastY, setLastY] = useState(0);
+    const lastY = useRef(0);
 
     useEffect(() => {
         const onScroll = () => {
             const currentY = window.scrollY;
 
-            // Hide / Show header
-            if (currentY > lastY) setVisible(false);
-            if (currentY < lastY) setVisible(true);
+            if (currentY > lastY.current) {
+                // scroll vers le bas
+                setVisible(false);
+            } else if (currentY < lastY.current) {
+                // scroll vers le haut → réapparition immédiate
+                setVisible(true);
+            }
 
-            setLastY(currentY);
+            lastY.current = currentY;
         };
 
-        window.addEventListener("scroll", onScroll);
+        window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
-    }, [lastY]);
+    }, []);
     return (
         <header
-            className={`${
-                visible ? "header header--show" : "header header--hide"
-            } `}
+            className={`header ${visible ? "header--show" : "header--hide"}`}
         >
             <h1>SWIPE.</h1>
             <div className="navContainer">
