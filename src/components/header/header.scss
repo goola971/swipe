@@ -65,12 +65,9 @@
     .buttons {
         @include dflex(center, center, 2vw);
         button {
-            @include dflex(center, center, 1vw);
-            cursor: pointer;
-            border: rgba(0, 0, 0, 0.2) 0.1vw solid;
-            background-color: transparent;
+            @include button();
             img {
-                width: 50%;
+                width: 1.3vw;
                 height: auto;
                 transition: all 0.25s ease-in-out;
             }
@@ -136,6 +133,14 @@
             }
         }
         .buttons {
+            button {
+                img {
+                    width: 2vw;
+                }
+            }
+            img {
+                width: 3vw;
+            }
             button:first-child {
                 width: 5vw;
                 height: 5vw;
@@ -161,6 +166,11 @@
             display: none;
         }
         .buttons {
+            button {
+                img {
+                    width: 3vw;
+                }
+            }
             button:first-child {
                 width: 8vw;
                 height: 8vw;

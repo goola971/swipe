@@ -11,4 +11,58 @@
 }
 // ===========================================================================
 
-//
+// position absolute mixin
+// ===========================================================================
+
+// position absolute top left
+// --------------------------------------------------------------------------
+@mixin positionTopLeft($top: 0, $left: 0) {
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+// --------------------------------------------------------------------------
+
+// position absolute right bottom
+// --------------------------------------------------------------------------
+@mixin positionRightBottom($right: 0, $bottom: 0) {
+    position: absolute;
+    right: $right;
+    bottom: $bottom;
+}
+// --------------------------------------------------------------------------
+
+// ===========================================================================
+
+// button
+// ===========================================================================
+@mixin button() {
+    cursor: pointer;
+    padding: 1.2vh 1vw;
+    border-radius: 10vw;
+    font-size: 1vw;
+    font-weight: 300;
+    @include dflex(center, center, 0.7vw);
+    border: rgba(0, 0, 0, 0.27) 0.1vw solid;
+    background-color: transparent;
+}
+// ===========================================================================
+
+// button
+// ===========================================================================
+@mixin button2() {
+    cursor: pointer;
+    padding: 1.5vh 1.3vw;
+    border-radius: 10vw;
+    width: fit-content;
+    font-size: 1vw;
+    font-weight: 400;
+    @include dflex(center, center, 0.7vw);
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    // empecher le a la ligne
+
+    white-space: nowrap;
+}
+// ===========================================================================

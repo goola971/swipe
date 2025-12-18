@@ -69,6 +69,8 @@ function Index(): JSX.Element {
 
     return (
         <>
+            {/* hero */}
+            {/* ============================================================= */}
             <section className="hero">
                 <h2>Apprenez les compétences qui comptent vraiment.</h2>
                 <p className="description">
@@ -110,6 +112,10 @@ function Index(): JSX.Element {
                     </div>
                 </div>
             </section>
+            {/* ============================================================= */}
+
+            {/* Swipe en collaboration */}
+            {/* ============================================================= */}
             <section className="SwipeCollab">
                 <h3>Swipe en collaboration avec les leaders du secteur</h3>
                 <div className="scrollHorizontale">
@@ -125,6 +131,10 @@ function Index(): JSX.Element {
                     </div>
                 </div>
             </section>
+            {/* ============================================================= */}
+
+            {/* exploreNumerique */}
+            {/* ============================================================= */}
             <section className="exploreNumerique">
                 <article className="exploreCategory">
                     <h3>Explorer les catégories</h3>
@@ -176,24 +186,143 @@ function Index(): JSX.Element {
                                     />
                                 </button>
                             </div>
-                            {[1, 2, 3].map((item, index) => (
-                                <div className="coursDualCard" key={index}>
-                                    <img src="img/cours.png" alt="" />
-                                    <div>
-                                        <h5>Cours de réseaux informatiques</h5>
-                                        <p>Durée : 3 semaines</p>
-                                        <p>Fondamentaux • ★ 4.8</p>
+                            <div className="coursDualCardContainer">
+                                {/* repeter 3 fois */}
+                                {[1, 2, 3].map((item, index) => (
+                                    <div className="coursDualCard" key={index}>
+                                        <img src="img/cours.png" alt="" />
+                                        <div>
+                                            <h5>
+                                                Cours de réseaux informatiques
+                                            </h5>
+                                            <p>Durée : 3 semaines</p>
+                                            <p>Fondamentaux • ★ 4.8</p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </article>
-                <button>
+                <button className="voirPlus">
                     voir plus
                     <img src="icon/arrowTopLeft.svg" alt="icon arrow" />
                 </button>
             </section>
+            {/* ============================================================= */}
+
+            {/* a propos de swipe */}
+            {/* ============================================================= */}
+            <section className="aboutUs">
+                <article className="text">
+                    <div>
+                        <h3>À propos de Swipe</h3>
+                        <p>
+                            Swipe est une plateforme de formation dédiée aux
+                            compétences du <br /> numérique. Elle organise les
+                            contenus par parcours. Elle simplifie <br />
+                            l’apprentissage. Elle permet de progresser à son
+                            rythme.
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            Swipe regroupe plusieurs domaines : réseaux,
+                            administration système, <br /> développement web,
+                            cybersécurité, data, bureautique et design. Chaque{" "}
+                            <br />
+                            formation suit une structure claire : notions
+                            essentielles, exercices pratiques, <br /> projet
+                            final, certification.
+                        </p>
+                    </div>
+                    <div className="contact">
+                        <p>
+                            Une question sur une formation ou une réservation ?
+                        </p>
+                        <button>
+                            Contactez-nous.{" "}
+                            <img
+                                src="icon/arrowBottomRight.svg"
+                                alt="icon arrow"
+                            />
+                        </button>
+                    </div>
+                </article>
+                <img
+                    src="img/home/about.png"
+                    alt="illustration about"
+                    className="aboutUsImg"
+                />
+                {/* card info*/}
+                {/* ----------------------------------------- */}
+                <article className="cardInfo">
+                    <div className="tauxDeComplection">
+                        <img src="img/home/taux.png" alt="taux de completion" />
+                        <div>
+                            <h4>87 % de taux de complétion</h4>
+                            <p>
+                                La majorité termine le parcours commencé <br />{" "}
+                                grâce à des modules courts et structurés.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="satisfaction">
+                        <div className="entete">
+                            <button>Utilité</button>
+                            <button>Clarté</button>
+                            <button>Progression</button>
+                        </div>
+                        <div className="textSatisfaction">
+                            <h4>92 % de satisfaction</h4>
+                            <p>
+                                Les apprenants indiquent avoir progressé de
+                                <br />
+                                manière visible dès les premières semaines.
+                            </p>
+                        </div>
+                        <img
+                            src="img/home/satisfaction.svg"
+                            alt=""
+                            className="diagramstaif"
+                        />
+                    </div>
+                    <div className="apprenantActif">
+                        <h4>
+                            <img src="icon/tauxCroissant.svg" alt="icon" />4
+                            500+ Apprenants actifs
+                        </h4>
+                        <p>
+                            Des utilisateurs issus de profils variés :
+                            étudiants, salariés, <br /> reconversion.
+                        </p>
+                    </div>
+                </article>
+                {/* ----------------------------------------- */}
+            </section>
+            {/* ============================================================= */}
+
+            {/* plan & avantages */}
+            {/* ============================================================= */}
+            <section className="planAvantage">
+                <h3>Plans & avantages</h3>
+                <p>
+                    Réservez vos cours plus facilement, profitez de réductions
+                    immédiates et débloquez des avantages exclusifs. Les
+                    formations gardent leur prix fixe, mais votre abonnement
+                    améliore votre expérience.
+                </p>
+                <div className="planCard"></div>
+                <div className="rassurer">
+                    <div>
+                        <p>Choisissez votre abonnement</p>
+                        <p>
+                            Vous pouvez annuler à tout moment. Aucun engagement.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            {/* ============================================================= */}
         </>
     );
 }
