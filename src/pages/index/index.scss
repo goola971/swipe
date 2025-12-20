@@ -6,7 +6,7 @@ section {
     @include dflex(center, center, 0, column);
     width: 100%;
     height: 100dvh;
-    padding: 2vh 2vw;
+    padding: 2vh 3vw;
     position: relative;
 }
 // =============================================================================
@@ -25,6 +25,7 @@ section {
         font-weight: 500;
         width: 50%;
         text-align: center;
+        letter-spacing: -0.1vw;
     }
     .description {
         font-size: 1vw;
@@ -53,7 +54,7 @@ section {
         position: relative;
         @include dflex(end, space-between, 0);
         color: white;
-        padding: 2.5vh 1vw;
+        padding: 3vh 2vw;
         img {
             width: 100%;
             height: 100%;
@@ -96,6 +97,7 @@ section {
             button {
                 @include button();
                 background-color: white;
+                padding: 0.7vh 1vw;
                 border: none;
                 font-weight: 500;
                 color: rgb(0, 0, 0);
@@ -603,7 +605,7 @@ section {
                 button {
                     @include button2();
                     font-size: 0.5vw;
-                    padding: 1vh 0.7vw;
+                    padding: 0.7vh 0.7vw;
                     font-weight: 600;
                 }
             }
@@ -681,10 +683,400 @@ section {
 // ----------------------------------------------------------------------------
 // tablet
 @media screen and (max-width: 1024px) {
+    .aboutUs {
+        height: 70vh;
+        padding: 2vh 2vw;
+        .aboutUsImg {
+            width: auto;
+            height: 70%;
+            border-radius: 1vw;
+        }
+
+        .text {
+            div {
+                h3 {
+                    font-size: 4vw;
+                }
+                p {
+                    font-size: 1.6vw;
+                }
+            }
+            .contact {
+                p {
+                    font-size: 1.3vw;
+                }
+                button {
+                    font-size: 4vw;
+                }
+            }
+        }
+
+        .cardInfo {
+            .tauxDeComplection {
+                width: 35vw;
+                height: 10vw;
+                h4 {
+                    font-size: 1.3vw;
+                }
+                p {
+                    font-size: 1.2vw;
+                }
+            }
+            .satisfaction {
+                width: fit-content;
+                margin-right: -17vw;
+                .entete {
+                    button {
+                        font-size: 0.9vw;
+                        padding: 0.7vh 0.9vw;
+                    }
+                }
+                .textSatisfaction {
+                    h4 {
+                        font-size: 2vw;
+                    }
+                    p {
+                        font-size: 1vw;
+                    }
+                }
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+        .apprenantActif {
+            p {
+                font-size: 1.5vw !important;
+            }
+        }
+    }
 }
 
 // mobile
 @media screen and (max-width: 768px) {
+    .aboutUs {
+        height: 60vh;
+        .aboutUsImg {
+            display: none;
+        }
+        .cardInfo {
+            display: none;
+        }
+        .text {
+            width: 100%;
+            div {
+                h3 {
+                    font-size: 7vw;
+                }
+                p {
+                    font-size: 2vw;
+                }
+            }
+            .contact {
+                p {
+                    font-size: 2.5vw;
+                }
+                button {
+                    font-size: 6vw;
+                }
+            }
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+
+// =============================================================================
+
+// planAvantage
+// =============================================================================
+
+// planAvantage section
+// ----------------------------------------------------------------------------
+.planAvantage {
+    gap: 5vh;
+    .title {
+        @include dflex(center, center, 0.7vh, column);
+        h3 {
+            font-size: 2vw;
+            font-weight: 500;
+        }
+        p {
+            font-size: 1vw;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.616);
+            width: 48%;
+            text-align: center;
+        }
+    }
+    .planCard {
+        background-color: rgba(0, 0, 0, 0.05);
+        @include dflex(center, center, 0.7vw);
+        padding: 2vh 1vw;
+        border-radius: 1vw;
+        width: 70%;
+        .plan {
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            padding: 2vh 1vw;
+            border-radius: 1vw;
+            @include dflex(start, space-between, 2vh, column);
+            .all {
+                @include dflex(start, start, 1vh, column);
+
+                .niveau {
+                    @include dflex(end, end, 0.3vw);
+                    width: 100%;
+                    div {
+                        width: 1vw;
+                        height: 0.7vh;
+                        border-radius: 20vw;
+                        background-color: rgba(0, 0, 0, 0.27);
+
+                        &:last-child {
+                            width: 1.5vw;
+                        }
+                        &:first-child {
+                            width: 1vw;
+                        }
+                    }
+                }
+
+                h4 {
+                    font-size: 1.5vw;
+                    font-weight: 600;
+                }
+                p {
+                    font-size: 0.8vw;
+                    font-weight: 500;
+                    color: rgba(0, 0, 0, 0.616);
+                }
+                .prix {
+                    span {
+                        font-size: 2vw;
+                        font-weight: 500;
+                        color: rgb(0, 0, 0);
+                    }
+                    color: rgba(0, 0, 0, 0.616);
+                }
+            }
+            button {
+                @include button();
+                font-size: 0.7vw;
+                // padding: 0.7vh 0.7vw;
+                font-weight: 600;
+                img {
+                    width: 1vw;
+                    height: auto;
+                }
+            }
+            .ajout {
+                @include dflex(start, center, 0.7vh, column);
+                p {
+                    font-size: 0.7vw;
+                    font-weight: 500;
+                    color: rgba(0, 0, 0, 0.4);
+                    @include dflex(center, start, 0.5vw);
+                    width: 80%;
+                    img {
+                        width: 1.2vw;
+                        height: auto;
+                        // baisser le contraste
+                        filter: invert(0.6);
+                    }
+                }
+            }
+            &:nth-child(2) button {
+                @include button2();
+                // padding: 1vh 1vw;
+                font-size: 0.7vw;
+
+                img {
+                    filter: invert(1);
+                }
+            }
+        }
+    }
+    .rassurer {
+        width: 70%;
+        @include dflex(center, space-between);
+        div {
+            @include dflex(start, start, 0.7vh, column);
+            p {
+                font-size: 0.7vw;
+                font-weight: 500;
+                width: 100%;
+                color: rgba(0, 0, 0, 0.616);
+                &:first-child {
+                    color: black;
+                    font-weight: 600;
+                    font-size: 0.8vw;
+                }
+            }
+            &:last-child {
+                p {
+                    text-align: end;
+                }
+            }
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+
+// media queries
+// ----------------------------------------------------------------------------
+// tablet
+@media screen and (max-width: 1024px) {
+    .planAvantage {
+        // height: 70dvh;
+        height: fit-content;
+        gap: 5vh;
+        .title {
+            h3 {
+                font-size: 5vw;
+            }
+            p {
+                font-size: 2vw;
+                width: 70%;
+            }
+        }
+        .planCard {
+            width: 100%;
+            height: 40dvh;
+            .plan {
+                .all {
+                    width: 100%;
+                    .niveau {
+                        div {
+                            width: 2vw;
+                            &:last-child {
+                                width: 3vw;
+                            }
+                            &:first-child {
+                                width: 2vw;
+                            }
+                        }
+                    }
+
+                    h4 {
+                        font-size: 3vw;
+                    }
+                    p {
+                        font-size: 1.4vw;
+                    }
+                    .prix {
+                        span {
+                            font-size: 3vw;
+                        }
+                    }
+                }
+                button {
+                    font-size: 1.3vw;
+                    padding: 1vh 2vw;
+                    img {
+                        width: 1.5vw;
+                        height: auto;
+                    }
+                }
+                .ajout {
+                    p {
+                        font-size: 1.5vw;
+                        width: 100%;
+                        img {
+                            width: 1.7vw;
+                        }
+                    }
+                }
+                &:nth-child(2) button {
+                    padding: 1vh 2vw;
+                    font-size: 1.3vw;
+                }
+            }
+        }
+        .rassurer {
+            width: 100%;
+            div {
+                p {
+                    font-size: 1.7vw;
+                    &:first-child {
+                        font-size: 2.3vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+    .planAvantage {
+        // height: 70dvh;
+        height: fit-content;
+        gap: 5vh;
+        .title {
+            h3 {
+                font-size: 5vw;
+            }
+            p {
+                font-size: 2vw;
+                width: 70%;
+            }
+        }
+        .planCard {
+            height: fit-content;
+            flex-wrap: wrap;
+            .plan {
+                .all {
+                    .niveau {
+                        gap: 0.7vw;
+                        div {
+                            width: 4vw;
+                            height: 0.8vh;
+                            &:last-child {
+                                width: 6vw;
+                            }
+                            &:first-child {
+                                width: 4vw;
+                            }
+                        }
+                    }
+
+                    h4 {
+                        font-size: 4vw;
+                    }
+                    p {
+                        font-size: 2vw;
+                    }
+                    .prix {
+                        span {
+                            font-size: 5vw;
+                        }
+                    }
+                }
+                button {
+                    font-size: 2vw;
+                    padding: 1vh 3vw;
+                    img {
+                        width: 2vw;
+                    }
+                }
+                .ajout {
+                    p {
+                        font-size: 2vw;
+                        width: 100%;
+                        img {
+                            width: 2.5vw;
+                        }
+                    }
+                }
+                &:nth-child(2) button {
+                    padding: 1vh 3vw;
+                    font-size: 2vw;
+                }
+            }
+        }
+    }
 }
 // ----------------------------------------------------------------------------
 

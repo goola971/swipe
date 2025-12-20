@@ -67,6 +67,45 @@ function Index(): JSX.Element {
         },
     ];
 
+    const plans = [
+        {
+            niveau: 1,
+            title: "Essentiel",
+            description: "Pour commencer avec des avantages simples.",
+            prix: "9,99 €",
+            avantage: [
+                "Réduction –10 % sur tous les cours",
+                "Notifications pour vos réservations",
+                "Priorité de réservation : accès aux créneaux 24h avant les non-abonnés",
+            ],
+        },
+        {
+            niveau: 2,
+            title: "Professionnel",
+            description:
+                "Pour progresser régulièrement avec plus de privilèges.",
+            prix: "19,99 €",
+            avantage: [
+                "Réduction –20 % sur tous les cours",
+                "Priorité de réservation : accès aux créneaux 48h avant les non-abonnés",
+                "Support privé prioritaire",
+                "Notifications pour vos réservations",
+            ],
+        },
+        {
+            niveau: 3,
+            title: "Premium",
+            description: "Pour une expérience complète et prioritaire.",
+            prix: "29,99 €",
+            avantage: [
+                "Réduction –40 % sur tous les cours",
+                "Priorité de réservation : accès aux créneaux 48h avant les non-abonnés",
+                "Support privé prioritaire",
+                "Notifications pour vos réservations",
+            ],
+        },
+    ];
+
     return (
         <>
             {/* hero */}
@@ -305,19 +344,67 @@ function Index(): JSX.Element {
             {/* plan & avantages */}
             {/* ============================================================= */}
             <section className="planAvantage">
-                <h3>Plans & avantages</h3>
-                <p>
-                    Réservez vos cours plus facilement, profitez de réductions
-                    immédiates et débloquez des avantages exclusifs. Les
-                    formations gardent leur prix fixe, mais votre abonnement
-                    améliore votre expérience.
-                </p>
-                <div className="planCard"></div>
+                <div className="title">
+                    <h3>Plans & avantages</h3>
+                    <p>
+                        Réservez vos cours plus facilement, profitez de
+                        réductions immédiates et débloquez des avantages
+                        exclusifs. Les formations gardent leur prix fixe, mais
+                        votre abonnement améliore votre expérience.
+                    </p>
+                </div>
+                <div className="planCard">
+                    {/* utilser plans pour generer les cards plans */}
+                    {plans.map((plan, index) => (
+                        <article key={index} className="plan">
+                            <div className="all">
+                                <div className="niveau">
+                                    {/* afficher des span par nombre de niveau */}
+                                    {Array(plan.niveau)
+                                        .fill(0)
+                                        .map((_, index) => (
+                                            <div key={index}></div>
+                                        ))
+                                        .slice(0, plan.niveau)}
+                                </div>
+                                <h4>{plan.title}</h4>
+                                <p>{plan.description}</p>
+                                <p className="prix">
+                                    {" "}
+                                    <span>{plan.prix}</span> / mois
+                                </p>
+                                <div className="ajout">
+                                    {plan.avantage.map((avantage, index) => (
+                                        <p key={index}>
+                                            <img
+                                                src="icon/plus.svg"
+                                                alt="icon plus"
+                                            />
+                                            {avantage}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                            <button>
+                                Souscrire
+                                <img src="icon/arrowLeft.svg" alt="" />
+                            </button>
+                        </article>
+                    ))}
+                </div>
                 <div className="rassurer">
                     <div>
                         <p>Choisissez votre abonnement</p>
                         <p>
                             Vous pouvez annuler à tout moment. Aucun engagement.
+                        </p>
+                    </div>
+                    <div>
+                        <p>Pourquoi un abonnement ?</p>
+                        <p>
+                            Chaque formation garde son tarif fixe.
+                            <br />
+                            L’abonnement améliore votre expérience
                         </p>
                     </div>
                 </div>
