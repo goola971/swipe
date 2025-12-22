@@ -47,7 +47,7 @@ function Header(): JSX.Element {
                         </li>
                     </ul>
                 </nav>
-                <Link to="" className="connexion">
+                <Link to="/connexion" className="connexion">
                     Connexion{" "}
                     <img src="icon/arrowTopLeft.svg" alt="icon ArrowTopLeft" />
                 </Link>
