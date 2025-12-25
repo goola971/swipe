@@ -1,0 +1,67 @@
+@use "../../Mixin.scss" as *;
+
+// exploreCategory
+// =============================================================================
+// exploreCategory article
+// ------------------------------------------------------------------------
+.exploreCategory {
+    @include dflex(start, start, 0, column);
+    gap: 2vh;
+    h3 {
+        font-size: 1.7vw;
+        font-weight: 500;
+    }
+
+    .category {
+        @include dflex(start, start, 1vw);
+        flex-wrap: wrap;
+        button {
+            @include dflex(center, center, 0.7vw);
+            width: fit-content;
+            white-space: nowrap;
+            padding: 1vh 2vw;
+            border-radius: 10vw;
+            font-size: 1vw;
+            font-weight: 500;
+            border: none;
+            background-color: rgba(240, 246, 255, 1);
+        }
+    }
+}
+// ------------------------------------------------------------------------
+
+// media queries
+// ----------------------------------------------------------------------------
+// tablet
+@media screen and (max-width: 1024px) {
+    .exploreCategory {
+        h3 {
+            font-size: 3vw;
+        }
+        .category {
+            button {
+                padding: 1.5vh 3vw;
+                gap: 2vw;
+                font-size: 2vw;
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+    .exploreCategory {
+        h3 {
+            font-size: 4vw;
+        }
+        .category {
+            button {
+                padding: 1.5vh 3vw;
+                gap: 2vw;
+                font-size: 3vw;
+            }
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+// =============================================================================

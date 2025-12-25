@@ -3,7 +3,7 @@
 // base section style
 // =============================================================================
 section {
-    @include dflex(center, center, 0, column);
+    @include dflex(center, center, 0);
     width: 100%;
     height: 100dvh;
     padding: 2vh 3vw;
@@ -19,6 +19,7 @@ section {
     gap: 3vh;
     height: 90.2dvh;
     // background-color: rgb(255, 0, 0);
+    flex-direction: column;
     justify-content: end;
     h2 {
         font-size: 3vw;
@@ -35,14 +36,14 @@ section {
     .Buttons {
         @include dflex(center, center, 2vw);
         margin-right: 7vw;
-        button {
-            @include button2();
-            &:last-child {
-                background-color: rgb(255, 255, 255);
-                color: rgb(0, 0, 0);
-                border: rgba(0, 0, 0, 0.27) 0.1vw solid;
-            }
-        }
+        // button {
+        //     @include button2();
+        //     &:last-child {
+        //         background-color: rgb(255, 255, 255);
+        //         color: rgb(0, 0, 0);
+        //         border: rgba(0, 0, 0, 0.27) 0.1vw solid;
+        //     }
+        // }
     }
 
     .heroImgContainer {
@@ -193,6 +194,7 @@ section {
 // ----------------------------------------------------------------------------
 .SwipeCollab {
     height: 40dvh;
+    flex-direction: column;
     h3 {
         font-size: 1.7vw;
         font-weight: 500;
@@ -209,7 +211,7 @@ section {
         }
         .group {
             @include dflex(center, start, 6vw);
-            animation: spin 8s infinite linear;
+            animation: spin 15s infinite linear;
             padding-right: 6vw;
             img {
                 flex: 0 0 2vw;
@@ -280,33 +282,6 @@ section {
 .exploreNumerique {
     @include dflex(start, start, 6vw, column);
     height: auto;
-    // exploreCategory
-    // ------------------------------------------------------------------------
-    .exploreCategory {
-        @include dflex(start, start, 0, column);
-        gap: 2vh;
-        h3 {
-            font-size: 1.7vw;
-            font-weight: 500;
-        }
-
-        .category {
-            @include dflex(start, start, 1vw);
-            flex-wrap: wrap;
-            button {
-                @include dflex(center, center, 0.7vw);
-                width: fit-content;
-                white-space: nowrap;
-                padding: 1vh 2vw;
-                border-radius: 10vw;
-                font-size: 1vw;
-                font-weight: 500;
-                border: none;
-                background-color: rgba(240, 246, 255, 1);
-            }
-        }
-    }
-    // ------------------------------------------------------------------------
 
     // meilleurNumerique
     // ------------------------------------------------------------------------
@@ -383,8 +358,7 @@ section {
         }
     }
     // ------------------------------------------------------------------------
-    .voirPlus {
-        @include button2();
+    button.primary {
         margin: 0 auto;
     }
 }
@@ -396,21 +370,6 @@ section {
 @media screen and (max-width: 1024px) {
     .exploreNumerique {
         gap: 7vh;
-        // exploreCategory
-        // -------------------------------------------------------------------
-        .exploreCategory {
-            h3 {
-                font-size: 3vw;
-            }
-            .category {
-                button {
-                    padding: 1.5vh 3vw;
-                    gap: 2vw;
-                    font-size: 2vw;
-                }
-            }
-        }
-        // -------------------------------------------------------------------
 
         // meilleurNumerique
         // -------------------------------------------------------------------
@@ -444,7 +403,7 @@ section {
         }
         // -------------------------------------------------------------------
 
-        .voirPlus {
+        button.primary {
             font-size: 1.5vw;
             padding: 1.5vh 2vw;
         }
@@ -455,21 +414,6 @@ section {
 @media screen and (max-width: 768px) {
     .exploreNumerique {
         gap: 10vh;
-        // exploreCategory
-        // -------------------------------------------------------------------
-        .exploreCategory {
-            h3 {
-                font-size: 4vw;
-            }
-            .category {
-                button {
-                    padding: 1.5vh 3vw;
-                    gap: 2vw;
-                    font-size: 3vw;
-                }
-            }
-        }
-        // -------------------------------------------------------------------
 
         // meilleurNumerique
         // -------------------------------------------------------------------
@@ -502,7 +446,7 @@ section {
         }
         // -------------------------------------------------------------------
 
-        .voirPlus {
+        button.primary {
             font-size: 2.5vw;
             padding: 1.5vh 2.5vw 1.5vh 4vw;
         }
@@ -795,6 +739,7 @@ section {
 // ----------------------------------------------------------------------------
 .planAvantage {
     gap: 5vh;
+    flex-direction: column;
     .title {
         @include dflex(center, center, 0.7vh, column);
         h3 {

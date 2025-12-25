@@ -1,7 +1,11 @@
 import "./header.scss";
 import { useEffect, useState, useRef } from "react";
 import { type JSX } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import HeaderBase from "./headerBase/headerBase";
+
+import HeaderConnect from "./headerConnect/headerConnect";
 
 function Header(): JSX.Element {
     const [visible, setVisible] = useState(true);
@@ -29,42 +33,10 @@ function Header(): JSX.Element {
         <header
             className={`header ${visible ? "header--show" : "header--hide"}`}
         >
-            <h1>SWIPE.</h1>
-            <div className="navContainer">
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="">Ressources</Link>
-                        </li>
-                        <li>
-                            <Link to="">A propos</Link>
-                        </li>
-                        <li>
-                            <Link to="">Plans</Link>
-                        </li>
-                        <li>
-                            <Link to="">Contact</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <Link to="/connexion" className="connexion">
-                    Connexion{" "}
-                    <img src="icon/arrowTopLeft.svg" alt="icon ArrowTopLeft" />
-                </Link>
-            </div>
-
-            <div className="buttons">
-                <button className="search">
-                    <img src="icon/search.svg" alt="icon Search" />
-                </button>
-                <button className="menu">
-                    <img
-                        src="icon/menuSortInverse.svg"
-                        alt="icon menuSortInverse"
-                    />
-                    Menu
-                </button>
-            </div>
+            {/* <HeaderConnect /> */}
+            {(useLocation().pathname !== "/plan" && <HeaderBase />) || (
+                <HeaderConnect />
+            )}
         </header>
     );
 }

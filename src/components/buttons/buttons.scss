@@ -1,0 +1,9 @@
+@use "../../Mixin.scss" as *;
+
+.button.primary {
+    @include button2();
+}
+
+.button.secondary {
+    @include button();
+}

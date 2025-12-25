@@ -5,45 +5,46 @@
 // cookies section
 // ----------------------------------------------------------------------------
 .cookies {
-    @include positionFixedRightBottom(0, 0);
-    width: 100%;
+    @include positionFixedLeftBottom(0, 0);
+    width: 35%;
     background-color: white;
     z-index: 1000;
     height: fit-content;
-    border-top: rgba(0, 0, 0, 0.548) 0.15vw solid;
-    @include dflex(center, space-between, 0.7vw, column);
+    // border-top: rgba(0, 0, 0, 0.548) 0.15vw solid;
+    @include dflex(center, space-between, 3vh, column);
     padding: 2vh 2vw;
-    gap: 1vh;
-    button.x {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        font-size: 1.5vw;
-        margin-left: auto;
-        width: fit-content;
-        height: fit-content;
-        @include dflex(center, center);
-    }
+    // button.x {
+    //     background-color: transparent;
+    //     border: none;
+    //     cursor: pointer;
+    //     font-size: 1.5vw;
+    //     margin-left: auto;
+    //     width: fit-content;
+    //     height: fit-content;
+    //     @include dflex(center, center);
+    // }
     p {
-        font-size: 1.3vw;
+        font-size: 0.8vw;
         font-weight: 500;
         text-align: left;
         width: 100%;
-        margin-top: -2vh;
-        margin-bottom: 2vh;
+        // margin-top: -2vh;
+        // margin-bottom: 2vh;
     }
     .buttons {
         @include dflex(center, center, 1vw);
-        margin-left: auto;
+        margin-right: auto;
         button {
             @include button();
             color: black;
             font-weight: 500;
             &:last-child {
                 @include button2();
-                padding: 1.2vh 1vw;
+                padding: 1vh 1vw;
+                font-size: 0.8vw;
             }
-            padding: 1.2vh 1vw;
+            padding: 1vh 1vw;
+            font-size: 0.8vw;
         }
     }
 }
@@ -54,6 +55,7 @@
 // tablet
 @media screen and (max-width: 1024px) {
     .cookies {
+        width: 100%;
         p {
             font-size: 2vw;
             margin: 0;
@@ -76,6 +78,7 @@
 // mobile
 @media screen and (max-width: 768px) {
     .cookies {
+        width: 100%;
         p {
             font-size: 3vw;
         }

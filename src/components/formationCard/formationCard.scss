@@ -1,0 +1,87 @@
+@use "../../Mixin.scss" as *;
+
+// formationCard
+// =============================================================================
+// formationCard article
+// ----------------------------------------------------------------------------
+.card {
+    @include dflex(center, center, 1vw);
+    width: 100%;
+    padding: 1vh 0.7vw;
+    border-radius: 1vw;
+    border: rgba(0, 0, 0, 0.27) 0.1vw solid;
+    img {
+        width: 40%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1vw;
+    }
+    .description {
+        @include dflex(start, start, 1vh, column);
+        width: 100%;
+        h3 {
+            font-size: 1.5vw;
+            font-weight: 400;
+        }
+        p {
+            font-size: 1vw;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.616);
+            width: 100%;
+        }
+        .emplacentCalendar {
+            @include dflex(start, start, 5vw);
+            // width: 100%;
+            .lieux {
+                @include dflex(start, start, 0.1vh, column);
+                width: 100%;
+                p {
+                    font-size: 0.8vw;
+                    font-weight: 700;
+                    width: 100%;
+                }
+            }
+            .calendar {
+                @include dflex(start, start, 0.1vh, column);
+                width: 100%;
+                p {
+                    font-size: 0.8vw;
+                    font-weight: 700;
+                    width: 100%;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    .buttons {
+        @include dflex(center, center, 1vh, column);
+        button {
+            width: 100%;
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+
+// media query
+// ----------------------------------------------------------------------------
+
+// tablette
+@media screen and (max-width: 1024px) {
+    .card {
+        .description {
+            h3 {
+                font-size: 2vw;
+            }
+            p {
+                font-size: 1.5vw;
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+}
+
+// ----------------------------------------------------------------------------
+// =============================================================================

@@ -1,23 +1,37 @@
 import "./connexion.scss";
-import { type JSX } from "react";
+import { type JSX, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Connexion(): JSX.Element {
+    const [show, setShow] = useState(true);
+    const nbPages = 1;
     return (
-        <section>
-            <div>
-                <button className="retour">
-                    <img src="" alt="" />
-                    Retour
-                </button>
-                <div className="title">
-                    <h2>Connexion</h2>
-                    <p>
-                        Accédez à vos formations, réservez vos sessions et
-                        suivez votre progression depuis votre espace personnel.
-                    </p>
+        <section className="connexion">
+            <div className="connexionContainer">
+                <div className="titleContainer">
+                    <button
+                        className="retour"
+                        onClick={() => {
+                            window.location.href = "/";
+                        }}
+                    >
+                        <img
+                            src="/icon/arrowRight.svg"
+                            alt="icon arrow lefts"
+                        />
+                        Retour
+                    </button>
+                    <div className="title">
+                        <h2>Connexion</h2>
+                        <p>
+                            Accédez à vos formations, réservez vos sessions et
+                            suivez votre progression depuis votre espace
+                            personnel.
+                        </p>
+                    </div>
                 </div>
                 <form action="">
-                    <div>
+                    <div className="inputs">
                         <input
                             type="email"
                             name="email"
@@ -26,24 +40,44 @@ function Connexion(): JSX.Element {
                         />
                         <div className="mdp">
                             <input
-                                type="password"
+                                type={show ? "password" : "text"}
                                 name="password"
                                 id="password"
                                 placeholder="Mot de passe"
                             />
-                            <button className="vue">
-                                <img src="" alt="" />
+                            <button
+                                className="vue"
+                                type="button"
+                                onClick={() => setShow(!show)}
+                            >
+                                <img
+                                    src={
+                                        show
+                                            ? "icon/eye.svg"
+                                            : "icon/eye-closed.svg"
+                                    }
+                                    alt="icon eye"
+                                />
                             </button>
                         </div>
                     </div>
-                    <button type="submit">Se connecter</button>
-                    <p>
-                        Pas encore de compte ? <a href="">S’inscrire</a>
-                    </p>
+                    <div className="buttonConnexion">
+                        <button type="submit">Se connecter</button>
+                        <p>
+                            Pas encore de compte ?{" "}
+                            <Link to="/inscription">S’inscrire</Link>
+                        </p>
+                    </div>
+                    <div className="pages">
+                        {Array.from({ length: nbPages }, (_, index) => (
+                            <div key={index} className="page"></div>
+                        ))}
+                    </div>
                 </form>
             </div>
-            <div>
+            <div className="imgConnexionContainer">
                 <h1>SWIPE.</h1>
+                <img src="img/connexion.png" alt="image connexion" />
             </div>
         </section>
     );

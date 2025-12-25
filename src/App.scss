@@ -1,0 +1,4 @@
+@use "./Mixin.scss" as *;
+main {
+    @include dflex(center, center, 5vh, column);
+}

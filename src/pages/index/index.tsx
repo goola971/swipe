@@ -1,6 +1,12 @@
 import "./index.scss";
 import { type JSX } from "react";
 
+// buttons
+import Button from "../../components/buttons/buttons";
+
+// components
+import ExploreCategory from "../../components/exploreCategory/exploreCategory";
+
 function Index(): JSX.Element {
     const lstButton = [
         "No-code (Webflow, Bubble)",
@@ -18,54 +24,6 @@ function Index(): JSX.Element {
     for (let i = 1; i <= 6; i++) {
         lstSwipeColab.push(directorie + "0" + i + ".png");
     }
-
-    const iconExplore: string = "icon/explore/";
-    const lstExploreCategory = [
-        {
-            img: iconExplore + "reseaux.svg",
-            title: "Réseaux & Télécoms",
-        },
-        {
-            img: iconExplore + "cyber.svg",
-            title: "Cybersécurité",
-        },
-        {
-            img: iconExplore + "backend.svg",
-            title: "Développement Backend",
-        },
-        {
-            img: iconExplore + "pcBureau.svg",
-            title: "Informatique",
-        },
-        {
-            img: iconExplore + "design.svg",
-            title: "Design",
-        },
-        {
-            img: iconExplore + "automatisation.svg",
-            title: "Automatisation",
-        },
-        {
-            img: iconExplore + "pcPortable.svg",
-            title: "Bureautique",
-        },
-        {
-            img: iconExplore + "augmentation.svg",
-            title: "Productivité",
-        },
-        {
-            img: iconExplore + "frontEnd.svg",
-            title: "Front-end",
-        },
-        {
-            img: iconExplore + "reseaux.svg",
-            title: "Administration Système",
-        },
-        {
-            img: iconExplore + "ia.svg",
-            title: "Intelligence Artificielle",
-        },
-    ];
 
     const plans = [
         {
@@ -117,14 +75,26 @@ function Index(): JSX.Element {
                     une plateforme conçue pour progresser rapidement.
                 </p>
                 <div className="Buttons">
-                    <button>
+                    {/* <button>
                         Commencer maintenant{" "}
                         <img
                             src="icon/arrowTopLeft.svg"
                             alt="arrow top left icon"
                         />
                     </button>
-                    <button>Voir les formations</button>
+                    <button>Voir les formations</button> */}
+                    <Button
+                        texte="Commencer maintenant"
+                        variante="primary"
+                        img="icon/arrowTopLeft.svg"
+                        onClick={() => {}}
+                    />
+                    <Button
+                        texte="Voir les formations"
+                        variante="secondary"
+                        img=""
+                        onClick={() => {}}
+                    />
                 </div>
                 <div className="heroImgContainer">
                     <img
@@ -175,7 +145,7 @@ function Index(): JSX.Element {
             {/* exploreNumerique */}
             {/* ============================================================= */}
             <section className="exploreNumerique">
-                <article className="exploreCategory">
+                {/* <article className="exploreCategory">
                     <h3>Explorer les catégories</h3>
                     <div className="category">
                         {lstExploreCategory.map((item, index) => (
@@ -185,7 +155,8 @@ function Index(): JSX.Element {
                             </button>
                         ))}
                     </div>
-                </article>
+                </article> */}
+                <ExploreCategory title="Explorer les catégories" />
                 <article className="meilleurNumerique">
                     <h3>Le meilleur du numérique, structuré pour vous</h3>
                     <div className="coursDual">
@@ -243,10 +214,16 @@ function Index(): JSX.Element {
                         </div>
                     </div>
                 </article>
-                <button className="voirPlus">
+                {/* <button className="voirPlus">
                     voir plus
                     <img src="icon/arrowTopLeft.svg" alt="icon arrow" />
-                </button>
+                </button> */}
+                <Button
+                    texte="voir plus"
+                    variante="primary"
+                    img="icon/arrowTopLeft.svg"
+                    onClick={() => {}}
+                />
             </section>
             {/* ============================================================= */}
 

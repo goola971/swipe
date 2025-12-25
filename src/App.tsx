@@ -14,6 +14,7 @@ import Cookies from "./components/cookies/Cookies.tsx";
 import Index from "./pages/index/index.tsx";
 import Inscription from "./pages/inscription/inscription.tsx";
 import Connexion from "./pages/connexion/connexion.tsx";
+import Formations from "./pages/formations/formations.tsx";
 
 function App() {
     return (
@@ -28,8 +29,9 @@ function App() {
                                 useLocation().pathname !== "/inscription" && (
                                     <Header />
                                 )}
-                            {/* <Header /> */}
-                            <Outlet />
+                            <main>
+                                <Outlet />
+                            </main>
                             <Cookies />
                             {useLocation().pathname !== "/connexion" &&
                                 // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -40,7 +42,7 @@ function App() {
                     }
                 >
                     <Route path="/" element={<Index />} />
-                    <Route path="/ressources" element={<h1>Ressources</h1>} />
+                    <Route path="/ressources" element={<Formations />} />
                     <Route path="/about" element={<h1>A propos</h1>} />
                     <Route path="/plan" element={<h1>Plan</h1>} />
                     <Route path="/contact" element={<h1>Contact</h1>} />

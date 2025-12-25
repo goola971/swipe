@@ -41,6 +41,14 @@
 }
 // --------------------------------------------------------------------------
 
+// position fixed left bottom
+// --------------------------------------------------------------------------
+@mixin positionFixedLeftBottom($left: 0, $bottom: 0) {
+    position: fixed;
+    left: $left;
+    bottom: $bottom;
+}
+
 // position fixed right bottom
 // --------------------------------------------------------------------------
 @mixin positionFixedRightBottom($right: 0, $bottom: 0) {

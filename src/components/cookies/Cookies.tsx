@@ -7,9 +7,9 @@ function Cookies(): JSX.Element {
         <>
             {show && (
                 <section className="cookies">
-                    <button className="x" onClick={() => setShow(false)}>
+                    {/* <button className="x" onClick={() => setShow(false)}>
                         <img src="icon/x.svg" alt="" />
-                    </button>
+                    </button> */}
                     <p>
                         Nous utilisons des cookies afin d’assurer le bon
                         fonctionnement du site, de sécuriser votre navigation et

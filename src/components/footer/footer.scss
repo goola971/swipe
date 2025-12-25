@@ -1,1 +1,139 @@
 @use "../../Mixin.scss" as *;
+
+// footer
+// =============================================================================
+// footer style
+// ----------------------------------------------------------------------------
+footer {
+    @include dflex(start, center, 0, column);
+    padding: 6vh 2vw;
+    background-color: black;
+    height: 100vh;
+    color: white;
+    h1 {
+        font-size: 3vw;
+        font-weight: 500;
+    }
+    .footerContainer {
+        @include dflex(start, center, 1vw);
+        width: 100%;
+        height: 100%;
+        section {
+            width: 50%;
+            height: 100%;
+
+            &:first-child {
+                padding: 0 2vw;
+                @include dflex(start, start, 4vh, column);
+                h2 {
+                    font-size: 1.5vw;
+                    font-weight: 500;
+                    margin-left: 5%;
+                }
+                img {
+                    width: 90%;
+                    height: auto;
+                }
+            }
+
+            &:last-child {
+                @include dflex(start, space-between, 4vh, column);
+                .footerLinks {
+                    @include dflex(start, space-between);
+                    width: 100%;
+
+                    div {
+                        @include dflex(start, start, 2vh, column);
+                        h3 {
+                            font-size: 1.5vw;
+                            font-weight: 400;
+                            color: rgba(255, 255, 255, 0.5);
+                        }
+                        nav {
+                            ul {
+                                @include dflex(start, start, 1vh, column);
+                                li {
+                                    list-style: none;
+                                    a {
+                                        text-decoration: none;
+                                        color: rgb(255, 255, 255);
+                                        font-size: 1.3vw;
+                                        font-weight: 300;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .contact {
+                @include dflex(start, start, 4vh, column);
+                width: 70%;
+                h3 {
+                    font-size: 1.5vw;
+                    font-weight: 400;
+                    color: rgba(255, 255, 255, 0.5);
+                }
+                p {
+                    font-size: 1.3vw;
+                    font-weight: 300;
+                    color: rgb(255, 255, 255);
+                }
+
+                .inputContainer {
+                    @include dflex(center, center);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                    width: 100%;
+                    height: 6vh;
+                    position: relative;
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        font-size: 1.3vw;
+                        background-color: transparent;
+                    }
+                    button {
+                        @include positionRightBottom(5%, 50%);
+                        transform: translate(50%, 50%);
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 1.3vw;
+                        margin-left: auto;
+                        width: fit-content;
+                        height: fit-content;
+                        @include dflex(center, end);
+                        img {
+                            filter: invert(1);
+                        }
+                    }
+                }
+            }
+            .copyright {
+                @include dflex(start, space-between);
+                width: 100%;
+                a {
+                    text-decoration: none;
+                    color: rgba(255, 255, 255, 0.5);
+                    font-size: 1vw;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+
+// media queries
+// ----------------------------------------------------------------------------
+// tablet
+@media screen and (max-width: 1024px) {
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+}
+// ----------------------------------------------------------------------------
+
+// =============================================================================

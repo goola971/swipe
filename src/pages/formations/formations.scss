@@ -1,0 +1,96 @@
+@use "../../Mixin.scss" as *;
+
+// formations
+// =============================================================================
+
+// formations section
+// ----------------------------------------------------------------------------
+
+.formations {
+    @include dflex(center, start, 5vh, column);
+    width: 100%;
+    height: auto;
+    padding: 10vh 15vw;
+    position: relative;
+    .coursRecommande {
+        @include dflex(start, center, 2vh, column);
+        h2 {
+            font-size: 2vw;
+            font-weight: 500;
+        }
+        .cards {
+            @include dflex(center, center, 2vh, column);
+        }
+    }
+    .toutesNosFormations {
+        @include dflex(start, center, 2vh, column);
+        .entete {
+            @include dflex(center, space-between);
+            width: 100%;
+            h2 {
+                font-size: 2vw;
+                font-weight: 500;
+            }
+            button {
+                // inverser img et text avec proprieté
+                flex-direction: row-reverse;
+            }
+        }
+        .cards {
+            @include dflex(center, center, 2vh, column);
+        }
+    }
+    .pagination {
+        @include dflex(center, center, 1vw);
+        margin: 0 auto;
+        .numbers {
+            @include dflex(center, center, 0.5vw);
+            button {
+                @include dflex(center, center, 0.5vw);
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                font-size: 1vw;
+                font-weight: 500;
+            }
+        }
+        button {
+            @include dflex(center, center, 0.5vw);
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1vw;
+            font-weight: 500;
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+
+// media query
+// ----------------------------------------------------------------------------
+
+// tablet
+@media screen and (max-width: 1024px) {
+    .formations {
+        padding: 2vh 2vw;
+        .coursRecommande {
+            .card {
+                .description {
+                    h3 {
+                        font-size: 2vw;
+                    }
+                    p {
+                        font-size: 1.5vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+}
+
+// ----------------------------------------------------------------------------
+// =============================================================================

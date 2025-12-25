@@ -1,0 +1,162 @@
+@use "../../../Mixin.scss" as *;
+
+// header connect
+// =============================================================================
+// header connect style
+// ----------------------------------------------------------------------------
+
+.headerConnect {
+    @include dflex(center, space-between);
+
+    .navContainer {
+        @include dflex(center, center, 2vw);
+        nav {
+            ul {
+                @include dflex(center, center, 2vw);
+                li {
+                    cursor: pointer;
+                    list-style: none;
+                    a {
+                        text-decoration: none;
+                        font-size: 1.1vw;
+                        color: rgb(107, 107, 107);
+                        font-weight: 400;
+                        &:hover {
+                            color: black;
+                        }
+                        transition: all 0.25s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+
+    .inputContainer {
+        @include dflex(center, center);
+        position: relative;
+        border: none;
+        width: 30%;
+        // height: 4vh;
+        border-radius: 5vw;
+        input {
+            width: 100%;
+            height: 100%;
+            border: 0.1vw solid rgb(0, 0, 0);
+            font-size: 1.3vw;
+            background-color: transparent;
+            padding: 1vh 1vw;
+            border-radius: 5vw;
+            // enlever la croix
+            &::-webkit-search-cancel-button {
+                display: none;
+            }
+        }
+        button {
+            @include positionRightBottom(7%, 50%);
+            transform: translate(50%, 50%);
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3vw;
+            margin-left: auto;
+            width: fit-content;
+            height: fit-content;
+            @include dflex(center, center);
+            img {
+                width: 1.2vw;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .buttons {
+        @include dflex(center, center, 2vw);
+        button:nth-child(1),
+        button:nth-child(2) {
+            @include button();
+            width: 3vw;
+            height: 3vw;
+            border-radius: 50%;
+
+            img {
+                width: 1.4vw;
+                height: auto;
+            }
+        }
+    }
+}
+
+// media queries
+// ----------------------------------------------------------------------------
+// tablet
+@media screen and (max-width: 1024px) {
+    .headerConnect {
+        .navContainer {
+            nav {
+                ul {
+                    li {
+                        a {
+                            font-size: 2vw;
+                        }
+                    }
+                }
+            }
+        }
+        .inputContainer {
+            display: none;
+        }
+        .buttons {
+            button:nth-child(1),
+            button:nth-child(2) {
+                @include button();
+                width: 6vw;
+                height: 6vw;
+                img {
+                    width: 3vw;
+                    height: auto;
+                }
+            }
+            button:nth-child(3) {
+                font-size: 2vw;
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and (max-width: 768px) {
+    .headerConnect {
+        .navContainer {
+            nav {
+                ul {
+                    li {
+                        a {
+                            font-size: 3vw;
+                        }
+                    }
+                }
+            }
+        }
+        .buttons {
+            button:nth-child(1),
+            button:nth-child(2) {
+                @include button();
+                width: 8vw;
+                height: 8vw;
+                img {
+                    width: 4vw;
+                    height: auto;
+                }
+            }
+            button:nth-child(3) {
+                font-size: 3vw;
+                padding-left: 3vw;
+                padding-right: 3vw;
+            }
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------
+// =============================================================================
