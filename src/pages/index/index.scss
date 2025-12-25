@@ -127,6 +127,7 @@ section {
 
         .Buttons {
             margin: 0;
+
             button {
                 width: 23vw;
                 height: 6vh;
@@ -138,12 +139,19 @@ section {
         }
         .heroImgContainer {
             .opportunities {
+                button {
+                    font-size: 2vw;
+                    padding: 1.5vh 3vw;
+                }
                 h3 {
-                    font-size: 4vw;
+                    font-size: 5vw;
                 }
                 .descriptionOpportunities {
-                    font-size: 2vw;
+                    font-size: 3vw;
                 }
+            }
+            .buttonsContainer {
+                display: none;
             }
         }
     }
@@ -174,11 +182,15 @@ section {
         }
         .heroImgContainer {
             .opportunities {
+                button {
+                    font-size: 3vw;
+                    padding: 1vh 3vw;
+                }
                 h3 {
                     font-size: 4vw;
                 }
                 .descriptionOpportunities {
-                    font-size: 2vw;
+                    font-size: 3vw;
                 }
             }
         }

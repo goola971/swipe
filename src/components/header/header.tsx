@@ -34,7 +34,7 @@ function Header(): JSX.Element {
             className={`header ${visible ? "header--show" : "header--hide"}`}
         >
             {/* <HeaderConnect /> */}
-            {(useLocation().pathname !== "/plan" && <HeaderBase />) || (
+            {(useLocation().pathname !== "/ressources" && <HeaderBase />) || (
                 <HeaderConnect />
             )}
         </header>

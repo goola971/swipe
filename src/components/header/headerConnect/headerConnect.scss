@@ -72,8 +72,10 @@
 
     .buttons {
         @include dflex(center, center, 2vw);
+
         button:nth-child(1),
-        button:nth-child(2) {
+        button:nth-child(2),
+        button:nth-child(3) {
             @include button();
             width: 3vw;
             height: 3vw;
@@ -83,6 +85,9 @@
                 width: 1.4vw;
                 height: auto;
             }
+        }
+        button:nth-child(1) {
+            display: none;
         }
     }
 }
@@ -108,7 +113,8 @@
         }
         .buttons {
             button:nth-child(1),
-            button:nth-child(2) {
+            button:nth-child(2),
+            button:nth-child(3) {
                 @include button();
                 width: 6vw;
                 height: 6vw;
@@ -117,7 +123,7 @@
                     height: auto;
                 }
             }
-            button:nth-child(3) {
+            button:nth-child(4) {
                 font-size: 2vw;
             }
         }
@@ -140,7 +146,8 @@
         }
         .buttons {
             button:nth-child(1),
-            button:nth-child(2) {
+            button:nth-child(2),
+            button:nth-child(3) {
                 @include button();
                 width: 8vw;
                 height: 8vw;
@@ -149,7 +156,7 @@
                     height: auto;
                 }
             }
-            button:nth-child(3) {
+            button:nth-child(4) {
                 font-size: 3vw;
                 padding-left: 3vw;
                 padding-right: 3vw;

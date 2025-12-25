@@ -164,98 +164,134 @@ function Formations(): JSX.Element {
 
     const formationsVisibles = formations.slice(start, end);
     return (
-        <section className="formations">
-            {/* <h2>Cours recommandé</h2> */}
-            <article className="coursRecommande">
-                <h2>Cours recommandé</h2>
-                <div className="cards">
-                    <FormationCard
-                        image="img/cours/cours.png"
-                        titles="Cours de Cybersécurité"
-                        niveau="Niveau Débutant"
-                        description="
+        <>
+            <section className="formations">
+                {/* <h2>Cours recommandé</h2> */}
+                <article className="coursRecommande">
+                    <h2>Cours recommandé</h2>
+                    <div className="cards">
+                        <FormationCard
+                            image="img/cours/cours.png"
+                            titles="Cours de Cybersécurité"
+                            niveau="Niveau Débutant"
+                            description="
                     Découvrez les bases de la sécurité informatique :
                     attaques courantes, bonnes pratiques, premiers
                     réflexes de défense. Un cours clair, accessible et
                     orienté pratique."
-                        endroit="Centre Swipe"
-                        salle="Salle A"
-                        date="Samedi 14 Décembre 2024"
-                        heureDebut="15h00"
-                        heureFin="17h00"
-                        voirSessionLink=""
-                        voirDetailsLink=""
-                    />
-                    <FormationCard
-                        image="img/cours/cours.png"
-                        titles="Cours de Cybersécurité"
-                        niveau="Niveau Débutant"
-                        description="
+                            endroit="Centre Swipe"
+                            salle="Salle A"
+                            date="Samedi 14 Décembre 2024"
+                            heureDebut="15h00"
+                            heureFin="17h00"
+                            voirSessionLink=""
+                            voirDetailsLink=""
+                        />
+                        <FormationCard
+                            image="img/cours/cours.png"
+                            titles="Cours de Cybersécurité"
+                            niveau="Niveau Débutant"
+                            description="
                     Découvrez les bases de la sécurité informatique :
                     attaques courantes, bonnes pratiques, premiers
                     réflexes de défense. Un cours clair, accessible et
                     orienté pratique."
-                        endroit="Centre Swipe"
-                        salle="Salle A"
-                        date="Samedi 14 Décembre 2024"
-                        heureDebut="15h00"
-                        heureFin="17h00"
-                        voirSessionLink=""
-                        voirDetailsLink=""
-                    />
-                </div>
-            </article>
-            <ExploreCategory title="Dans quel domaine souhaitez-vous vous former ?" />
-            <article className="toutesNosFormations">
-                <div className="entete">
-                    <h2>Toutes nos formations</h2>
-                    {/* <button className="filter">
+                            endroit="Centre Swipe"
+                            salle="Salle A"
+                            date="Samedi 14 Décembre 2024"
+                            heureDebut="15h00"
+                            heureFin="17h00"
+                            voirSessionLink=""
+                            voirDetailsLink=""
+                        />
+                    </div>
+                </article>
+                <ExploreCategory title="Dans quel domaine souhaitez-vous vous former ?" />
+                <article className="toutesNosFormations">
+                    <div className="entete">
+                        <h2>Toutes nos formations</h2>
+                        {/* <button className="filter">
                         <img src="" alt="" />
                         Trier par...
                     </button> */}
-                    <Button
-                        texte="Trier par..."
-                        variante="primary"
-                        img="icon/trier.svg"
-                        onClick={() => {}}
-                        // type="button"
-                        // className="filter"
-                    />
-                </div>
-                <div className="cards">
-                    {formationsVisibles.map((formation, index) => (
-                        <FormationCard key={index} {...formation} />
-                    ))}
-                </div>
-                <div className="pagination">
-                    <button
-                        disabled={page === 1}
-                        onClick={() => setPage(page - 1)}
-                    >
-                        {"<"}
-                    </button>
-
-                    <div className="numbers">
-                        {Array.from({ length: totalPages }, (_, i) => (
-                            <button
-                                key={i}
-                                className={page === i + 1 ? "active" : ""}
-                                onClick={() => setPage(i + 1)}
-                            >
-                                {i + 1}
-                            </button>
+                        <Button
+                            texte="Trier par..."
+                            variante="primary"
+                            img="icon/trier.svg"
+                            onClick={() => {}}
+                            // type="button"
+                            // className="filter"
+                        />
+                    </div>
+                    <div className="cards">
+                        {formationsVisibles.map((formation, index) => (
+                            <FormationCard key={index} {...formation} />
                         ))}
                     </div>
+                    <div className="pagination">
+                        <button
+                            disabled={page === 1}
+                            onClick={() => setPage(page - 1)}
+                            className={"prev" + (page === 1 ? " disabled" : "")}
+                        >
+                            <img
+                                src="icon/chevronRight.svg"
+                                alt="icon chevron"
+                            />
+                        </button>
 
-                    <button
-                        disabled={page === totalPages}
-                        onClick={() => setPage(page + 1)}
-                    >
-                        {">"}
-                    </button>
-                </div>
-            </article>
-        </section>
+                        <div className="numbers">
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i}
+                                    className={page === i + 1 ? "active" : ""}
+                                    onClick={() => setPage(i + 1)}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
+
+                        <button
+                            disabled={page === totalPages}
+                            onClick={() => setPage(page + 1)}
+                            className={
+                                "next" +
+                                (page === totalPages ? " disabled" : "")
+                            }
+                        >
+                            <img
+                                src="icon/chevronRight.svg"
+                                alt="icon chevron"
+                            />
+                        </button>
+                    </div>
+                </article>
+            </section>
+            <section className="obtentionCertif">
+                <article>
+                    <img
+                        src="img/cours/certif.png"
+                        alt="obtention de la certif"
+                    />
+                    <div>
+                        <h3>Obtention de la certification</h3>
+                        <p>
+                            À l’issue de votre cours, une vérification
+                            automatique de votre présence et de votre
+                            participation est effectuée. Une fois cette étape
+                            validée, vous recevez un e-mail personnalisé
+                            confirmant l’obtention de votre certification.
+                        </p>
+                        <p>
+                            La procédure est simple, fluide et entièrement
+                            automatisée.Vous terminez votre cours, nous nous
+                            occupons du reste.
+                        </p>
+                    </div>
+                </article>
+            </section>
+        </>
     );
 }
 

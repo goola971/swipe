@@ -29,6 +29,9 @@ function HeaderConnect(): JSX.Element {
                 </button>
             </div>
             <div className="buttons">
+                <button className="search">
+                    <img src="icon/search.svg" alt="icon search" />
+                </button>
                 <button>
                     <img src="icon/cart.svg" alt="icon cart" />
                 </button>
