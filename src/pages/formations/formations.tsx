@@ -274,19 +274,30 @@ function Formations(): JSX.Element {
                         src="img/cours/certif.png"
                         alt="obtention de la certif"
                     />
-                    <div>
+                    <div className="texte">
                         <h3>Obtention de la certification</h3>
                         <p>
                             À l’issue de votre cours, une vérification
-                            automatique de votre présence et de votre
-                            participation est effectuée. Une fois cette étape
-                            validée, vous recevez un e-mail personnalisé
-                            confirmant l’obtention de votre certification.
+                            automatique de <br /> votre présence et de votre
+                            participation est effectuée. <br /> Une fois cette
+                            étape validée, vous recevez un e-mail <br />
+                            personnalisé confirmant l’obtention de votre <br />
+                            certification.
                         </p>
                         <p>
-                            La procédure est simple, fluide et entièrement
-                            automatisée.Vous terminez votre cours, nous nous
-                            occupons du reste.
+                            La procédure est simple, fluide et entièrement{" "}
+                            <br />
+                            automatisée. <br /> Vous terminez votre cours, nous
+                            nous <br /> occupons du reste.
+                        </p>
+                    </div>
+                    <div className="certifContenu">
+                        <button>Automatique</button>
+                        <h3>Que contient-il ?</h3>
+                        <p>
+                            Votre certificat numérique, les informations du
+                            cours, la date de validation et un lien sécurisé
+                            pour le télécharger.
                         </p>
                     </div>
                 </article>

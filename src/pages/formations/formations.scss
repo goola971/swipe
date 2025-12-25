@@ -1,6 +1,6 @@
 @use "../../Mixin.scss" as *;
 
-// formations
+// section
 // =============================================================================
 
 // formations section
@@ -89,6 +89,51 @@
 }
 // ----------------------------------------------------------------------------
 
+// obtentionCertif
+// ----------------------------------------------------------------------------
+.obtentionCertif {
+    @include dflex(center, center);
+
+    article {
+        width: 99%;
+        height: 80%;
+        background-color: black;
+        @include dflex(center, space-between, 2vw);
+        padding: 2vh 1.5vw;
+        border-radius: 2vw;
+        position: relative;
+        img {
+            width: auto;
+            height: 100%;
+        }
+        .texte {
+            @include dflex(start, space-between, 2vh, column);
+            height: 100%;
+            width: 100%;
+            h3 {
+                font-size: 3.5vw;
+                font-weight: 500;
+                color: white;
+            }
+            p {
+                font-size: 1.5vw;
+                margin-top: 1vh;
+                color: rgb(255, 255, 255);
+                font-weight: 400;
+                &:last-child {
+                    text-align: right;
+                    margin-left: auto;
+                }
+            }
+        }
+        .certifContenu {
+            background-color: #ad9ff8;
+            @include positionRightBottom(3%, 3%);
+        }
+    }
+}
+// ----------------------------------------------------------------------------
+
 // media query
 // ----------------------------------------------------------------------------
 
@@ -113,6 +158,21 @@
 
 // mobile
 @media screen and (max-width: 768px) {
+    .formations {
+        padding: 2vh 2vw;
+        .coursRecommande {
+            .card {
+                .description {
+                    h3 {
+                        font-size: 2vw;
+                    }
+                    p {
+                        font-size: 1.5vw;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // ----------------------------------------------------------------------------
