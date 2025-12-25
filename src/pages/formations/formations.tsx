@@ -1,5 +1,5 @@
 import "./formations.scss";
-import { type JSX } from "react";
+import { type JSX, useState } from "react";
 
 import ExploreCategory from "../../components/exploreCategory/exploreCategory";
 
@@ -7,6 +7,162 @@ import Button from "../../components/buttons/buttons";
 import FormationCard from "../../components/formationCard/formationCard";
 
 function Formations(): JSX.Element {
+    const formations = [
+        {
+            image: "img/cours/cours.png",
+            titles: "Cybersécurité – Fondamentaux",
+            niveau: "Débutant",
+            description:
+                "Bases de la sécurité informatique et menaces courantes.",
+            endroit: "Centre Swipe",
+            salle: "Salle A",
+            date: "Samedi 14 Décembre 2024",
+            heureDebut: "15h00",
+            heureFin: "17h00",
+            voirSessionLink: "/sessions/cyber-fondamentaux",
+            voirDetailsLink: "/formations/cyber-fondamentaux",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Développement Web Moderne",
+            niveau: "Intermédiaire",
+            description: "HTML, CSS, JavaScript moderne et React.",
+            endroit: "Centre Swipe",
+            salle: "Salle B",
+            date: "Mercredi 18 Décembre 2024",
+            heureDebut: "10h00",
+            heureFin: "13h00",
+            voirSessionLink: "/sessions/web-moderne",
+            voirDetailsLink: "/formations/web-moderne",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "UI / UX Design",
+            niveau: "Débutant",
+            description: "Ergonomie, wireframes et prototypage sur Figma.",
+            endroit: "Centre Swipe",
+            salle: "Salle C",
+            date: "Vendredi 20 Décembre 2024",
+            heureDebut: "14h00",
+            heureFin: "17h00",
+            voirSessionLink: "/sessions/ui-ux",
+            voirDetailsLink: "/formations/ui-ux",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Introduction à la Data Analyse",
+            niveau: "Intermédiaire",
+            description: "Analyse de données et visualisation de base.",
+            endroit: "Centre Swipe",
+            salle: "Salle D",
+            date: "Lundi 6 Janvier 2025",
+            heureDebut: "09h00",
+            heureFin: "12h00",
+            voirSessionLink: "/sessions/data-intro",
+            voirDetailsLink: "/formations/data-intro",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Bases du DevOps",
+            niveau: "Avancé",
+            description: "CI/CD, Docker et automatisation.",
+            endroit: "Centre Swipe",
+            salle: "Salle A",
+            date: "Jeudi 9 Janvier 2025",
+            heureDebut: "13h30",
+            heureFin: "17h30",
+            voirSessionLink: "/sessions/devops",
+            voirDetailsLink: "/formations/devops",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Sécurité Réseau",
+            niveau: "Intermédiaire",
+            description: "Pare-feu, VPN et segmentation réseau.",
+            endroit: "Centre Swipe",
+            salle: "Salle B",
+            date: "Samedi 11 Janvier 2025",
+            heureDebut: "09h00",
+            heureFin: "12h00",
+            voirSessionLink: "/sessions/securite-reseau",
+            voirDetailsLink: "/formations/securite-reseau",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Programmation Python",
+            niveau: "Débutant",
+            description: "Syntaxe, logique et scripts simples.",
+            endroit: "Centre Swipe",
+            salle: "Salle C",
+            date: "Lundi 13 Janvier 2025",
+            heureDebut: "14h00",
+            heureFin: "17h00",
+            voirSessionLink: "/sessions/python",
+            voirDetailsLink: "/formations/python",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Bases de Linux",
+            niveau: "Débutant",
+            description: "Commandes, système de fichiers et permissions.",
+            endroit: "Centre Swipe",
+            salle: "Salle D",
+            date: "Mercredi 15 Janvier 2025",
+            heureDebut: "10h00",
+            heureFin: "13h00",
+            voirSessionLink: "/sessions/linux",
+            voirDetailsLink: "/formations/linux",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Gestion de Projet Agile",
+            niveau: "Intermédiaire",
+            description: "Scrum, Kanban et organisation d’équipe.",
+            endroit: "Centre Swipe",
+            salle: "Salle A",
+            date: "Vendredi 17 Janvier 2025",
+            heureDebut: "15h00",
+            heureFin: "18h00",
+            voirSessionLink: "/sessions/agile",
+            voirDetailsLink: "/formations/agile",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Introduction au Cloud",
+            niveau: "Débutant",
+            description: "Concepts cloud et services principaux.",
+            endroit: "Centre Swipe",
+            salle: "Salle B",
+            date: "Samedi 18 Janvier 2025",
+            heureDebut: "09h30",
+            heureFin: "12h30",
+            voirSessionLink: "/sessions/cloud",
+            voirDetailsLink: "/formations/cloud",
+        },
+        {
+            image: "img/cours/cours.png",
+            titles: "Sécurité des Applications Web",
+            niveau: "Avancé",
+            description: "OWASP, failles courantes et protections.",
+            endroit: "Centre Swipe",
+            salle: "Salle C",
+            date: "Lundi 20 Janvier 2025",
+            heureDebut: "14h00",
+            heureFin: "18h00",
+            voirSessionLink: "/sessions/securite-web",
+            voirDetailsLink: "/formations/securite-web",
+        },
+    ];
+
+    const CARDS_PAR_PAGE = 4;
+    const [page, setPage] = useState(1);
+
+    const totalPages = Math.ceil(formations.length / CARDS_PAR_PAGE);
+
+    const start = (page - 1) * CARDS_PAR_PAGE;
+    const end = start + CARDS_PAR_PAGE;
+
+    const formationsVisibles = formations.slice(start, end);
     return (
         <section className="formations">
             {/* <h2>Cours recommandé</h2> */}
@@ -67,86 +223,36 @@ function Formations(): JSX.Element {
                     />
                 </div>
                 <div className="cards">
-                    <FormationCard
-                        image="img/cours/cours.png"
-                        titles="Cours de Cybersécurité"
-                        niveau="Niveau Débutant"
-                        description="
-                    Découvrez les bases de la sécurité informatique :
-                    attaques courantes, bonnes pratiques, premiers
-                    réflexes de défense. Un cours clair, accessible et
-                    orienté pratique."
-                        endroit="Centre Swipe"
-                        salle="Salle A"
-                        date="Samedi 14 Décembre 2024"
-                        heureDebut="15h00"
-                        heureFin="17h00"
-                        voirSessionLink=""
-                        voirDetailsLink=""
-                    />
-                    <FormationCard
-                        image="img/cours/cours.png"
-                        titles="Cours de Cybersécurité"
-                        niveau="Niveau Débutant"
-                        description="
-                    Découvrez les bases de la sécurité informatique :
-                    attaques courantes, bonnes pratiques, premiers
-                    réflexes de défense. Un cours clair, accessible et
-                    orienté pratique."
-                        endroit="Centre Swipe"
-                        salle="Salle A"
-                        date="Samedi 14 Décembre 2024"
-                        heureDebut="15h00"
-                        heureFin="17h00"
-                        voirSessionLink=""
-                        voirDetailsLink=""
-                    />
-                    <FormationCard
-                        image="img/cours/cours.png"
-                        titles="Cours de Cybersécurité"
-                        niveau="Niveau Débutant"
-                        description="
-                    Découvrez les bases de la sécurité informatique :
-                    attaques courantes, bonnes pratiques, premiers
-                    réflexes de défense. Un cours clair, accessible et
-                    orienté pratique."
-                        endroit="Centre Swipe"
-                        salle="Salle A"
-                        date="Samedi 14 Décembre 2024"
-                        heureDebut="15h00"
-                        heureFin="17h00"
-                        voirSessionLink=""
-                        voirDetailsLink=""
-                    />
-                    <FormationCard
-                        image="img/cours/cours.png"
-                        titles="Cours de Cybersécurité"
-                        niveau="Niveau Débutant"
-                        description="
-                    Découvrez les bases de la sécurité informatique :
-                    attaques courantes, bonnes pratiques, premiers
-                    réflexes de défense. Un cours clair, accessible et
-                    orienté pratique."
-                        endroit="Centre Swipe"
-                        salle="Salle A"
-                        date="Samedi 14 Décembre 2024"
-                        heureDebut="15h00"
-                        heureFin="17h00"
-                        voirSessionLink=""
-                        voirDetailsLink=""
-                    />
+                    {formationsVisibles.map((formation, index) => (
+                        <FormationCard key={index} {...formation} />
+                    ))}
                 </div>
                 <div className="pagination">
-                    <button>{"<"}</button>
+                    <button
+                        disabled={page === 1}
+                        onClick={() => setPage(page - 1)}
+                    >
+                        {"<"}
+                    </button>
+
                     <div className="numbers">
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>...</button>
+                        {Array.from({ length: totalPages }, (_, i) => (
+                            <button
+                                key={i}
+                                className={page === i + 1 ? "active" : ""}
+                                onClick={() => setPage(i + 1)}
+                            >
+                                {i + 1}
+                            </button>
+                        ))}
                     </div>
-                    <button>{">"}</button>
+
+                    <button
+                        disabled={page === totalPages}
+                        onClick={() => setPage(page + 1)}
+                    >
+                        {">"}
+                    </button>
                 </div>
             </article>
         </section>

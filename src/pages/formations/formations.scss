@@ -24,6 +24,7 @@
     }
     .toutesNosFormations {
         @include dflex(start, center, 2vh, column);
+        width: 100%;
         .entete {
             @include dflex(center, space-between);
             width: 100%;
@@ -38,6 +39,7 @@
         }
         .cards {
             @include dflex(center, center, 2vh, column);
+            width: 100%;
         }
     }
     .pagination {
@@ -61,6 +63,9 @@
             cursor: pointer;
             font-size: 1vw;
             font-weight: 500;
+            &.active {
+                text-decoration: underline;
+            }
         }
     }
 }
