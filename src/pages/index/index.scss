@@ -358,9 +358,9 @@ section {
                             p {
                                 font-size: 1vw;
                                 font-weight: 500;
-                                color: rgba(0, 0, 0, 0.64);
+                                color: rgba(0, 0, 0, 0.7);
                                 &:last-child {
-                                    color: rgba(0, 0, 0, 0.44);
+                                    color: rgba(0, 0, 0, 0.5);
                                 }
                             }
                         }
@@ -789,7 +789,7 @@ section {
                         width: 1vw;
                         height: 0.7vh;
                         border-radius: 20vw;
-                        background-color: rgba(0, 0, 0, 0.27);
+                        background-color: rgba(0, 0, 0, 0.3);
 
                         &:last-child {
                             width: 1.5vw;
@@ -833,14 +833,14 @@ section {
                 p {
                     font-size: 0.7vw;
                     font-weight: 500;
-                    color: rgba(0, 0, 0, 0.4);
+                    color: rgba(0, 0, 0, 0.6);
                     @include dflex(center, start, 0.5vw);
                     width: 80%;
                     img {
                         width: 1.2vw;
                         height: auto;
                         // baisser le contraste
-                        filter: invert(0.6);
+                        filter: invert(0.4);
                     }
                 }
             }
