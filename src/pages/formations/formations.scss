@@ -10,7 +10,7 @@
     @include dflex(center, start, 5vh, column);
     width: 100%;
     height: auto;
-    padding: 10vh 15vw;
+    padding: 10vh 15vw 3vh 15vw;
     position: relative;
     .coursRecommande {
         @include dflex(start, center, 2vh, column);
@@ -93,42 +93,70 @@
 // ----------------------------------------------------------------------------
 .obtentionCertif {
     @include dflex(center, center);
-
+    height: auto;
+    padding-bottom: 10vh;
+    width: 100% !important;
     article {
         width: 99%;
         height: 80%;
         background-color: black;
         @include dflex(center, space-between, 2vw);
-        padding: 2vh 1.5vw;
+        padding: 2vh 5vw 2vh 1vw;
         border-radius: 2vw;
         position: relative;
         img {
-            width: auto;
-            height: 100%;
+            width: 40%;
+            height: 65vh;
+            object-fit: contain;
         }
         .texte {
             @include dflex(start, space-between, 2vh, column);
-            height: 100%;
+            height: 65vh;
             width: 100%;
             h3 {
                 font-size: 3.5vw;
                 font-weight: 500;
                 color: white;
             }
+            div {
+                @include dflex(start, center, 1vh, column);
+            }
             p {
                 font-size: 1.5vw;
                 margin-top: 1vh;
                 color: rgb(255, 255, 255);
                 font-weight: 400;
-                &:last-child {
-                    text-align: right;
-                    margin-left: auto;
-                }
+            }
+            & > p {
+                text-align: right;
+                margin-left: auto;
             }
         }
         .certifContenu {
             background-color: #ad9ff8;
-            @include positionRightBottom(3%, 3%);
+            @include positionLeftBottom(24%, -10%);
+            transform: rotate(6deg);
+            @include dflex(start, center, 1vh, column);
+            width: 27%;
+            padding: 2vh 1vw;
+            border-radius: 1vw;
+            button {
+                @include button2();
+                font-size: 0.7vw;
+                padding: 1vh 1vw;
+                margin-left: auto;
+            }
+            h3 {
+                font-size: 2vw;
+                font-weight: 600;
+                color: rgb(0, 0, 0);
+                margin-bottom: 2vh;
+            }
+            p {
+                font-size: 1.5vw;
+                color: rgb(0, 0, 0);
+                font-weight: 500;
+            }
         }
     }
 }

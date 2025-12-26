@@ -275,15 +275,19 @@ function Formations(): JSX.Element {
                         alt="obtention de la certif"
                     />
                     <div className="texte">
-                        <h3>Obtention de la certification</h3>
-                        <p>
-                            À l’issue de votre cours, une vérification
-                            automatique de <br /> votre présence et de votre
-                            participation est effectuée. <br /> Une fois cette
-                            étape validée, vous recevez un e-mail <br />
-                            personnalisé confirmant l’obtention de votre <br />
-                            certification.
-                        </p>
+                        <div>
+                            <h3>Obtention de la certification</h3>
+                            <p>
+                                À l’issue de votre cours, une vérification
+                                automatique de <br /> votre présence et de votre
+                                participation est effectuée. <br /> Une fois
+                                cette étape validée, vous recevez un e-mail{" "}
+                                <br />
+                                personnalisé confirmant l’obtention de votre{" "}
+                                <br />
+                                certification.
+                            </p>
+                        </div>
                         <p>
                             La procédure est simple, fluide et entièrement{" "}
                             <br />

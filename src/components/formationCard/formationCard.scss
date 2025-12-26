@@ -70,9 +70,26 @@
     .card {
         .description {
             h3 {
-                font-size: 2vw;
+                font-size: 2.5vw;
             }
             p {
+                font-size: 1.7vw;
+            }
+            .emplacentCalendar {
+                .lieux {
+                    p {
+                        font-size: 1.5vw;
+                    }
+                }
+                .calendar {
+                    p {
+                        font-size: 1.5vw;
+                    }
+                }
+            }
+        }
+        .buttons {
+            button {
                 font-size: 1.5vw;
             }
         }
