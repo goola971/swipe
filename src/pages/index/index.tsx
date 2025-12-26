@@ -172,7 +172,8 @@ function Index(): JSX.Element {
                             </div>
                             <div className="coursDualCardContainer">
                                 {/* repeter 3 fois */}
-                                {[1, 2, 3].map((item, index) => (
+
+                                {[1, 2, 3].map((_, index) => (
                                     <div className="coursDualCard" key={index}>
                                         <img src="img/cours.png" alt="" />
                                         <div>
@@ -198,7 +199,7 @@ function Index(): JSX.Element {
                             </div>
                             <div className="coursDualCardContainer">
                                 {/* repeter 3 fois */}
-                                {[1, 2, 3].map((item, index) => (
+                                {[1, 2, 3].map((_, index) => (
                                     <div className="coursDualCard" key={index}>
                                         <img src="img/cours.png" alt="" />
                                         <div>
