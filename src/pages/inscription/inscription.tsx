@@ -32,6 +32,7 @@ function Inscription(): JSX.Element {
                                 window.location.href = "/";
                             }
                         }}
+                        aria-label="Retour"
                     >
                         <img src="/icon/arrowRight.svg" alt="icon arrow left" />
                         Retour
@@ -88,6 +89,11 @@ function Inscription(): JSX.Element {
                                     type="button"
                                     className="vue"
                                     onClick={() => setShow(!show)}
+                                    aria-label={
+                                        show
+                                            ? "Afficher le mot de passe"
+                                            : "Cacher le mot de passe"
+                                    }
                                 >
                                     <img
                                         src={
@@ -107,11 +113,14 @@ function Inscription(): JSX.Element {
                             <button
                                 type="button"
                                 onClick={() => setPage(page + 1)}
+                                aria-label="Suivant"
                             >
                                 Suivant
                             </button>
                         ) : (
-                            <button type="submit">Créer le compte</button>
+                            <button type="submit" aria-label="Créer le compte">
+                                Créer le compte
+                            </button>
                         )}
 
                         <p>

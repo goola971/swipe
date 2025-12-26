@@ -233,6 +233,7 @@ function Formations(): JSX.Element {
                             disabled={page === 1}
                             onClick={() => setPage(page - 1)}
                             className={"prev" + (page === 1 ? " disabled" : "")}
+                            aria-label="icon chevron left"
                         >
                             <img
                                 src="icon/chevronRight.svg"
@@ -246,6 +247,7 @@ function Formations(): JSX.Element {
                                     key={i}
                                     className={page === i + 1 ? "active" : ""}
                                     onClick={() => setPage(i + 1)}
+                                    aria-label={`Page ${i + 1}`}
                                 >
                                     {i + 1}
                                 </button>
@@ -259,6 +261,7 @@ function Formations(): JSX.Element {
                                 "next" +
                                 (page === totalPages ? " disabled" : "")
                             }
+                            aria-label="icon chevron right"
                         >
                             <img
                                 src="icon/chevronRight.svg"
@@ -296,7 +299,7 @@ function Formations(): JSX.Element {
                         </p>
                     </div>
                     <div className="certifContenu">
-                        <button>Automatique</button>
+                        <button aria-label="Automatique">Automatique</button>
                         <h3>Que contient-il ?</h3>
                         <p>
                             Votre certificat numérique, les informations du

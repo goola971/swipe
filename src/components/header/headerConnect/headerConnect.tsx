@@ -24,18 +24,18 @@ function HeaderConnect(): JSX.Element {
                     type="search"
                     placeholder="Que souhaitez-vous apprendre ?"
                 />
-                <button type="submit">
+                <button type="submit" aria-label="Rechercher">
                     <img src="icon/search.svg" alt="icon search" />
                 </button>
             </div>
             <div className="buttons">
-                <button className="search">
+                <button aria-label="Rechercher" className="search">
                     <img src="icon/search.svg" alt="icon search" />
                 </button>
-                <button>
+                <button aria-label="Panier">
                     <img src="icon/cart.svg" alt="icon cart" />
                 </button>
-                <button>
+                <button aria-label="Notifications">
                     <img src="icon/bell.svg" alt="icon bell" />
                 </button>
                 <Button

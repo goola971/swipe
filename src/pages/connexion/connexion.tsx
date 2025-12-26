@@ -14,6 +14,7 @@ function Connexion(): JSX.Element {
                         onClick={() => {
                             window.location.href = "/";
                         }}
+                        aria-label="Retour"
                     >
                         <img
                             src="/icon/arrowRight.svg"
@@ -49,6 +50,11 @@ function Connexion(): JSX.Element {
                                 className="vue"
                                 type="button"
                                 onClick={() => setShow(!show)}
+                                aria-label={
+                                    show
+                                        ? "Afficher le mot de passe"
+                                        : "Cacher le mot de passe"
+                                }
                             >
                                 <img
                                     src={
@@ -62,7 +68,9 @@ function Connexion(): JSX.Element {
                         </div>
                     </div>
                     <div className="buttonConnexion">
-                        <button type="submit">Se connecter</button>
+                        <button type="submit" aria-label="Se connecter">
+                            Se connecter
+                        </button>
                         <p>
                             Pas encore de compte ?{" "}
                             <Link to="/inscription">S’inscrire</Link>

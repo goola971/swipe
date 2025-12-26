@@ -59,7 +59,7 @@ function ExploreCategory({ title }: { title: string }): JSX.Element {
             <h3>{title}</h3>
             <div className="category">
                 {lstExploreCategory.map((item, index) => (
-                    <button key={index}>
+                    <button key={index} aria-label={item.title}>
                         <img src={item.img} alt={item.title} />
                         {item.title}
                     </button>

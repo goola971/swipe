@@ -103,7 +103,9 @@ function Index(): JSX.Element {
                         className="background"
                     />
                     <div className="opportunities">
-                        <button>Opportunité d'emploi</button>
+                        <button aria-label="Opportunité d'emploi">
+                            Opportunité d'emploi
+                        </button>
                         <h3>Ouvrez la porte aux opportunités du numérique.</h3>
                         <p className="descriptionOpportunities">
                             Des parcours courts et structurés pour accéder
@@ -116,7 +118,9 @@ function Index(): JSX.Element {
                     </div>
                     <div className="buttonsContainer">
                         {lstButton.map((item, index) => (
-                            <button key={index}>{item}</button>
+                            <button key={index} aria-label={item}>
+                                {item}
+                            </button>
                         ))}
                     </div>
                 </div>
@@ -163,7 +167,7 @@ function Index(): JSX.Element {
                         <div className="cours">
                             <div className="entete">
                                 <h4>Les cours les plus demandés.</h4>
-                                <button>
+                                <button aria-label="flèche gauche">
                                     <img
                                         src="icon/arrowLeft.svg"
                                         alt="arrowLeft icon"
@@ -190,7 +194,7 @@ function Index(): JSX.Element {
                         <div className="cours">
                             <div className="entete">
                                 <h4>Les cours les plus demandés.</h4>
-                                <button>
+                                <button aria-label="flèche gauche">
                                     <img
                                         src="icon/arrowLeft.svg"
                                         alt="arrowLeft icon"
@@ -241,7 +245,7 @@ function Index(): JSX.Element {
                             l’apprentissage. Elle permet de progresser à son
                             rythme.
                             <br />
-                            <br />
+                            {/* <br /> */}
                             <br />
                             <br />
                             Swipe regroupe plusieurs domaines : réseaux,
@@ -257,7 +261,7 @@ function Index(): JSX.Element {
                         <p>
                             Une question sur une formation ou une réservation ?
                         </p>
-                        <button>
+                        <button aria-label="Contactez-nous">
                             Contactez-nous.{" "}
                             <img
                                 src="icon/arrowBottomRight.svg"
@@ -286,9 +290,11 @@ function Index(): JSX.Element {
                     </div>
                     <div className="satisfaction">
                         <div className="entete">
-                            <button>Utilité</button>
-                            <button>Clarté</button>
-                            <button>Progression</button>
+                            <button aria-label="Utilité">Utilité</button>
+                            <button aria-label="Clarté">Clarté</button>
+                            <button aria-label="Progression">
+                                Progression
+                            </button>
                         </div>
                         <div className="textSatisfaction">
                             <h4>92 % de satisfaction</h4>
@@ -363,7 +369,7 @@ function Index(): JSX.Element {
                                     ))}
                                 </div>
                             </div>
-                            <button>
+                            <button aria-label="Souscrire">
                                 Souscrire
                                 <img src="icon/arrowLeft.svg" alt="" />
                             </button>

@@ -47,7 +47,11 @@ const Button = ({
     onClick: () => void;
 }): JSX.Element => {
     return (
-        <button className={`button ${variante}`} onClick={onClick}>
+        <button
+            className={`button ${variante}`}
+            onClick={onClick}
+            aria-label={texte}
+        >
             {texte}
             {variante === "primary" &&
                 // <img src="icon/arrowTopLeft.svg" alt="arrow top left icon" />

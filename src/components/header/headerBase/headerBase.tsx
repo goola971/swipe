@@ -30,10 +30,10 @@ function HeaderBase(): JSX.Element {
             </div>
 
             <div className="buttons">
-                <button className="search">
+                <button className="search" aria-label="Rechercher">
                     <img src="icon/search.svg" alt="icon Search" />
                 </button>
-                <button className="menu">
+                <button className="menu" aria-label="Menu">
                     <img
                         src="icon/menuSortInverse.svg"
                         alt="icon menuSortInverse"

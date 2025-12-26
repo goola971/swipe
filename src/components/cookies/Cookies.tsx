@@ -20,9 +20,14 @@ function Cookies(): JSX.Element {
                         d’optimiser nos contenus et services
                     </p>
                     <div className="buttons">
-                        <button>Cookies essentiels</button>
-                        <button>Refuser</button>
-                        <button onClick={() => setShow(false)}>
+                        <button aria-label="Cookies essentiels">
+                            Cookies essentiels
+                        </button>
+                        <button aria-label="Refuser">Refuser</button>
+                        <button
+                            onClick={() => setShow(false)}
+                            aria-label="Accepter tous les cookies"
+                        >
                             Accepter tous les cookies
                         </button>
                     </div>
