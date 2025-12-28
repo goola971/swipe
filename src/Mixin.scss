@@ -81,6 +81,8 @@
     @include dflex(center, center, 0.7vw);
     border: rgba(0, 0, 0, 0.27) 0.1vw solid;
     background-color: transparent;
+    text-decoration: none;
+    color: black;
 }
 // --------------------------------------------------------------------------
 
@@ -98,7 +100,7 @@
     color: rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
     // empecher le a la ligne
-
+    text-decoration: none;
     white-space: nowrap;
 }
 // --------------------------------------------------------------------------
