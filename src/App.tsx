@@ -17,27 +17,21 @@ import Connexion from "./pages/connexion/connexion.tsx";
 import Formations from "./pages/formations/formations.tsx";
 
 function App() {
+    const { pathname } = useLocation();
     return (
         <>
             <Routes>
                 <Route
                     element={
                         <>
-                            {/* si la page c'est connexion et inscription, pas de header */}
-                            {useLocation().pathname !== "/connexion" &&
-                                // eslint-disable-next-line react-hooks/rules-of-hooks
-                                useLocation().pathname !== "/inscription" && (
-                                    <Header />
-                                )}
+                            {pathname !== "/connexion" &&
+                                pathname !== "/inscription" && <Header />}
                             <main>
                                 <Outlet />
                             </main>
                             <Cookies />
-                            {useLocation().pathname !== "/connexion" &&
-                                // eslint-disable-next-line react-hooks/rules-of-hooks
-                                useLocation().pathname !== "/inscription" && (
-                                    <Footer />
-                                )}
+                            {pathname !== "/connexion" &&
+                                pathname !== "/inscription" && <Footer />}
                         </>
                     }
                 >

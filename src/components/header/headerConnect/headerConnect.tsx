@@ -3,7 +3,10 @@ import { type JSX } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../buttons/buttons";
 
+import { useLocation } from "react-router-dom";
+
 function HeaderConnect(): JSX.Element {
+    const { pathname } = useLocation();
     return (
         <div className="headerConnect">
             <div className="navContainer">
@@ -19,15 +22,17 @@ function HeaderConnect(): JSX.Element {
                     </ul>
                 </nav>
             </div>
-            <div className="inputContainer">
-                <input
-                    type="search"
-                    placeholder="Que souhaitez-vous apprendre ?"
-                />
-                <button type="submit" aria-label="Rechercher">
-                    <img src="icon/search.svg" alt="icon search" />
-                </button>
-            </div>
+            {pathname !== "/profil" ? (
+                <div className="inputContainer">
+                    <input
+                        type="search"
+                        placeholder="Que souhaitez-vous apprendre ?"
+                    />
+                    <button type="submit" aria-label="Rechercher">
+                        <img src="icon/search.svg" alt="icon search" />
+                    </button>
+                </div>
+            ) : null}
             <div className="buttons">
                 <button aria-label="Rechercher" className="search">
                     <img src="icon/search.svg" alt="icon search" />
