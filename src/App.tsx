@@ -15,6 +15,7 @@ import Index from "./pages/index/index.tsx";
 import Inscription from "./pages/inscription/inscription.tsx";
 import Connexion from "./pages/connexion/connexion.tsx";
 import Formations from "./pages/formations/formations.tsx";
+import Profile from "./pages/profile/profile.tsx";
 
 function App() {
     const { pathname } = useLocation();
@@ -42,6 +43,8 @@ function App() {
                     <Route path="/contact" element={<h1>Contact</h1>} />
                     <Route path="/connexion" element={<Connexion />} />
                     <Route path="/inscription" element={<Inscription />} />
+                    <Route path="/profil" element={<Profile />} />
+                    <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Route>
             </Routes>
         </>

@@ -22,4 +22,8 @@
     &.header-visible {
         opacity: 1;
     }
+    &.header--profil {
+        background-color: #a9b9c7;
+        backdrop-filter: none;
+    }
 }

@@ -32,7 +32,11 @@ function Header(): JSX.Element {
     const { pathname } = useLocation();
     return (
         <header
-            className={`header ${visible ? "header--show" : "header--hide"}`}
+            className={
+                `header ${visible ? "header--show" : "header--hide"}` +
+                " " +
+                `${pathname === "/profil" ? "header--profil" : ""}`
+            }
         >
             {/* <HeaderConnect /> */}
             {/* different de /ressources et de /profil */}
