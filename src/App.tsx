@@ -44,7 +44,7 @@ function App() {
                     <Route path="/connexion" element={<Connexion />} />
                     <Route path="/inscription" element={<Inscription />} />
                     <Route path="/profil" element={<Profile />} />
-                    <Route path="*" element={<Index />} />
+                    {/* <Route path="*" element={<Index />} /> */}
                 </Route>
             </Routes>
         </>

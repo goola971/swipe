@@ -1,5 +1,6 @@
 import "./formations.scss";
-import { type JSX, useState } from "react";
+import { type JSX, useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import ExploreCategory from "../../components/exploreCategory/exploreCategory";
 
@@ -154,15 +155,42 @@ function Formations(): JSX.Element {
         },
     ];
 
+    const [searchParams] = useSearchParams();
+    const query = searchParams.get("query")?.toLowerCase() ?? "";
+
+    const formationsFiltrees = query
+        ? formations.filter(
+              (f) =>
+                  f.titles.toLowerCase().includes(query) ||
+                  f.description.toLowerCase().includes(query) ||
+                  f.niveau.toLowerCase().includes(query)
+          )
+        : formations;
+
     const CARDS_PAR_PAGE = 4;
     const [page, setPage] = useState(1);
 
-    const totalPages = Math.ceil(formations.length / CARDS_PAR_PAGE);
+    // const totalPages = Math.ceil(formations.length / CARDS_PAR_PAGE);
+    const totalPages = Math.ceil(formationsFiltrees.length / CARDS_PAR_PAGE);
 
     const start = (page - 1) * CARDS_PAR_PAGE;
     const end = start + CARDS_PAR_PAGE;
 
-    const formationsVisibles = formations.slice(start, end);
+    // const formationsVisibles = formations.slice(start, end);
+    const formationsVisibles = formationsFiltrees.slice(start, end);
+
+    useEffect(() => {
+        if (!query) return;
+
+        const el = document.getElementById("Formations");
+        if (el) {
+            el.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [query]);
+
     return (
         <>
             <section className="formations">
@@ -207,7 +235,7 @@ function Formations(): JSX.Element {
                     </div>
                 </article>
                 <ExploreCategory title="Dans quel domaine souhaitez-vous vous former ?" />
-                <article className="toutesNosFormations">
+                <article className="toutesNosFormations" id="Formations">
                     <div className="entete">
                         <h2>Toutes nos formations</h2>
                         {/* <button className="filter">
