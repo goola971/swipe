@@ -60,13 +60,13 @@ function FormationCard({
                     texte="Voir les sessions"
                     variante="primary"
                     img=""
-                    onClick={() => (window.location.href = voirSessionLink)}
+                    onclick={voirSessionLink}
                 />
                 <Button
                     texte="Voir les détails"
                     variante="secondary"
                     img=""
-                    onClick={() => (window.location.href = voirDetailsLink)}
+                    onclick={voirDetailsLink}
                 />
             </div>
         </div>
