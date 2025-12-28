@@ -218,7 +218,7 @@ function Formations(): JSX.Element {
                             texte="Trier par..."
                             variante="primary"
                             img="icon/trier.svg"
-                            onClick={() => {}}
+                            onclick=""
                             // type="button"
                             // className="filter"
                         />
