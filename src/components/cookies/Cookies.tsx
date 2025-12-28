@@ -3,22 +3,25 @@ import { type JSX, useState, useEffect } from "react";
 
 type CookieChoice = "essential" | "refuse" | "accept";
 
-function Cookies(): JSX.Element {
-    const [show, setShow] = useState(false);
-    const [choice, setChoice] = useState<CookieChoice | null>(null);
-
-    useEffect(() => {
+function Cookies(): JSX.Element | null {
+    const [choice, setChoice] = useState<CookieChoice | null>(() => {
         const saved = localStorage.getItem(
             "cookieChoice"
         ) as CookieChoice | null;
         if (saved) {
-            setChoice(saved);
-            return;
+            console.log("cookie choice found:", saved);
         }
+        return saved;
+    });
+
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        if (choice) return;
 
         const timer = setTimeout(() => setShow(true), 3000);
         return () => clearTimeout(timer);
-    }, []);
+    }, [choice]);
 
     const choose = (value: CookieChoice) => {
         localStorage.setItem("cookieChoice", value);
@@ -27,6 +30,7 @@ function Cookies(): JSX.Element {
     };
 
     if (!show || choice) return null;
+
     return (
         <>
             {show && (
