@@ -55,7 +55,7 @@
     }
     .buttons {
         @include dflex(center, center, 1vh, column);
-        button {
+        a {
             width: 100%;
         }
     }
