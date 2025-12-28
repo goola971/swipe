@@ -47,7 +47,9 @@ function HeaderConnect(): JSX.Element {
                     texte="Mon profile"
                     variante="primary"
                     img=""
-                    onClick={() => {}}
+                    onClick={() => {
+                        window.location.href = "/profil";
+                    }}
                 />
             </div>
         </div>
