@@ -1,8 +1,32 @@
 import "./Cookies.scss";
-import { type JSX, useState } from "react";
+import { type JSX, useState, useEffect } from "react";
+
+type CookieChoice = "essential" | "refuse" | "accept";
 
 function Cookies(): JSX.Element {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
+    const [choice, setChoice] = useState<CookieChoice | null>(null);
+
+    useEffect(() => {
+        const saved = localStorage.getItem(
+            "cookieChoice"
+        ) as CookieChoice | null;
+        if (saved) {
+            setChoice(saved);
+            return;
+        }
+
+        const timer = setTimeout(() => setShow(true), 3000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const choose = (value: CookieChoice) => {
+        localStorage.setItem("cookieChoice", value);
+        setChoice(value);
+        setShow(false);
+    };
+
+    if (!show || choice) return null;
     return (
         <>
             {show && (
@@ -20,12 +44,20 @@ function Cookies(): JSX.Element {
                         d’optimiser nos contenus et services
                     </p>
                     <div className="buttons">
-                        <button aria-label="Cookies essentiels">
+                        <button
+                            aria-label="Cookies essentiels"
+                            onClick={() => choose("essential")}
+                        >
                             Cookies essentiels
                         </button>
-                        <button aria-label="Refuser">Refuser</button>
                         <button
-                            onClick={() => setShow(false)}
+                            aria-label="Refuser"
+                            onClick={() => choose("refuse")}
+                        >
+                            Refuser
+                        </button>
+                        <button
+                            onClick={() => choose("accept")}
                             aria-label="Accepter tous les cookies"
                         >
                             Accepter tous les cookies
