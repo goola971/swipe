@@ -29,13 +29,17 @@ function Header(): JSX.Element {
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
+    const { pathname } = useLocation();
     return (
         <header
             className={`header ${visible ? "header--show" : "header--hide"}`}
         >
             {/* <HeaderConnect /> */}
-            {(useLocation().pathname !== "/ressources" && <HeaderBase />) || (
+            {/* different de /ressources et de /profil */}
+            {pathname === "/ressources" || pathname === "/profil" ? (
                 <HeaderConnect />
+            ) : (
+                <HeaderBase />
             )}
         </header>
     );
