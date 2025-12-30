@@ -59,6 +59,7 @@ footer {
                                         color: rgb(255, 255, 255);
                                         font-size: 1.3vw;
                                         font-weight: 300;
+                                        cursor: pointer;
                                     }
                                 }
                             }
@@ -129,10 +130,140 @@ footer {
 // ----------------------------------------------------------------------------
 // tablet
 @media screen and (max-width: 1024px) {
+    footer {
+        height: 70dvh;
+        padding: 2vh 1vw;
+
+        h1 {
+            font-size: 4vw;
+        }
+        .footerContainer {
+            gap: 0.5vw;
+            section {
+                width: 100%;
+                &:first-child {
+                    padding: 0 1vw;
+                    h2 {
+                        font-size: 2.5vw;
+                    }
+                    img {
+                        width: 100%;
+                        height: 86%;
+                        object-fit: cover;
+                        border-radius: 1vw;
+                    }
+                }
+                &:last-child {
+                    .footerLinks {
+                        flex-wrap: wrap;
+                        div {
+                            h3 {
+                                font-size: 2vw;
+                            }
+                            nav {
+                                ul {
+                                    gap: 2dvh;
+                                    li {
+                                        a {
+                                            font-size: 1.5vw;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .contact {
+                        width: 100%;
+                        gap: 1vh;
+                        h3 {
+                            font-size: 2vw;
+                        }
+                        p {
+                            font-size: 2vw;
+                        }
+                        .inputContainer {
+                            height: 8vh;
+                            input {
+                                font-size: 2vw;
+                            }
+                            button {
+                                font-size: 2vw;
+                            }
+                        }
+                    }
+                    .copyright {
+                        a {
+                            font-size: 1.2vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // mobile
 @media screen and (max-width: 768px) {
+    footer {
+        padding: 3dvh 1vw;
+        .footerContainer {
+            flex-direction: column;
+            height: 100%;
+            section {
+                &:first-child {
+                    img {
+                        display: none;
+                    }
+                }
+                &:last-child {
+                    // width: 100%;
+                    height: 100% !important;
+                    gap: 6dvh;
+                    .footerLinks {
+                        div {
+                            h3 {
+                                font-size: 3vw;
+                            }
+                            nav {
+                                ul {
+                                    gap: 1dvh;
+                                    li {
+                                        a {
+                                            font-size: 2.5vw;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .contact {
+                        gap: 0;
+                        h3 {
+                            font-size: 3vw;
+                        }
+                        p {
+                            font-size: 2.5vw;
+                        }
+                        .inputContainer {
+                            height: 10vh;
+                            input {
+                                font-size: 2.5vw;
+                            }
+                            button {
+                                font-size: 2.5vw;
+                            }
+                        }
+                    }
+
+                    .copyright {
+                        a {
+                            font-size: 2vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 // ----------------------------------------------------------------------------
 
