@@ -40,6 +40,11 @@
         .cards {
             @include dflex(center, center, 2vh, column);
             width: 100%;
+            .aucuneFormation {
+                font-size: 1.5vw;
+                color: red;
+                font-weight: 400;
+            }
         }
     }
     .pagination {

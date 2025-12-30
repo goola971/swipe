@@ -252,9 +252,19 @@ function Formations(): JSX.Element {
                         />
                     </div>
                     <div className="cards">
-                        {formationsVisibles.map((formation, index) => (
+                        {/* {formationsVisibles.map((formation, index) => (
                             <FormationCard key={index} {...formation} />
-                        ))}
+                        ))} */}
+                        {/* formation ou aucune formation trouvée */}
+                        {formationsVisibles.length > 0 ? (
+                            formationsVisibles.map((formation, index) => (
+                                <FormationCard key={index} {...formation} />
+                            ))
+                        ) : (
+                            <p className="aucuneFormation">
+                                Aucune formation trouvée pour "{query}"
+                            </p>
+                        )}
                     </div>
                     <div className="pagination">
                         <button
