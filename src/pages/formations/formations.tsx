@@ -156,7 +156,7 @@ function Formations(): JSX.Element {
     ];
 
     const [searchParams] = useSearchParams();
-    const query = searchParams.get("query")?.toLowerCase() ?? "";
+    const query = searchParams.get("search")?.toLowerCase() ?? "";
 
     const formationsFiltrees = query
         ? formations.filter(

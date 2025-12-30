@@ -17,7 +17,7 @@ function HeaderConnect(): JSX.Element {
             return;
         }
 
-        navigate(`/ressources?query=${encodeURIComponent(value)}`);
+        navigate(`/ressources?search=${encodeURIComponent(value)}`);
     };
     return (
         <div className="headerConnect">
