@@ -1,0 +1,252 @@
+@import "../../Mixin.scss";
+
+.details {
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-bottom: 50vh;
+    padding: 2vh 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    gap: 2vw;
+    position: relative;
+
+    .detailsWrapper {
+        width: 78%;
+        margin-left: -5vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+
+        .backButton {
+            display: flex;
+            align-items: center;
+            gap: 0.5vw;
+            background: transparent;
+            border: none;
+            font-size: 1vw;
+            font-weight: 500;
+            color: #000;
+            cursor: pointer;
+            padding: 0;
+            transition: opacity 0.2s;
+
+            img {
+                width: 1.2vw;
+                height: 1.2vw;
+                transform: rotate(180deg);
+            }
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        .detailsContent {
+            background: #F2F2F2;
+            border-radius: 1.5vw;
+            padding: 1.5vh;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+
+            .contentInner {
+                background: #fff;
+                border-radius: 1.2vw;
+                padding: 3vh 2.5vw;
+
+                .header {
+                    margin-bottom: 2vh;
+
+                    h2 {
+                        font-size: 2vw;
+                        font-weight: 600;
+                        margin-bottom: 1.5vh;
+                        line-height: 1.3;
+                    }
+
+                    .badges {
+                        @include dflex(center, flex-start, 1vw);
+
+                        .badge {
+                            background: #f8f9fa;
+                            padding: 0.8vh 1vw;
+                            border-radius: 5vw;
+                            font-size: 0.85vw;
+                            font-weight: 400;
+                            color: #666;
+                        }
+                    }
+                }
+
+                .intro {
+                    font-size: 1.05vw;
+                    line-height: 1.6;
+                    margin-bottom: 3vh;
+                    color: #333;
+                }
+
+                .section {
+                    margin-bottom: 3vh;
+
+                    h3 {
+                        font-size: 1.3vw;
+                        font-weight: 600;
+                        margin-bottom: 1.5vh;
+                    }
+
+                    p {
+                        font-size: 1vw;
+                        line-height: 1.7;
+                        color: #444;
+                        margin-bottom: 1vh;
+
+                        strong {
+                            font-weight: 600;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .detailsSidebar {
+        width: 550px;
+        min-height: 120vh;
+        margin-top: calc(1.2vw + 2vh);
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+
+        .priceCard {
+            background: #F2F2F2;
+            border-radius: 1.5vw;
+            padding: 1.5vh;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            .imageContainer {
+                background: #fff;
+                border-radius: 1.2vw;
+                overflow: hidden;
+                margin-bottom: 1.5vh;
+
+                .courseImage {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+
+            .infoContainer {
+                background: #fff;
+                border-radius: 1.2vw;
+                padding: 2vh 2vw;
+                flex: 1;
+                min-height: 60vh;
+
+                .price {
+                    font-size: 2.5vw;
+                    font-weight: 700;
+                    margin-bottom: 2vh;
+
+                    span {
+                        font-size: 1.2vw;
+                        font-weight: 400;
+                        color: #666;
+                    }
+                }
+
+                .buttons {
+                    @include dflex(center, space-between, 1vw);
+                    margin-bottom: 2vh;
+
+                    .payButton {
+                        flex: 1;
+                        @include button2();
+                        padding: 1.5vh 1.5vw;
+                        font-size: 0.95vw;
+
+                        img {
+                            width: 1vw;
+                            height: 1vw;
+                            filter: invert(1);
+                        }
+                    }
+
+                    .cartButton {
+                        @include dflex(center, center);
+                        background: #f8f9fa;
+                        border: 1px solid #ddd;
+                        border-radius: 50%;
+                        width: 3vw;
+                        height: 3vw;
+                        cursor: pointer;
+                        transition: all 0.2s;
+
+                        img {
+                            width: 1.2vw;
+                            height: 1.2vw;
+                        }
+
+                        &:hover {
+                            background: #e9ecef;
+                        }
+                    }
+                }
+
+                .includes {
+                    h3 {
+                        font-size: 1.2vw;
+                        font-weight: 600;
+                        margin-bottom: 1.5vh;
+                    }
+
+                    ul {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+
+                        li {
+                            @include dflex(flex-start, flex-start, 0.8vw);
+                            font-size: 0.9vw;
+                            line-height: 1.4;
+                            color: #666;
+                            margin-bottom: 1vh;
+                            padding-left: 0.5vw;
+
+                            img {
+                                width: 1vw;
+                                height: 1vw;
+                                flex-shrink: 0;
+                                margin-top: 0.3vh;
+                            }
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 1024px) {
+    .details {
+        .detailsContent {
+            max-width: 100%;
+        }
+
+        .detailsSidebar {
+            position: relative;
+            top: 0;
+            width: 100%;
+            margin-top: 3vh;
+        }
+    }
+}
