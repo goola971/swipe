@@ -5,7 +5,7 @@ import FormationCard from "../../components/formationCard/formationCard";
 import type { IFormation } from "../../types";
 
 function Formations(): JSX.Element {
-    // 1. État pour stocker les formations de la BDD
+   
     const [formations, setFormations] = useState<IFormation[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -13,16 +13,16 @@ useEffect(() => {
     fetch("http://localhost:8080/api/formations")
         .then((res) => res.json())
         .then((data) => {
-            // "data" est maintenant un tableau propre grâce au @JsonIgnore
+           
             const mappedFormations = data.map((f: any) => ({
                 id: f.idFormation,
-                // On mappe 'titre' de la BDD vers 'titles' de React
+                
                 titles: f.titre || "Sans titre", 
-                // On mappe 'formationImage' (Base64) ou on met l'image par défaut
+                
                 image: f.formationImage || "img/cours/cours.png",
                 description: f.description || "Aucune description",
-                niveau: f.categorie || "Débutant", // Utilise ta colonne catégorie pour le niveau
-                endroit: "Centre de formation", // Valeurs par défaut si non présentes en BDD
+                niveau: f.categorie || "Débutant", 
+                endroit: "Centre de formation",
                 salle: "Salle principale",
                 date: "Prochainement",
                 heureDebut: "09:00",
@@ -42,7 +42,7 @@ useEffect(() => {
 return (
     <>
         <section className="formations">
-            {/* Ajoute la propriété title ici pour corriger l'erreur */}
+            {}
             <ExploreCategory title="Explorez nos catégories" /> 
 
             <article className="toutesNosFormations">
@@ -76,9 +76,9 @@ return (
                     </div>
                 </article>
 
-                {/* Section Certification (identique à ton original) */}
+                {}
                 <section className="certification">
-                    {/* ... ton code HTML actuel ... */}
+                    {}
                 </section>
             </section>
         </>
