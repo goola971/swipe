@@ -98,25 +98,25 @@
 // ----------------------------------------------------------------------------
 .obtentionCertif {
     @include dflex(center, center);
-    height: auto;
+    height: 100vh;
     padding-bottom: 10vh;
     width: 100% !important;
     article {
         width: 99%;
-        height: 80%;
+        height: 90%;
         background-color: black;
         @include dflex(center, space-between, 2vw);
-        padding: 2vh 5vw 2vh 1vw;
-        border-radius: 2vw;
+        padding: 1vh 5vw 1vh 2vw;
+        border-radius: 0.7vw;
         position: relative;
         img {
             width: 40%;
-            height: 65vh;
+            height: 70dvh;
             object-fit: contain;
         }
         .texte {
             @include dflex(start, space-between, 2vh, column);
-            height: 65vh;
+            height: 70dvh;
             width: 100%;
             h3 {
                 font-size: 3.5vw;
