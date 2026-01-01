@@ -16,6 +16,7 @@ import Inscription from "./pages/inscription/inscription.tsx";
 import Connexion from "./pages/connexion/connexion.tsx";
 import Formations from "./pages/formations/formations.tsx";
 import Profile from "./pages/profile/profile.tsx";
+import Details from "./pages/details/details.tsx";
 
 function App() {
     const { pathname } = useLocation();
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/connexion" element={<Connexion />} />
                     <Route path="/inscription" element={<Inscription />} />
                     <Route path="/profil" element={<Profile />} />
+                    <Route path="/details" element={<Details />} />
                     {/* <Route path="*" element={<Index />} /> */}
                 </Route>
             </Routes>
