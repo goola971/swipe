@@ -7,7 +7,7 @@ function Inscription(): JSX.Element {
     const nbPages = 2;
     const [page, setPage] = useState(1);
 
-    // États pour les données (Mapping exact avec Inscription.java)
+  
     const [formData, setFormData] = useState({
         prenom: "",
         nom: "",
@@ -16,36 +16,43 @@ function Inscription(): JSX.Element {
         adressePostale: "",
         mail: "",
         password: "",
-        login: "", // Optionnel selon ton back
+        login: "", 
         villeRegion: ""
     });
 
     const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
-    // Mise à jour des champs sans impacter le CSS
+
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:8080/api/inscriptions", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
+const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage(""); 
+    setSuccessMessage("");
 
-            if (response.ok) {
-                alert("Compte créé avec succès !");
+    try {
+        const response = await fetch("http://localhost:8080/api/inscriptions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+            setSuccessMessage("Inscription réussie ! Redirection vers la connexion...");
+            setTimeout(() => {
                 navigate("/connexion");
-            } else {
-                setErrorMessage("Erreur lors de l'inscription. Vérifiez vos informations.");
-            }
-        } catch (error) {
-            setErrorMessage("Le serveur est injoignable.");
+            }, 2000); 
+        } else {
+            setErrorMessage("Erreur lors de l'inscription. Vérifiez vos informations.");
         }
-    };
+    } catch (error) {
+        setErrorMessage("Le serveur est injoignable.");
+    }
+};
 
     return (
         <section className="inscription">
@@ -72,7 +79,7 @@ function Inscription(): JSX.Element {
                         Retour
                     </button>
 
- <div className="title">
+                        <div className="title">
                         <h2>Créez votre compte</h2>
                         <p>
                             Accédez à vos formations, réservez vos sessions et
@@ -89,6 +96,36 @@ function Inscription(): JSX.Element {
                 )}
 
                 <form onSubmit={handleSubmit}>
+                    {}
+{successMessage && (
+    <div className="form-feedback success" style={{
+        backgroundColor: "#d4edda",
+        color: "#155724",
+        padding: "1vh",
+        borderRadius: "0.5vw",
+        marginBottom: "1vh",
+        textAlign: "center",
+        fontSize: "0.9vw",
+        border: "1px solid #c3e6cb"
+    }}>
+        {successMessage}
+    </div>
+)}
+
+{errorMessage && (
+    <div className="form-feedback error" style={{
+        backgroundColor: "#f8d7da",
+        color: "#721c24",
+        padding: "1vh",
+        borderRadius: "0.5vw",
+        marginBottom: "1vh",
+        textAlign: "center",
+        fontSize: "0.9vw",
+        border: "1px solid #f5c6cb"
+    }}>
+        {errorMessage}
+    </div>
+)}
                     {page === 1 && (
                         <div className="inputs part1">
 
@@ -121,7 +158,7 @@ function Inscription(): JSX.Element {
                                 />
                                 <input 
                                 type="date" 
-                                name="datenaissance"
+                                name="dateNaissance"
                                 value={formData.dateNaissance}
                                 onChange={handleChange} />
 
