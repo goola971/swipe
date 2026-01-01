@@ -1,16 +1,50 @@
 import "./inscription.scss";
 import { type JSX, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Inscription(): JSX.Element {
-    const [show, setShow] = useState(true);
+    const navigate = useNavigate();
     const nbPages = 2;
     const [page, setPage] = useState(1);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // États pour les données (Mapping exact avec Inscription.java)
+    const [formData, setFormData] = useState({
+        prenom: "",
+        nom: "",
+        telephone: "",
+        dateNaissance:"",
+        adressePostale: "",
+        mail: "",
+        password: "",
+        login: "", // Optionnel selon ton back
+        villeRegion: ""
+    });
+
+    const [errorMessage, setErrorMessage] = useState("");
+
+    // Mise à jour des champs sans impacter le CSS
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // logique d’envoi ici
-        console.log("Formulaire envoyé");
+        try {
+            const response = await fetch("http://localhost:8080/api/inscriptions", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                alert("Compte créé avec succès !");
+                navigate("/connexion");
+            } else {
+                setErrorMessage("Erreur lors de l'inscription. Vérifiez vos informations.");
+            }
+        } catch (error) {
+            setErrorMessage("Le serveur est injoignable.");
+        }
     };
 
     return (
@@ -29,7 +63,7 @@ function Inscription(): JSX.Element {
                             if (page > 1) {
                                 setPage(page - 1);
                             } else {
-                                window.location.href = "/";
+                                navigate("/");
                             }
                         }}
                         aria-label="Retour"
@@ -38,7 +72,7 @@ function Inscription(): JSX.Element {
                         Retour
                     </button>
 
-                    <div className="title">
+ <div className="title">
                         <h2>Créez votre compte</h2>
                         <p>
                             Accédez à vos formations, réservez vos sessions et
@@ -48,63 +82,82 @@ function Inscription(): JSX.Element {
                     </div>
                 </div>
 
+                {errorMessage && (
+                    <p style={{ color: "red", textAlign: "center", fontWeight: "bold" }}>
+                        {errorMessage}
+                    </p>
+                )}
+
                 <form onSubmit={handleSubmit}>
                     {page === 1 && (
                         <div className="inputs part1">
-                            <input type="text" name="nom" placeholder="Nom" />
-                            <input
-                                type="text"
-                                name="prenom"
-                                placeholder="Prénom"
-                            />
-                            <input
-                                type="tel"
-                                name="tel"
-                                placeholder="Téléphone"
-                            />
-                            <input type="date" name="datenaissance" />
-                            <input
-                                type="text"
-                                name="adresse"
-                                placeholder="Adresse postale"
-                            />
+
+                                <input 
+                                    type="text" 
+                                    name="prenom" 
+                                    placeholder="Prénom" 
+                                    value={formData.prenom}
+                                    onChange={handleChange}
+                                    required 
+                                />
+
+                                
+                                <input 
+                                    type="text" 
+                                    name="nom" 
+                                    placeholder="Nom" 
+                                    value={formData.nom}
+                                    onChange={handleChange}
+                                    required 
+                                />
+
+
+                                <input 
+                                    type="text" 
+                                    name="telephone" 
+                                    placeholder="Téléphone" 
+                                    value={formData.telephone}
+                                    onChange={handleChange}
+                                />
+                                <input 
+                                type="date" 
+                                name="datenaissance"
+                                value={formData.dateNaissance}
+                                onChange={handleChange} />
+
+
+                                <input 
+                                    type="text" 
+                                    name="adressePostale" 
+                                    placeholder="Adresse" 
+                                    value={formData.adressePostale}
+                                    onChange={handleChange}
+                                />
+
                         </div>
                     )}
 
                     {page === 2 && (
                         <div className="inputs part2">
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Votre adresse email"
-                            />
 
-                            <div className="mdp">
-                                <input
-                                    type={show ? "password" : "text"}
-                                    name="password"
-                                    placeholder="Mot de passe"
+                                <input 
+                                    type="email" 
+                                    name="mail" 
+                                    placeholder="Email" 
+                                    value={formData.mail}
+                                    onChange={handleChange}
+                                    required 
                                 />
-                                <button
-                                    type="button"
-                                    className="vue"
-                                    onClick={() => setShow(!show)}
-                                    aria-label={
-                                        show
-                                            ? "Afficher le mot de passe"
-                                            : "Cacher le mot de passe"
-                                    }
-                                >
-                                    <img
-                                        src={
-                                            show
-                                                ? "icon/eye.svg"
-                                                : "icon/eye-closed.svg"
-                                        }
-                                        alt="icon eye"
-                                    />
-                                </button>
-                            </div>
+
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    placeholder="Mot de passe" 
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required 
+                                />
+
                         </div>
                     )}
 
