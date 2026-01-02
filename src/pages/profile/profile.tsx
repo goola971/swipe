@@ -14,7 +14,9 @@ function Profile(): JSX.Element {
             const parsedUser = JSON.parse(storedUser);
             setUser(parsedUser);
             setEditForm(parsedUser);
-            if (parsedUser.userpp) setPreviewImage(parsedUser.userpp);
+            if (parsedUser.userpp) {
+                setPreviewImage(parsedUser.userpp);
+            }
         }
     }, []);
 
@@ -29,6 +31,7 @@ function Profile(): JSX.Element {
             reader.onloadend = () => {
                 const base64String = reader.result as string;
                 setPreviewImage(base64String);
+                // On met à jour le champ userpp dans le formulaire
                 setEditForm({ ...editForm, userpp: base64String });
             };
             reader.readAsDataURL(file);
@@ -48,13 +51,11 @@ function Profile(): JSX.Element {
                 setUser(updated);
                 sessionStorage.setItem("user", JSON.stringify(updated));
                 setIsEditing(false);
-                
-                
                 setSuccessMessage("Profil mis à jour avec succès !");
                 setTimeout(() => setSuccessMessage(""), 3000);
             }
         } catch (err) {
-            console.error("Erreur sauvegarde", err);
+            console.error("Erreur lors de la sauvegarde :", err);
         }
     };
 
@@ -65,8 +66,8 @@ function Profile(): JSX.Element {
             <div className="profileHeader">
                 <div className="profileHeaderContent">
                     <div className="profileAvatar">
-                        <img src={previewImage} alt="Photo de profil" />
-                        <label htmlFor="upload-photo" className="camera-btn">📸</label>
+                        <img src={previewImage} alt="Profil" />
+                        <label htmlFor="upload-photo" className="add-photo-btn">+</label>
                         <input 
                             type="file" 
                             id="upload-photo" 
@@ -82,11 +83,11 @@ function Profile(): JSX.Element {
                 <div className="profileName">
                     <h2>{user.prenom} {user.nom}</h2>
                     {!isEditing ? (
-                        <button onClick={() => setIsEditing(true)} className="modifierLink" style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#007bff' }}>
+                        <button onClick={() => setIsEditing(true)} className="modifierLink">
                             Modifier
                         </button>
                     ) : (
-                        <button onClick={saveChanges} className="modifierLink" style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'green', fontWeight: 'bold' }}>
+                        <button onClick={saveChanges} className="modifierLink save">
                             Enregistrer
                         </button>
                     )}
@@ -100,17 +101,8 @@ function Profile(): JSX.Element {
                     <h3>Informations personnelles</h3>
                 </div>
 
-                {}
                 {successMessage && (
-                    <div className="success-banner" style={{
-                        backgroundColor: "#d4edda",
-                        color: "#155724",
-                        padding: "10px",
-                        borderRadius: "5px",
-                        marginBottom: "20px",
-                        textAlign: "center",
-                        border: "1px solid #c3e6cb"
-                    }}>
+                    <div className="success-banner">
                         {successMessage}
                     </div>
                 )}
@@ -152,11 +144,11 @@ function Profile(): JSX.Element {
                     <div className="infoRow">
                         <div className="infoItem">
                             <span className="label">Mot de passe</span>
-                            {!isEditing ? <span className="value">********</span> : <input type="password" name="password" placeholder="Nouveau mot de passe" value={editForm.password} onChange={handleChange} />}
+                            {!isEditing ? <span className="value">********</span> : <input type="password" name="password" placeholder="Nouveau mot de passe" onChange={handleChange} />}
                         </div>
                         <div className="infoItem">
                             <span className="label">Rôle</span>
-                            <span className="value" style={{ opacity: 0.7 }}>{user.role || "Étudiant"}</span>
+                            <span className="value role-text">{user.role || "Étudiant"}</span>
                         </div>
                     </div>
                 </div>
