@@ -1,4 +1,4 @@
-@import "../../Mixin.scss";
+@use "../../Mixin.scss" as *;
 
 .details {
     max-width: 1600px;
@@ -43,7 +43,7 @@
         }
 
         .detailsContent {
-            background: #F2F2F2;
+            background: #f2f2f2;
             border-radius: 1.5vw;
             padding: 1.5vh;
             margin-top: 0;
@@ -120,7 +120,7 @@
         flex-direction: column;
 
         .priceCard {
-            background: #F2F2F2;
+            background: #f2f2f2;
             border-radius: 1.5vw;
             padding: 1.5vh;
             flex: 1;
