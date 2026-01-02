@@ -1,7 +1,9 @@
 import { Outlet } from "react-router-dom";
 import "./admin.scss";
 import { type JSX } from "react";
-
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Overview from "./overview/overview";
 export default function Admin(): JSX.Element {
 	return (
 		<section className="admin">
@@ -46,7 +48,9 @@ export default function Admin(): JSX.Element {
 					</li>
 				</ul>
 			</aside>
-			<div className="content"></div>
+			<div className="content">
+				<Overview></Overview>
+			</div>
 		</section>
 	);
 }
