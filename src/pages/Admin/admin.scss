@@ -1,64 +1,64 @@
-@use "../../Mixin.scss" as *;
+// @use "../../Mixin.scss" as *;
 
-section {
-	@include dflex(center, center);
-	width: 100%;
-	height: 100dvh;
-	position: relative;
-	padding: 0;
-}
-aside {
-	@include dflex(center, start, 2vh, column);
-	width: 25%;
-	height: 100dvh;
-	padding: 2vh 1vw;
+// section {
+//     @include dflex(center, center);
+//     width: 100%;
+//     height: 100dvh;
+//     position: relative;
+//     padding: 0;
+// }
+// aside {
+//     @include dflex(center, start, 2vh, column);
+//     width: 25%;
+//     height: 100dvh;
+//     padding: 2vh 1vw;
 
-	background-color: #eeeeee;
-	.menu {
-		width: 100%;
-		@include dflex(start, center, 1vh, column);
-		li {
-			&:hover {
-				background-color: #303030;
-				color: white;
-				img {
-					filter: invert(1);
-				}
-			}
-			@include dflex(center, start, 0.5vw);
-			color: black;
-			font-size: 1vw;
-			font-weight: 500;
-			cursor: pointer;
-			list-style: none;
-			width: 100%;
-			height: 4vh;
-			border-radius: 4px;
-			padding: 0vh 1vw;
-		}
-	}
-	.titre {
-		background-color: #ffffff;
-		width: 100%;
-		padding: 2vh 1vw;
-		border-radius: 10px;
-		drop-shadow: 0px 4px 4px rgb(0, 0, 0);
-		@include dflex(center, space-between, 1vh);
-		.box {
-			@include dflex(start, center, -3vh, column);
-			h1 {
-				font-size: 1.2vw;
-			}
-			p {
-				color: rgba(0, 0, 0, 0.5);
-			}
-		}
+//     background-color: #eeeeee;
+//     .menu {
+//         width: 100%;
+//         @include dflex(start, center, 1vh, column);
+//         li {
+//             &:hover {
+//                 background-color: #303030;
+//                 color: white;
+//                 img {
+//                     filter: invert(1);
+//                 }
+//             }
+//             @include dflex(center, start, 0.5vw);
+//             color: black;
+//             font-size: 1vw;
+//             font-weight: 500;
+//             cursor: pointer;
+//             list-style: none;
+//             width: 100%;
+//             height: 4vh;
+//             border-radius: 4px;
+//             padding: 0vh 1vw;
+//         }
+//     }
+//     .titre {
+//         background-color: #ffffff;
+//         width: 100%;
+//         padding: 2vh 1vw;
+//         border-radius: 10px;
+//         // drop-shadow: 0px 4px 4px rgb(0, 0, 0);
+//         @include dflex(center, space-between, 1vh);
+//         .box {
+//             @include dflex(start, center, -3vh, column);
+//             h1 {
+//                 font-size: 1.2vw;
+//             }
+//             p {
+//                 color: rgba(0, 0, 0, 0.5);
+//             }
+//         }
 
-		img {
-		}
-	}
-}
-div {
-	width: 75%;
-	background-color: F3F3F3;
-}
+//         img {
+//         }
+//     }
+// }
+// // div {
+// // 	width: 75%;
+// // 	background-color: F3F3F3;
+// // }
