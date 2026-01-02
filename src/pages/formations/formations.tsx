@@ -5,232 +5,228 @@ import FormationCard from "../../components/formationCard/formationCard";
 import type { IFormation } from "../../types";
 
 function Formations(): JSX.Element {
-<<<<<<< Updated upstream
-   
-    const [formations, setFormations] = useState<IFormation[]>([]);
-    const [loading, setLoading] = useState(true);
+	const [formations, setFormations] = useState<IFormation[]>([]);
+	const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-    fetch("http://localhost:8080/api/formations")
-        .then((res) => res.json())
-        .then((data) => {
-           
-            const mappedFormations = data.map((f: any) => ({
-                id: f.idFormation,
-                
-                titles: f.titre || "Sans titre", 
-                
-                image: f.formationImage || "img/cours/cours.png",
-                description: f.description || "Aucune description",
-                niveau: f.categorie || "Débutant", 
-                endroit: "Centre de formation",
-                salle: "Salle principale",
-                date: "Prochainement",
-                heureDebut: "09:00",
-                heureFin: "17:00",
-                voirSessionLink: `/sessions/${f.idFormation}`,
-                voirDetailsLink: `/details/${f.idFormation}`
-            }));
-            setFormations(mappedFormations);
-            setLoading(false);
-        })
-        .catch((err) => {
-            console.error("Erreur de connexion :", err);
-            setLoading(false);
-        });
-}, []);
+	useEffect(() => {
+		fetch("http://localhost:8080/api/formations")
+			.then((res) => res.json())
+			.then((data) => {
+				const mappedFormations = data.map((f: any) => ({
+					id: f.idFormation,
 
-return (
-    <>
-        <section className="formations">
-            {}
-            <ExploreCategory title="Explorez nos catégories" /> 
+					titles: f.titre || "Sans titre",
 
-            <article className="toutesNosFormations">
-                    <div className="entete">
-                        <h2>Toutes nos formations</h2>
-                    </div>
+					image: f.formationImage || "img/cours/cours.png",
+					description: f.description || "Aucune description",
+					niveau: f.categorie || "Débutant",
+					endroit: "Centre de formation",
+					salle: "Salle principale",
+					date: "Prochainement",
+					heureDebut: "09:00",
+					heureFin: "17:00",
+					voirSessionLink: `/sessions/${f.idFormation}`,
+					voirDetailsLink: `/details/${f.idFormation}`,
+				}));
+				setFormations(mappedFormations);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.error("Erreur de connexion :", err);
+				setLoading(false);
+			});
+	}, []);
 
-                    <div className="cards">
-                        {loading ? (
-                            <p>Chargement des formations...</p>
-                        ) : formations.length > 0 ? (
-                            formations.map((f, index) => (
-                                <FormationCard
-                                    key={f.id || index}
-                                    image={f.image || "img/cours/cours.png"}
-                                    titles={f.titles}
-                                    niveau={f.niveau}
-                                    description={f.description}
-                                    endroit={f.endroit}
-                                    salle={f.salle}
-                                    date={f.date}
-                                    heureDebut={f.heureDebut}
-                                    heureFin={f.heureFin}
-                                    voirSessionLink={f.voirSessionLink}
-                                    voirDetailsLink={f.voirDetailsLink}
-                                />
-                            ))
-                        ) : (
-                            <p className="aucuneFormation">Aucune formation disponible pour le moment.</p>
-                        )}
-                    </div>
-                </article>
+	return (
+		<>
+			<section className="formations">
+				{}
+				<ExploreCategory title="Explorez nos catégories" />
 
-                {}
-                <section className="certification">
-                    {}
-                </section>
-            </section>
-        </>
-    );
-=======
-	const formations = [
-		{
-			image: "img/cours/cours.png",
-			titles: "Cybersécurité – Fondamentaux",
-			niveau: "Débutant",
-			description:
-				"Bases de la sécurité informatique et menaces courantes.",
-			endroit: "Centre Swipe",
-			salle: "Salle A",
-			date: "Samedi 14 Décembre 2024",
-			heureDebut: "15h00",
-			heureFin: "17h00",
-			voirSessionLink: "/sessions/cyber-fondamentaux",
-			voirDetailsLink: "/formations/cyber-fondamentaux",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Développement Web Moderne",
-			niveau: "Intermédiaire",
-			description: "HTML, CSS, JavaScript moderne et React.",
-			endroit: "Centre Swipe",
-			salle: "Salle B",
-			date: "Mercredi 18 Décembre 2024",
-			heureDebut: "10h00",
-			heureFin: "13h00",
-			voirSessionLink: "/sessions/web-moderne",
-			voirDetailsLink: "/formations/web-moderne",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "UI / UX Design",
-			niveau: "Débutant",
-			description: "Ergonomie, wireframes et prototypage sur Figma.",
-			endroit: "Centre Swipe",
-			salle: "Salle C",
-			date: "Vendredi 20 Décembre 2024",
-			heureDebut: "14h00",
-			heureFin: "17h00",
-			voirSessionLink: "/sessions/ui-ux",
-			voirDetailsLink: "/formations/ui-ux",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Introduction à la Data Analyse",
-			niveau: "Intermédiaire",
-			description: "Analyse de données et visualisation de base.",
-			endroit: "Centre Swipe",
-			salle: "Salle D",
-			date: "Lundi 6 Janvier 2025",
-			heureDebut: "09h00",
-			heureFin: "12h00",
-			voirSessionLink: "/sessions/data-intro",
-			voirDetailsLink: "/formations/data-intro",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Bases du DevOps",
-			niveau: "Avancé",
-			description: "CI/CD, Docker et automatisation.",
-			endroit: "Centre Swipe",
-			salle: "Salle A",
-			date: "Jeudi 9 Janvier 2025",
-			heureDebut: "13h30",
-			heureFin: "17h30",
-			voirSessionLink: "/sessions/devops",
-			voirDetailsLink: "/formations/devops",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Sécurité Réseau",
-			niveau: "Intermédiaire",
-			description: "Pare-feu, VPN et segmentation réseau.",
-			endroit: "Centre Swipe",
-			salle: "Salle B",
-			date: "Samedi 11 Janvier 2025",
-			heureDebut: "09h00",
-			heureFin: "12h00",
-			voirSessionLink: "/sessions/securite-reseau",
-			voirDetailsLink: "/formations/securite-reseau",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Programmation Python",
-			niveau: "Débutant",
-			description: "Syntaxe, logique et scripts simples.",
-			endroit: "Centre Swipe",
-			salle: "Salle C",
-			date: "Lundi 13 Janvier 2025",
-			heureDebut: "14h00",
-			heureFin: "17h00",
-			voirSessionLink: "/sessions/python",
-			voirDetailsLink: "/formations/python",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Bases de Linux",
-			niveau: "Débutant",
-			description: "Commandes, système de fichiers et permissions.",
-			endroit: "Centre Swipe",
-			salle: "Salle D",
-			date: "Mercredi 15 Janvier 2025",
-			heureDebut: "10h00",
-			heureFin: "13h00",
-			voirSessionLink: "/sessions/linux",
-			voirDetailsLink: "/formations/linux",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Gestion de Projet Agile",
-			niveau: "Intermédiaire",
-			description: "Scrum, Kanban et organisation d’équipe.",
-			endroit: "Centre Swipe",
-			salle: "Salle A",
-			date: "Vendredi 17 Janvier 2025",
-			heureDebut: "15h00",
-			heureFin: "18h00",
-			voirSessionLink: "/sessions/agile",
-			voirDetailsLink: "/formations/agile",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Introduction au Cloud",
-			niveau: "Débutant",
-			description: "Concepts cloud et services principaux.",
-			endroit: "Centre Swipe",
-			salle: "Salle B",
-			date: "Samedi 18 Janvier 2025",
-			heureDebut: "09h30",
-			heureFin: "12h30",
-			voirSessionLink: "/sessions/cloud",
-			voirDetailsLink: "/formations/cloud",
-		},
-		{
-			image: "img/cours/cours.png",
-			titles: "Sécurité des Applications Web",
-			niveau: "Avancé",
-			description: "OWASP, failles courantes et protections.",
-			endroit: "Centre Swipe",
-			salle: "Salle C",
-			date: "Lundi 20 Janvier 2025",
-			heureDebut: "14h00",
-			heureFin: "18h00",
-			voirSessionLink: "/sessions/securite-web",
-			voirDetailsLink: "/formations/securite-web",
-		},
-	];
+				<article className="toutesNosFormations">
+					<div className="entete">
+						<h2>Toutes nos formations</h2>
+					</div>
+
+					<div className="cards">
+						{loading ? (
+							<p>Chargement des formations...</p>
+						) : formations.length > 0 ? (
+							formations.map((f, index) => (
+								<FormationCard
+									key={f.id || index}
+									image={f.image || "img/cours/cours.png"}
+									titles={f.titles}
+									niveau={f.niveau}
+									description={f.description}
+									endroit={f.endroit}
+									salle={f.salle}
+									date={f.date}
+									heureDebut={f.heureDebut}
+									heureFin={f.heureFin}
+									voirSessionLink={f.voirSessionLink}
+									voirDetailsLink={f.voirDetailsLink}
+								/>
+							))
+						) : (
+							<p className="aucuneFormation">
+								Aucune formation disponible pour le moment.
+							</p>
+						)}
+					</div>
+				</article>
+
+				{}
+				<section className="certification">{}</section>
+			</section>
+		</>
+	);
+	// const formations = [
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Cybersécurité – Fondamentaux",
+	// 		niveau: "Débutant",
+	// 		description:
+	// 			"Bases de la sécurité informatique et menaces courantes.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle A",
+	// 		date: "Samedi 14 Décembre 2024",
+	// 		heureDebut: "15h00",
+	// 		heureFin: "17h00",
+	// 		voirSessionLink: "/sessions/cyber-fondamentaux",
+	// 		voirDetailsLink: "/formations/cyber-fondamentaux",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Développement Web Moderne",
+	// 		niveau: "Intermédiaire",
+	// 		description: "HTML, CSS, JavaScript moderne et React.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle B",
+	// 		date: "Mercredi 18 Décembre 2024",
+	// 		heureDebut: "10h00",
+	// 		heureFin: "13h00",
+	// 		voirSessionLink: "/sessions/web-moderne",
+	// 		voirDetailsLink: "/formations/web-moderne",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "UI / UX Design",
+	// 		niveau: "Débutant",
+	// 		description: "Ergonomie, wireframes et prototypage sur Figma.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle C",
+	// 		date: "Vendredi 20 Décembre 2024",
+	// 		heureDebut: "14h00",
+	// 		heureFin: "17h00",
+	// 		voirSessionLink: "/sessions/ui-ux",
+	// 		voirDetailsLink: "/formations/ui-ux",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Introduction à la Data Analyse",
+	// 		niveau: "Intermédiaire",
+	// 		description: "Analyse de données et visualisation de base.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle D",
+	// 		date: "Lundi 6 Janvier 2025",
+	// 		heureDebut: "09h00",
+	// 		heureFin: "12h00",
+	// 		voirSessionLink: "/sessions/data-intro",
+	// 		voirDetailsLink: "/formations/data-intro",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Bases du DevOps",
+	// 		niveau: "Avancé",
+	// 		description: "CI/CD, Docker et automatisation.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle A",
+	// 		date: "Jeudi 9 Janvier 2025",
+	// 		heureDebut: "13h30",
+	// 		heureFin: "17h30",
+	// 		voirSessionLink: "/sessions/devops",
+	// 		voirDetailsLink: "/formations/devops",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Sécurité Réseau",
+	// 		niveau: "Intermédiaire",
+	// 		description: "Pare-feu, VPN et segmentation réseau.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle B",
+	// 		date: "Samedi 11 Janvier 2025",
+	// 		heureDebut: "09h00",
+	// 		heureFin: "12h00",
+	// 		voirSessionLink: "/sessions/securite-reseau",
+	// 		voirDetailsLink: "/formations/securite-reseau",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Programmation Python",
+	// 		niveau: "Débutant",
+	// 		description: "Syntaxe, logique et scripts simples.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle C",
+	// 		date: "Lundi 13 Janvier 2025",
+	// 		heureDebut: "14h00",
+	// 		heureFin: "17h00",
+	// 		voirSessionLink: "/sessions/python",
+	// 		voirDetailsLink: "/formations/python",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Bases de Linux",
+	// 		niveau: "Débutant",
+	// 		description: "Commandes, système de fichiers et permissions.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle D",
+	// 		date: "Mercredi 15 Janvier 2025",
+	// 		heureDebut: "10h00",
+	// 		heureFin: "13h00",
+	// 		voirSessionLink: "/sessions/linux",
+	// 		voirDetailsLink: "/formations/linux",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Gestion de Projet Agile",
+	// 		niveau: "Intermédiaire",
+	// 		description: "Scrum, Kanban et organisation d’équipe.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle A",
+	// 		date: "Vendredi 17 Janvier 2025",
+	// 		heureDebut: "15h00",
+	// 		heureFin: "18h00",
+	// 		voirSessionLink: "/sessions/agile",
+	// 		voirDetailsLink: "/formations/agile",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Introduction au Cloud",
+	// 		niveau: "Débutant",
+	// 		description: "Concepts cloud et services principaux.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle B",
+	// 		date: "Samedi 18 Janvier 2025",
+	// 		heureDebut: "09h30",
+	// 		heureFin: "12h30",
+	// 		voirSessionLink: "/sessions/cloud",
+	// 		voirDetailsLink: "/formations/cloud",
+	// 	},
+	// 	{
+	// 		image: "img/cours/cours.png",
+	// 		titles: "Sécurité des Applications Web",
+	// 		niveau: "Avancé",
+	// 		description: "OWASP, failles courantes et protections.",
+	// 		endroit: "Centre Swipe",
+	// 		salle: "Salle C",
+	// 		date: "Lundi 20 Janvier 2025",
+	// 		heureDebut: "14h00",
+	// 		heureFin: "18h00",
+	// 		voirSessionLink: "/sessions/securite-web",
+	// 		voirDetailsLink: "/formations/securite-web",
+	// 	},
+	// ];
 
 	const [searchParams] = useSearchParams();
 	const query = searchParams.get("search")?.toLowerCase() ?? "";
@@ -426,7 +422,7 @@ return (
 			</section>
 		</>
 	);
->>>>>>> Stashed changes
+	// Stashed changes
 }
 
 export default Formations;
