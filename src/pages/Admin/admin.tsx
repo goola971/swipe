@@ -1,4 +1,3 @@
-// import { Outlet } from "react-router-dom";
 import "./admin.scss";
 import { type JSX } from "react";
 // import { Link } from "react-router-dom";

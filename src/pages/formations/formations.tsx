@@ -1,8 +1,11 @@
 import "./formations.scss";
+import { useSearchParams } from "react-router-dom";
+
 import { type JSX, useState, useEffect } from "react";
 import ExploreCategory from "../../components/exploreCategory/exploreCategory";
 import FormationCard from "../../components/formationCard/formationCard";
 import type { IFormation } from "../../types";
+import Button from "../../components/buttons/buttons";
 
 function Formations(): JSX.Element {
 	const [formations, setFormations] = useState<IFormation[]>([]);
