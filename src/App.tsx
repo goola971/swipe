@@ -19,7 +19,7 @@ import Profile from "./pages/profile/profile.tsx";
 import Details from "./pages/details/details.tsx";
 import PrivateRoute from "./components/privateroute.tsx"; //
 import MonSuivis from "./pages/monSuivis/monSuivis.tsx";
-import nossalles from "./pages/nossalles/nossalles.tsx";
+import NosSalles from "./pages/nossalles/nossalles";
 
 import Admin from "./pages/Admin/admin.tsx";
 
