@@ -16,28 +16,39 @@ function Connexion(): JSX.Element {
         e.preventDefault();
         setMessage(null);
 
-try {
-        const response = await fetch("http://localhost:8080/api/users/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            // On envoie un objet avec les clés attendues par ton mapping Java
-            body: JSON.stringify({
-                mail: credentials.mail,
-                password: credentials.password
-            }),
-        });
+        try {
+            const response = await fetch("http://localhost:8080/api/users/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    mail: credentials.mail,
+                    password: credentials.password
+                }),
+            });
 
             if (response.ok) {
                 const user = await response.json();
-                // On stocke l'utilisateur pour le profil
                 sessionStorage.setItem("user", JSON.stringify(user));
                 
+                // Message de succès
                 setMessage({ type: 'success', text: "Connexion réussie ! Redirection..." });
-                setTimeout(() => navigate("/profil"), 1500);
+
+                // Redirection basée sur l'héritage (dtype ou role)
+                setTimeout(() => {
+                    if (user.role === "ADMIN" || user.dtype === "Admin") {
+                        navigate("/admin");
+                    } else if (user.role === "INTERVENANT" || user.dtype === "Intervenant") {
+                        navigate("/profil"); 
+                    } else {
+                        navigate("/profil");
+                    }
+                }, 1500);
+
             } else {
-                setMessage({ type: 'error', text: "Email ou mot de passe incorrect." });
+                const errorText = await response.text();
+                setMessage({ type: 'error', text: errorText || "Mail ou mot de passe incorrect." });
             }
-        } catch (error) {
+        } catch (err) {
             setMessage({ type: 'error', text: "Erreur de connexion au serveur." });
         }
     };
@@ -46,19 +57,21 @@ try {
         <section className="connexion">
             <div className="connexionContainer">
                 <div className="titleContainer">
-                    <button className="retour" onClick={() => navigate("/")}>
-                        <img src="/icon/arrowRight.svg" alt="icon arrow lefts" /> Retour
+                    <button onClick={() => navigate("/")} aria-label="button retour">
+                        <img src="icon/arrowLeft.svg" alt="icon arrow left" />
+                        Retour
                     </button>
-                    <div className="title">
-                        <h2>Connexion</h2>
-                        <p>Accédez à vos formations et suivez votre progression.</p>
-                    </div>
+                    <h2>Connexion</h2>
+                    <p>Veuillez entrer vos informations de connexion.</p>
                 </div>
 
-                {/* Affichage du message flash */}
+                {/* Affichage des messages avec tes classes CSS pour les couleurs */}
                 {message && (
-                    <div className={`form-message ${message.type}`} style={{
-                        padding: '10px', borderRadius: '5px', marginBottom: '15px', textAlign: 'center',
+                    <div className={`message ${message.type}`} style={{ 
+                        padding: '1vh', 
+                        borderRadius: '0.5vw',
+                        textAlign: 'center',
+                        fontWeight: '500',
                         backgroundColor: message.type === 'success' ? '#d4edda' : '#f8d7da',
                         color: message.type === 'success' ? '#155724' : '#721c24',
                         border: `1px solid ${message.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`
@@ -69,13 +82,13 @@ try {
 
                 <form onSubmit={handleSubmit}>
                     <div className="inputs">
-                       <input
-    type="email"
-    name="mail" // Change "email" par "mail" pour correspondre au Java
-    placeholder="Email"
-    onChange={handleChange}
-    required
-/>
+                        <input
+                            type="email"
+                            name="mail"
+                            placeholder="Email"
+                            onChange={handleChange}
+                            required
+                        />
                         <div className="passwordContainer">
                             <input 
                                 type={show ? "password" : "text"} 
