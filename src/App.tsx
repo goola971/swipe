@@ -22,6 +22,7 @@ import MonSuivis from "./pages/monSuivis/monSuivis.tsx";
 import NosSalles from "./pages/nossalles/nossalles";
 import Overview from "./pages/Admin/Overview/overview.tsx";
 
+
 import Admin from "./pages/Admin/admin.tsx";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
 						</>
 					}
 				>
+					<Route path="*" element={<div>Page non trouvée (Erreur 404)</div>} />
 					<Route path="/" element={<Index />} />
 					<Route path="/ressources" element={<Formations />} />
 					<Route path="/connexion" element={<Connexion />} />
@@ -53,17 +55,8 @@ function App() {
 					<Route path="/suivi" element={<MonSuivis />} />
 					<Route path="/nossalles" element={<NosSalles />} />
 					<Route path="/overview" element={<Overview />} />
-
-					{/* PROTECTION DE LA ROUTE PROFIL ICI */}
-					<Route
-						path="/profil"
-						element={
-							<PrivateRoute>
-								<Profile />
-							</PrivateRoute>
-						}
-					/>
-
+					<Route path="/monSuivis" element={<MonSuivis />} />
+					<Route path="/profil" element={ <PrivateRoute><Profile /></PrivateRoute>}/>
 					<Route path="/details" element={<Details />} />
 				</Route>
 			</Routes>

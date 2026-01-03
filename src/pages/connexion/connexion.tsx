@@ -40,7 +40,7 @@ function Connexion(): JSX.Element {
                     } else if (user.role === "INTERVENANT" || user.dtype === "Intervenant") {
                         navigate("/profil"); 
                     } else {
-                        navigate("/profil");
+                        navigate("/monSuivis");
                     }
                 }, 1500);
 

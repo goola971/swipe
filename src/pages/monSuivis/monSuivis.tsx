@@ -1,24 +1,25 @@
 import "./monSuivis.scss";
-import { useState, type JSX } from "react";
+import { useState, useEffect, type JSX } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function MonSuivis(): JSX.Element {
+	const navigate = useNavigate();
+	const [user, setUser] = useState<any>(null);
 	const [selectedDays, setSelectedDays] = useState<number[]>([4, 5, 6]);
 	const [currentMonth, setCurrentMonth] = useState<number>(0);
 	const [currentYear, setCurrentYear] = useState<number>(2026);
 
+	// Récupération de l'utilisateur au chargement de la page
+	useEffect(() => {
+		const storedUser = sessionStorage.getItem("user");
+		if (storedUser) {
+			setUser(JSON.parse(storedUser));
+		}
+	}, []);
+
 	const months = [
-		"Janvier",
-		"Février",
-		"Mars",
-		"Avril",
-		"Mai",
-		"Juin",
-		"Juillet",
-		"Août",
-		"Septembre",
-		"Octobre",
-		"Novembre",
-		"Décembre",
+		"Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+		"Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
 	];
 
 	const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -51,106 +52,107 @@ function MonSuivis(): JSX.Element {
 		setSelectedDays([]);
 	}
 
-	const lastSession =
-		selectedDays.length > 0 ? Math.max(...selectedDays) : null;
+	if (!user) return <div className="loading">Chargement...</div>;
 
 	return (
-		<section className="monSuivis">
-			<div className="monSuivisHeader">
-				<h1>Bienvenue, Mehdi !</h1>
+		<main className="monSuivis">
+			<header className="monSuivisHeader">
+				{/* Dynamisation du prénom */}
+				<h1>Bienvenue, {user.prenom} !</h1>
 				<p>
-					Vous pouvez maintenant accéder à vos cours, vos réservations
-					et vos documents.
+					Ravi de vous revoir. Voici un aperçu de votre progression et de vos
+					prochaines sessions.
 				</p>
-			</div>
+			</header>
 
-			<article className="monSuivisTop">
-				{selectedDays.length > 0 ? (
+			<div className="monSuivisTop">
+				{/* Logique conditionnelle pour la formation */}
+				{user.formationEnCours ? (
 					<div className="courseCard">
-						<h3>Cours de Cybersécurité — Niveau Débutant</h3>
-						<span>
-							Dernière session suivie : {lastSession}{" "}
-							{months[currentMonth]}
-						</span>
-
-						<p className="label">Progression totale</p>
-
-						<div className="progressBar">
-							{[...Array(5)].map((_, i) => (
-								<span
-									key={i}
-									className={
-										i < selectedDays.length ? "active" : ""
-									}
-								/>
-							))}
+						<div className="courseInfo">
+							<h3>{user.formationEnCours.titre || "Formation sans titre"}</h3>
+							<span>Intervenant : {user.formationEnCours.intervenant || "À déterminer"}</span>
 						</div>
-
-						<small>
-							{selectedDays.length} sessions réservées · 0 cours
-							terminés · 0 certificats obtenus
-						</small>
+						<div className="courseProgress">
+							<div className="progressLabel">
+								<span>Progression</span>
+								<span>{user.progression || 0}%</span>
+							</div>
+							<div className="progressBar">
+								<div 
+									className="fill" 
+									style={{ width: `${user.progression || 0}%` }}
+								></div>
+							</div>
+						</div>
 					</div>
 				) : (
-					<div className="emptyCourse">
-						Oups… Il semblerait que vous n’ayez aucune réservation
-						pour le moment
-						<small>
-							0 cours réservés · 0 cours terminés · 0 certificats
-							obtenus
-						</small>
+					<div className="emptyCourse" style={{ 
+						background: "#f8f9fb", 
+						padding: "1.5rem", 
+						borderRadius: "0.75rem", 
+						display: "flex", 
+						flexDirection: "column", 
+						gap: "1rem",
+						justifyContent: "center",
+						alignItems: "center",
+						border: "2px dashed #d1d5db"
+					}}>
+						<p>Vous n'êtes inscrit à aucune formation pour le moment.</p>
+						<button 
+							onClick={() => navigate("/ressources")}
+							style={{
+								padding: "0.8rem 1.5rem",
+								backgroundColor: "#007bff",
+								color: "white",
+								border: "none",
+								borderRadius: "0.5rem",
+								cursor: "pointer",
+								fontWeight: "bold"
+							}}
+						>
+							Découvrir nos formations
+						</button>
 					</div>
 				)}
 
 				<div className="notificationsCard">
-					<h4>Notifications</h4>
-					<div className="empty">
-						Tout est à jour. Aucune notification à afficher.
+					<div className="notifHeader">
+						<h3>Notifications</h3>
+						<span className="badge">2</span>
+					</div>
+					<div className="notifList">
+						<div className="notifItem">
+							<p>Nouvelle ressource ajoutée en Cybersécurité</p>
+							<span>Il y a 2h</span>
+						</div>
+						<div className="notifItem">
+							<p>Rappel : Session demain à 14:00</p>
+							<span>Il y a 5h</span>
+						</div>
 					</div>
 				</div>
-			</article>
+			</div>
 
-			<article className="monSuivisBottom">
+			<div className="monSuivisBottom">
 				<div className="documents">
 					<h3>Mes documents</h3>
-
-					<div className="documentItem">
-						<div>
-							<span className="label">
-								Justificatif de paiement
-							</span>
-							<span className="value">Obtenu le 00/00/2026</span>
-						</div>
-						<div className="actions">
-							<i className="bi bi-eye"></i>
-							<i className="bi bi-download"></i>
-						</div>
-					</div>
-
-					<div className="documentItem">
-						<div>
+					<div className="documentList">
+						<div className="documentItem">
 							<span className="label">
 								Certification cours de cybersécurité{" "}
-								<a
-									href="/img/pdf/caca.pdf"
-									download
-									className="icon"
-								>
+								<a href="/img/pdf/caca.pdf" download className="icon">
 									<i className="bi bi-download"></i>
 								</a>
 							</span>
 							<span className="value">Obtenue le 00/00/2026</span>
 						</div>
-						<div className="actions">
-							<i className="bi bi-eye"></i>
-							<i className="bi bi-download"></i>
-						</div>
+						{/* ... reste des documents ... */}
 					</div>
 				</div>
 
 				<div className="sessions">
 					<h3>Mes sessions</h3>
-
 					<div className="calendar">
 						<div className="calendarHeader">
 							<button onClick={prevMonth}>‹</button>
@@ -167,9 +169,7 @@ function MonSuivis(): JSX.Element {
 									<span
 										key={day}
 										className={`day ${
-											selectedDays.includes(day)
-												? "active"
-												: ""
+											selectedDays.includes(day) ? "active" : ""
 										}`}
 										onClick={() => toggleDay(day)}
 									>
@@ -179,14 +179,9 @@ function MonSuivis(): JSX.Element {
 							})}
 						</div>
 					</div>
-
-					<div className="sessionActions">
-						<button>Choisir mes prochaines sessions</button>
-						<button className="danger">Annuler une session</button>
-					</div>
 				</div>
-			</article>
-		</section>
+			</div>
+		</main>
 	);
 }
 
