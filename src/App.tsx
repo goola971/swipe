@@ -19,7 +19,7 @@ import Profile from "./pages/profile/profile.tsx";
 import Details from "./pages/details/details.tsx";
 import PrivateRoute from "./components/privateroute.tsx"; //
 import MonSuivis from "./pages/monSuivis/monSuivis.tsx";
-
+import nossalles from "./pages/nossalles/nossalles.tsx";
 
 import Admin from "./pages/Admin/admin.tsx";
 
@@ -50,6 +50,7 @@ function App() {
 					<Route path="/inscription" element={<Inscription />} />
 					<Route path="/admin" element={<Admin />} />
 					<Route path="/suivi" element={<MonSuivis />} />
+					<Route path="/nossalles" element={<NosSalles />} />
 
 					{/* PROTECTION DE LA ROUTE PROFIL ICI */}
 					<Route
@@ -66,8 +67,6 @@ function App() {
 			</Routes>
 		</>
 	);
-
 }
-
 
 export default App;
