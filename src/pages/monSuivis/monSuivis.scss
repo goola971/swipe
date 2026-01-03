@@ -1,0 +1,208 @@
+.monSuivis {
+    max-width: 75rem;
+    margin-inline: auto;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.monSuivisHeader {
+    h1 {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 600;
+    }
+
+    p {
+        margin-top: 0.5rem;
+        color: #6b7280;
+        max-width: 40rem;
+    }
+}
+
+.monSuivisTop {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+
+    @media (max-width: 48rem) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.courseCard,
+.notificationsCard,
+.emptyCourse {
+    background: #f8f9fb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.courseCard {
+    h3 {
+        font-weight: 600;
+    }
+
+    span {
+        font-size: 0.85rem;
+        color: #6b7280;
+    }
+
+    .label {
+        margin-top: 1rem;
+        font-weight: 500;
+    }
+
+    .progressBar {
+        display: flex;
+        gap: 0.5rem;
+        margin-block: 0.75rem;
+
+        span {
+            flex: 1;
+            height: 0.4rem;
+            background: #d1d5db;
+            border-radius: 999px;
+
+            &.active {
+                background: #111827;
+            }
+        }
+    }
+
+    small {
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+}
+
+.emptyCourse {
+    small {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+}
+
+.notificationsCard {
+    .empty {
+        margin-top: 1rem;
+        background: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        color: #6b7280;
+    }
+}
+
+.monSuivisBottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: 48rem) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.documents,
+.sessions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.documentItem {
+    background: #f8f9fb;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .label {
+        display: block;
+        font-weight: 500;
+    }
+
+    .value {
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+
+    .actions {
+        display: flex;
+        gap: 0.75rem;
+        font-size: 1.1rem;
+        cursor: pointer;
+    }
+}
+
+.calendar {
+    background: #f8f9fb;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+
+    .calendarHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+    }
+
+    .calendarGrid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            background: #fff;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.15s;
+
+            &:hover {
+                background: #e5e7eb;
+            }
+
+            &.active {
+                background: #111827;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.sessionActions {
+    display: flex;
+    gap: 0.75rem;
+
+    button {
+        flex: 1;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid #111827;
+        background: #fff;
+        cursor: pointer;
+        font-size: 0.85rem;
+
+        &.danger {
+            background: #111827;
+            color: #fff;
+        }
+    }
+}

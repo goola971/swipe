@@ -9,7 +9,6 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Header from "./components/header/header.tsx";
 import Footer from "./components/footer/footer.tsx";
 import Cookies from "./components/cookies/Cookies.tsx";
-import PrivateRoute from "./components/privateroute.tsx"; //
 
 // pages
 import Index from "./pages/index/index.tsx";
@@ -18,6 +17,10 @@ import Connexion from "./pages/connexion/connexion.tsx";
 import Formations from "./pages/formations/formations.tsx";
 import Profile from "./pages/profile/profile.tsx";
 import Details from "./pages/details/details.tsx";
+import PrivateRoute from "./components/privateroute.tsx"; //
+import MonSuivis from "./pages/monSuivis/monSuivis.tsx";
+
+
 import Admin from "./pages/Admin/admin.tsx";
 
 function App() {
@@ -46,6 +49,7 @@ function App() {
 					<Route path="/connexion" element={<Connexion />} />
 					<Route path="/inscription" element={<Inscription />} />
 					<Route path="/admin" element={<Admin />} />
+					<Route path="/suivi" element={<MonSuivis />} />
 
 					{/* PROTECTION DE LA ROUTE PROFIL ICI */}
 					<Route
@@ -62,6 +66,8 @@ function App() {
 			</Routes>
 		</>
 	);
+
 }
+
 
 export default App;

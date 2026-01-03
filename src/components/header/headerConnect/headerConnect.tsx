@@ -26,7 +26,7 @@ function HeaderConnect(): JSX.Element {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="">Mon suivi</Link>
+                            <Link to="/suivi">Mon suivi</Link>
                         </li>
                         <li>
                             <Link to="">Nos salles</Link>
