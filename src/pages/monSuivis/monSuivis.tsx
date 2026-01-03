@@ -98,7 +98,7 @@ function MonSuivis(): JSX.Element {
 						alignItems: "center",
 						border: "2px dashed #d1d5db"
 					}}>
-						<p>Vous n'êtes inscrit à aucune formation pour le moment.</p>
+						<p>Vous n'êtes inscrit à aucune session pour le moment.</p>
 						<button 
 							onClick={() => navigate("/ressources")}
 							style={{
@@ -147,7 +147,7 @@ function MonSuivis(): JSX.Element {
 							</span>
 							<span className="value">Obtenue le 00/00/2026</span>
 						</div>
-						{/* ... reste des documents ... */}
+						{}
 					</div>
 				</div>
 
