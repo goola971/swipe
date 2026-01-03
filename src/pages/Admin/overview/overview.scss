@@ -7,3 +7,34 @@
 	position: relative;
 	padding: 0;
 }
+
+.card {
+	@include dflex(start, center, 1vw 0.7vw);
+	width: 30%;
+	padding: 1vh 1.7vw;
+	border-radius: 1vw;
+	border: rgba(0, 0, 0, 0.27) 0.1vw solid;
+	img {
+		width: 15%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 1vw;
+	}
+	.description {
+		@include dflex(start, start, 1vh, column);
+		width: 100%;
+		h3 {
+			font-size: 1.5vw;
+			font-weight: 400;
+		}
+		p {
+			font-size: 1vw;
+			font-weight: 400;
+		}
+	}
+	.cardBody {
+		width: 100%;
+		background-color: #e2e2e2;
+		color: rgba(0, 0, 0, 0.5);
+	}
+}
