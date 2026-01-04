@@ -1,49 +1,27 @@
+import { Outlet } from "react-router-dom";
+
 import "./overview.scss";
 import { type JSX } from "react";
 
 export default function Overview(): JSX.Element {
 	return (
-		<div className="framee">
-			<h2>Indicateurs clés</h2>
-			<div className="cards">
-				<div className="card">
-					<div className="cardHeader">
-						<img src="icon/admin/flame.svg" alt="" />
-						<h2>Total des inscriptions</h2>
-						<p>
-							Comptes inscrits depuis la création de la plateforme
-						</p>
-					</div>
-					<div className="cardBody">
-						<img className="icon" src="icon/admin/tot.svg" alt="" />
-						<p>30</p>
-					</div>
-				</div>
+		<div>
+			<h1>Indicateurs clés</h1>
 
-				<div className="card">
-					<div className="cardHeader">
-						<img src="icon/admin/flame.svg" alt="" />
-						<h2>Taux de présence</h2>
-						<p>% de participants réellement présents</p>
-					</div>
-					<div className="cardBody">
-						<img className="icon" src="icon/admin/tot.svg" alt="" />
-						<p>86%</p>
-					</div>
+			<div className="card">
+				<div className="cardHeader">
+					<img src="icon/admin/flame.svg" alt="" />
+					<h2>Total des inscriptions</h2>
+					<p>Comptes inscrits depuis la création de la plateforme</p>
 				</div>
-
-				<div className="card">
-					<div className="cardHeader">
-						<img src="icon/admin/flame.svg" alt="" />
-						<h2>Chiffre d’affaires</h2>
-						<p>Depuis la création de la plateforme</p>
-					</div>
-					<div className="cardBody">
+				<div className="cardBody">
+					<p>
 						<img className="icon" src="icon/admin/tot.svg" alt="" />
-						<p>30 000 / an</p>
-					</div>
+						30
+					</p>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div className="Activity">
 				<div className="recent">
 					<h2>Activité récente</h2>
@@ -66,6 +44,34 @@ export default function Overview(): JSX.Element {
 						<img src="icon/admin/reglage.svg" alt="" />
 						Gérer les utilisateurs
 					</button>
+=======
+
+			<div className="card">
+				<div className="cardHeader">
+					<img src="icon/admin/flame.svg" alt="" />
+					<h2>Taux de présence</h2>
+					<p>% de participants réellement présents</p>
+				</div>
+				<div className="cardBody">
+					<p>
+						<img className="icon" src="icon/admin/tot.svg" alt="" />
+						86%
+					</p>
+				</div>
+			</div>
+
+			<div className="card">
+				<div className="cardHeader">
+					<img src="icon/admin/flame.svg" alt="" />
+					<h2>Chiffre d’affaires</h2>
+					<p>Depuis la création de la plateforme</p>
+				</div>
+				<div className="cardBody">
+					<p>
+						<img className="icon" src="icon/admin/tot.svg" alt="" />
+						30 000 / an
+					</p>
+>>>>>>> e175fa281b314652ca4ef90fad82836cea82d869
 				</div>
 			</div>
 		</div>

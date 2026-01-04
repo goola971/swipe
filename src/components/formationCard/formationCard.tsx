@@ -2,6 +2,7 @@ import "./formationCard.scss";
 import { type JSX } from "react";
 import Button from "../../components/buttons/buttons";
 
+
 type FormationCardProps = {
     image: string;
     titles: string;
