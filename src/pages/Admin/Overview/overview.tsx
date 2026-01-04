@@ -44,27 +44,29 @@ export default function Overview(): JSX.Element {
 					</div>
 				</div>
 			</div>
-			<div className="recent">
-				<h1>Activité récente</h1>
-				<button>Voir plus</button>
-			</div>
-			<div className="shortcut">
-				<h1>Raccourcis</h1>
-				<button className="addFormation">
-					{" "}
-					<img src="icon/admin/create.svg" alt="" />
-					Créer une formation
-				</button>
-				<button className="addFormation">
-					{" "}
-					<img src="icon/admin/calendar.svg" alt="" />
-					Ajouter une session
-				</button>
-				<button className="addFormation">
-					{" "}
-					<img src="icon/admin/reglage.svg" alt="" />
-					Gérer les utilisateurs
-				</button>
+			<div className="Activity">
+				<div className="recent">
+					<h2>Activité récente</h2>
+					<section>
+						<h3></h3>
+					</section>
+					<button>Voir plus</button>
+				</div>
+				<div className="shortcut">
+					<h2>Raccourcis</h2>
+					<button className="addFormation">
+						<img src="icon/admin/create.svg" alt="" />
+						Créer une formation
+					</button>
+					<button className="addFormation">
+						<img src="icon/admin/calendar.svg" alt="" />
+						Ajouter une session
+					</button>
+					<button className="addFormation">
+						<img src="icon/admin/reglage.svg" alt="" />
+						Gérer les utilisateurs
+					</button>
+				</div>
 			</div>
 		</div>
 	);
