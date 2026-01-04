@@ -25,12 +25,12 @@ function HeaderConnect(): JSX.Element {
 				<h1 onClick={() => (window.location.href = "/")}>SWIPE.</h1>
 				<nav>
 					<ul>
-						<li>
-							<Link to="/suivi">Mon suivi</Link>
-						</li>
-						<li>
-							<Link to="/nossalles">Nos salles</Link>
-						</li>
+						<li><Link to="/suivi">Mon suivi</Link></li>
+						<li><Link to="/nossalles">Nos salles</Link></li>
+						<li><Link to="/ressources">Nos formations</Link></li>
+						<li><Link to="/monSuivis">Mon suivi</Link></li>
+						
+						
 					</ul>
 				</nav>
 			</div>
