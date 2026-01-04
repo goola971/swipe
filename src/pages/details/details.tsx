@@ -1,7 +1,60 @@
 import "./details.scss";
-import { type JSX } from "react";
+import {type JSX, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 
 function Details(): JSX.Element {
+    const { id } = useParams(); 
+    const [formation, setFormation] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (id) {
+            fetch(`http://localhost:8080/api/formations/${id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setFormation(data);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    console.error("Erreur:", err);
+                    setLoading(false);
+                });
+        }
+    }, [id]);
+
+const handlePayment = async () => {
+        try {
+            
+            const storedUser = JSON.parse(sessionStorage.getItem("user") || "{}");
+
+            if (!storedUser.idUser) {
+                alert("Veuillez vous connecter pour acheter cette formation.");
+                return;
+            }
+
+            const response = await fetch("http://localhost:8080/api/paiements/checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userId: storedUser.idUser,
+                    sessionId: formation.idFormation 
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                
+                window.location.href = data.url;
+            } else {
+                alert("Erreur lors de la génération du paiement.");
+            }
+        } catch (error) {
+            console.error("Erreur paiement:", error);
+            alert("Le serveur de paiement ne répond pas.");
+        }
+    };
 
     const coursInclut = [
         "Certification officielle remise après validation du cours",
@@ -12,6 +65,8 @@ function Details(): JSX.Element {
         "Assistance après la séance (24h)",
     ];
 
+    if (loading) return <div className="loading">Chargement...</div>;
+    if (!formation) return <div className="error">Formation introuvable (ID: {id})</div>;
     return (
         <section className="details">
             <div className="detailsWrapper">
@@ -22,28 +77,23 @@ function Details(): JSX.Element {
                 <div className="detailsContent">
                     <div className="contentInner">
                         <div className="header">
-                            <h2>Cours de Cybersécurité — Niveau Débutant</h2>
+                            <h2> {formation.titre} - Niveau {formation.categorie} </h2>
                             <div className="badges">
-                                <span className="badge">Durée : 2 semaines</span>
-                                <span className="badge">Catégorie : Cybersécurité</span>
+                                <span className="badge">Durée : {formation.duree_jour} </span>
+                                <span className="badge">Catégorie : {formation.categorie} </span>
                             </div>
                         </div>
 
-                        <p className="intro">
+                        {/* <p className="intro">
                             Apprenez les bases de la cybersécurité, y compris les
                             attaques courantes, les bonnes pratiques et les outils
                             essentiels pour protéger vos systèmes.
-                        </p>
+                        </p> */}
 
                         <div className="section">
                             <h3>Description</h3>
                             <p>
-                                Ce cours est destiné aux débutants et couvre les bases
-                                essentielles de la cybersécurité. Vous apprendrez à
-                                reconnaître les menaces courantes telles que le
-                                phishing, les ransomwares, et comment mettre en place
-                                des protections simples mais efficaces pour vos
-                                appareils et réseaux.
+                             {formation.description}
                             </p>
                         </div>
 
@@ -64,7 +114,7 @@ function Details(): JSX.Element {
                             </p>
                         </div>
 
-                        <div className="section">
+                        {/* <div className="section">
                             <h3>Lorem ipsum dolor</h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -80,7 +130,7 @@ function Details(): JSX.Element {
                                 consectetur adipiscing elit. Fusce ac urna risus.
                                 Nullam rutrum tellus non facilisis sodales.
                             </p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -97,16 +147,13 @@ function Details(): JSX.Element {
 
                     <div className="infoContainer">
                         <h2 className="price">
-                            79,99€<span>/sem</span>
+                            {formation.prix} € TTC
                         </h2>
 
                         <div className="buttons">
-                            <button className="payButton" aria-label="Payer directement">
+                            <button className="payButton" aria-label="Payer directement" onClick={handlePayment} >
                                 Payer directement
-                                <img
-                                    src="/icon/arrowLeft.svg"
-                                    alt="arrow icon"
-                                />
+                                <img src="/icon/arrowLeft.svg" alt="arrow icon"/>
                             </button>
                             <button className="cartButton" aria-label="Ajouter au panier">
                                 <img src="/icon/cart.svg" alt="cart icon" />

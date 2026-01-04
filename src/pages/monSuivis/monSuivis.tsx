@@ -9,13 +9,16 @@ function MonSuivis(): JSX.Element {
 	const [currentMonth, setCurrentMonth] = useState<number>(0);
 	const [currentYear, setCurrentYear] = useState<number>(2026);
 
-	// Récupération de l'utilisateur au chargement de la page
 	useEffect(() => {
 		const storedUser = sessionStorage.getItem("user");
-		if (storedUser) {
-			setUser(JSON.parse(storedUser));
+		
+		if (!storedUser) {
+			navigate("/connexion");
+			return;
 		}
-	}, []);
+
+		setUser(JSON.parse(storedUser));
+	}, [navigate]);
 
 	const months = [
 		"Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -52,12 +55,18 @@ function MonSuivis(): JSX.Element {
 		setSelectedDays([]);
 	}
 
-	if (!user) return <div className="loading">Chargement...</div>;
+    // Gestion dynamique des notifications
+    const notifications = user?.formationEnCours ? [
+		{ id: 1, text: `Rappel : Votre session de "${user.formationEnCours.titre}" commence demain.`, time: "Il y a 2h" },
+		{ id: 2, text: "Un nouveau support de cours a été ajouté.", time: "Il y a 5h" }
+	] : [];
+
+	// On affiche un écran vide ou un loader pendant la redirection
+	if (!user) return <div className="loading">Vérification de l'accès...</div>;
 
 	return (
 		<main className="monSuivis">
 			<header className="monSuivisHeader">
-				{/* Dynamisation du prénom */}
 				<h1>Bienvenue, {user.prenom} !</h1>
 				<p>
 					Ravi de vous revoir. Voici un aperçu de votre progression et de vos
@@ -66,70 +75,66 @@ function MonSuivis(): JSX.Element {
 			</header>
 
 			<div className="monSuivisTop">
-				{/* Logique conditionnelle pour la formation */}
-				{user.formationEnCours ? (
-					<div className="courseCard">
-						<div className="courseInfo">
-							<h3>{user.formationEnCours.titre || "Formation sans titre"}</h3>
-							<span>Intervenant : {user.formationEnCours.intervenant || "À déterminer"}</span>
-						</div>
-						<div className="courseProgress">
-							<div className="progressLabel">
-								<span>Progression</span>
-								<span>{user.progression || 0}%</span>
-							</div>
-							<div className="progressBar">
-								<div 
-									className="fill" 
-									style={{ width: `${user.progression || 0}%` }}
-								></div>
-							</div>
-						</div>
-					</div>
-				) : (
-					<div className="emptyCourse" style={{ 
-						background: "#f8f9fb", 
-						padding: "1.5rem", 
-						borderRadius: "0.75rem", 
-						display: "flex", 
-						flexDirection: "column", 
-						gap: "1rem",
-						justifyContent: "center",
-						alignItems: "center",
-						border: "2px dashed #d1d5db"
-					}}>
-						<p>Vous n'êtes inscrit à aucune session pour le moment.</p>
-						<button 
-							onClick={() => navigate("/ressources")}
-							style={{
-								padding: "0.8rem 1.5rem",
-								backgroundColor: "#007bff",
-								color: "white",
-								border: "none",
-								borderRadius: "0.5rem",
-								cursor: "pointer",
-								fontWeight: "bold"
-							}}
-						>
-							Découvrir nos formations
-						</button>
-					</div>
-				)}
+                {user.formationEnCours ? (
+                    <div className="courseCard">
+                        <div className="courseInfo">
+                            <h3>{user.formationEnCours.titre}</h3>
+                            <span>Intervenant : {user.formationEnCours.intervenant || "Expert Tech"}</span>
+                        </div>
+                        <div className="courseProgress">
+                            <div className="progressLabel">
+                                <span>Progression</span>
+                                <span>{user.progression || 0}%</span>
+                            </div>
+                            <div className="progressBar">
+                                <div 
+                                    className="fill" 
+                                    style={{ width: `${user.progression || 0}%` }}
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="emptyCourse">
+                        <h3>Aucune formation en cours</h3>
+                        <p>Vous n'êtes inscrit à aucune session pour le moment.</p>
+                        <button 
+                            className="btnVoirFormations" 
+                            onClick={() => navigate("/ressources")}
+                            style={{
+                                marginTop: "1rem",
+                                padding: "0.8rem 1.5rem",
+                                backgroundColor: "#007bff",
+                                color: "white",
+                                border: "none",
+                                borderRadius: "0.5rem",
+                                cursor: "pointer",
+                                fontWeight: "600"
+                            }}
+                        >
+                            Voir mes formations
+                        </button>
+                    </div>
+                )}
 
 				<div className="notificationsCard">
 					<div className="notifHeader">
 						<h3>Notifications</h3>
-						<span className="badge">2</span>
+                        {notifications.length > 0 && <span className="badge">{notifications.length}</span>}
 					</div>
 					<div className="notifList">
-						<div className="notifItem">
-							<p>Nouvelle ressource ajoutée en Cybersécurité</p>
-							<span>Il y a 2h</span>
-						</div>
-						<div className="notifItem">
-							<p>Rappel : Session demain à 14:00</p>
-							<span>Il y a 5h</span>
-						</div>
+                        {notifications.length > 0 ? (
+							notifications.map((notif) => (
+								<div className="notifItem" key={notif.id}>
+									<p>{notif.text}</p>
+									<span>{notif.time}</span>
+								</div>
+							))
+						) : (
+							<div className="notifItem">
+								<p>Aucune notification pour le moment.</p>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -147,7 +152,6 @@ function MonSuivis(): JSX.Element {
 							</span>
 							<span className="value">Obtenue le 00/00/2026</span>
 						</div>
-						{}
 					</div>
 				</div>
 

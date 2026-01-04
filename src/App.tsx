@@ -23,6 +23,7 @@ import NosSalles from "./pages/nossalles/nossalles";
 import Overview from "./pages/Admin/Overview/overview.tsx";
 
 
+
 import Admin from "./pages/Admin/admin.tsx";
 
 function App() {
@@ -57,7 +58,8 @@ function App() {
 					<Route path="/overview" element={<Overview />} />
 					<Route path="/monSuivis" element={<MonSuivis />} />
 					<Route path="/profil" element={ <PrivateRoute><Profile /></PrivateRoute>}/>
-					<Route path="/details" element={<Details />} />
+					<Route path="/details/:id" element={<Details />} />
+					
 				</Route>
 			</Routes>
 		</>
