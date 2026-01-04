@@ -28,7 +28,7 @@ function HeaderConnect(): JSX.Element {
 						<li><Link to="/suivi">Mon suivi</Link></li>
 						<li><Link to="/nossalles">Nos salles</Link></li>
 						<li><Link to="/ressources">Nos formations</Link></li>
-						<li><Link to="/monSuivis">Mon suivi</Link></li>
+						
 						
 						
 					</ul>
