@@ -1,4 +1,4 @@
-import "./activiteRecenteCard.scss";
+import "./addformation.scss";
 import { type JSX } from "react";
 
 /**
@@ -21,28 +21,32 @@ import { type JSX } from "react";
 	<div>
 		<button className="delete">Supprimer</button>
 		<button className="edit">Modifier</button>
-	</div>
+		</div>
 </div>; */
 }
 
-const activiteRecenteCard = ({
+const addFormation = ({
 	titre,
 	soustitre,
+	delete,
+	edit,
 }: {
 	titre: string;
 	soustitre: string;
+	delete: string;
+	edit: string;
 }): JSX.Element => {
 	return (
 		<div className="formationcard">
 			<img src="img/cours/cours.png" alt="" />
 			<h2>{titre}</h2>
 			<p>{soustitre}</p>
-			<div>
-				<button className="delete">Supprimer</button>
-				<button className="edit">Modifier</button>
+			<div className="actions">
+				<button className="delete">{delete}</button>
+				<button className="edit">{edit}</button>
 			</div>
 		</div>
 	);
 };
 
-export default activiteRecenteCard;
+export default addFormation;
