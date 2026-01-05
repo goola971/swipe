@@ -56,19 +56,20 @@ function MonSuivis(): JSX.Element {
 
 	return (
 		<section className="monSuivis">
-			<div className="monSuivisHeader">
+			<header className="monSuivisHeader">
 				<h1>Bienvenue, Mehdi !</h1>
 				<p>
 					Vous pouvez maintenant accéder à vos cours, vos réservations
 					et vos documents.
 				</p>
-			</div>
+			</header>
 
+			{/* TOP */}
 			<article className="monSuivisTop">
 				{selectedDays.length > 0 ? (
 					<div className="courseCard">
 						<h3>Cours de Cybersécurité — Niveau Débutant</h3>
-						<span>
+						<span className="subtitle">
 							Dernière session suivie : {lastSession}{" "}
 							{months[currentMonth]}
 						</span>
@@ -110,44 +111,58 @@ function MonSuivis(): JSX.Element {
 				</div>
 			</article>
 
+			{/* BOTTOM */}
 			<article className="monSuivisBottom">
+				{/* DOCUMENTS */}
 				<div className="documents">
 					<h3>Mes documents</h3>
 
-					<div className="documentItem">
-						<div>
-							<span className="label">
-								Justificatif de paiement
-							</span>
-							<span className="value">Obtenu le 00/00/2026</span>
-						</div>
-						<div className="actions">
-							<i className="bi bi-eye"></i>
-							<i className="bi bi-download"></i>
-						</div>
-					</div>
+					<div className="documentsList">
+						<div className="documentItem">
+							<div className="info">
+								<strong>Justificatif de paiement</strong>
+								<span>Obtenu le 00/00/2025</span>
+							</div>
 
-					<div className="documentItem">
-						<div>
-							<span className="label">
-								Certification cours de cybersécurité{" "}
+							<div className="actions">
 								<a
-									href="/img/pdf/caca.pdf"
-									download
-									className="icon"
+									href="/img/pdf/justificatif.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
 								>
+									<i className="bi bi-eye"></i>
+								</a>
+								<a href="/img/pdf/justificatif.pdf" download>
 									<i className="bi bi-download"></i>
 								</a>
-							</span>
-							<span className="value">Obtenue le 00/00/2026</span>
+							</div>
 						</div>
-						<div className="actions">
-							<i className="bi bi-eye"></i>
-							<i className="bi bi-download"></i>
+
+						<div className="documentItem">
+							<div className="info">
+								<strong>
+									Certification cours de cybersécurité
+								</strong>
+								<span>Obtenue le 00/00/2025</span>
+							</div>
+
+							<div className="actions">
+								<a
+									href="/img/pdf/certification.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<i className="bi bi-eye"></i>
+								</a>
+								<a href="/img/pdf/certification.pdf" download>
+									<i className="bi bi-download"></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 
+				{/* SESSIONS */}
 				<div className="sessions">
 					<h3>Mes sessions</h3>
 
