@@ -11,7 +11,7 @@ function Formations(): JSX.Element {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		fetch("http://localhost:8080/api/formations")
+		fetch("https://api-ccxi.onrender.com/api/formations")
 			.then((res) => res.json())
 			.then((data) => {
 				const mappedFormations = data.map((f: any) => ({

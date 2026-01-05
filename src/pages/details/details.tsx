@@ -10,7 +10,7 @@ function Details(): JSX.Element {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:8080/api/formations/${id}`)
+            fetch(`https://api-ccxi.onrender.com/api/formations/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setFormation(data);
@@ -33,7 +33,7 @@ const handlePayment = async () => {
                 return;
             }
 
-            const response = await fetch("http://localhost:8080/api/paiements/checkout", {
+            const response = await fetch("https://api-ccxi.onrender.com/api/paiements/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
