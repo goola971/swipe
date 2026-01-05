@@ -1,24 +1,25 @@
 import "./monSuivis.scss";
-import { useState, type JSX } from "react";
+import { useState, useEffect, type JSX } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function MonSuivis(): JSX.Element {
+	const navigate = useNavigate();
+	const [user, setUser] = useState<any>(null);
 	const [selectedDays, setSelectedDays] = useState<number[]>([4, 5, 6]);
 	const [currentMonth, setCurrentMonth] = useState<number>(0);
 	const [currentYear, setCurrentYear] = useState<number>(2026);
 
+	useEffect(() => {
+		const storedUser = sessionStorage.getItem("user");
+		if (storedUser) {
+			setUser(JSON.parse(storedUser));
+		}
+	}, []);
+
 	const months = [
-		"Janvier",
-		"Février",
-		"Mars",
-		"Avril",
-		"Mai",
-		"Juin",
-		"Juillet",
-		"Août",
-		"Septembre",
-		"Octobre",
-		"Novembre",
-		"Décembre",
+		"Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+		"Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
 	];
 
 	const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -53,11 +54,12 @@ function MonSuivis(): JSX.Element {
 
 	const lastSession =
 		selectedDays.length > 0 ? Math.max(...selectedDays) : null;
+		if (!user) return <div className="loading">Chargement...</div>;
 
 	return (
 		<section className="monSuivis">
 			<div className="monSuivisHeader">
-				<h1>Bienvenue, Mehdi !</h1>
+				<h1>Bienvenue,{user.prenom} ! </h1>
 				<p>
 					Vous pouvez maintenant accéder à vos cours, vos réservations
 					et vos documents.
