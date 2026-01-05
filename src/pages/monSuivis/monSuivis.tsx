@@ -129,11 +129,22 @@ function MonSuivis(): JSX.Element {
 									href="/img/pdf/justificatif.pdf"
 									target="_blank"
 									rel="noopener noreferrer"
+									className="iconAction apercu"
+									title="Aperçu"
 								>
-									<i className="bi bi-eye"></i>
+									<img src="/icon/eye.svg" alt="Aperçu" />
 								</a>
-								<a href="/img/pdf/justificatif.pdf" download>
-									<i className="bi bi-download"></i>
+
+								<a
+									href="/img/pdf/justificatif.pdf"
+									download
+									className="iconAction fleche"
+									title="Télécharger"
+								>
+									<img
+										src="/icon/fleche-vers-le-bas.svg"
+										alt="Télécharger"
+									/>
 								</a>
 							</div>
 						</div>
@@ -151,11 +162,22 @@ function MonSuivis(): JSX.Element {
 									href="/img/pdf/certification.pdf"
 									target="_blank"
 									rel="noopener noreferrer"
+									className="iconAction apercu"
+									title="Aperçu"
 								>
-									<i className="bi bi-eye"></i>
+									<img src="/icon/eye.svg" alt="Aperçu" />
 								</a>
-								<a href="/img/pdf/certification.pdf" download>
-									<i className="bi bi-download"></i>
+
+								<a
+									href="/img/pdf/certification.pdf"
+									download
+									className="iconAction fleche"
+									title="Télécharger"
+								>
+									<img
+										src="/icon/fleche-vers-le-bas.svg"
+										alt="Télécharger"
+									/>
 								</a>
 							</div>
 						</div>
