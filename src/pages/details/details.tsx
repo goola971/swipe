@@ -26,7 +26,7 @@ function Details(): JSX.Element {
 const handlePayment = async () => {
         try {
             
-            const storedUser = JSON.parse(sessionStorage.getItem("user") || "{}");
+            const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
 
             if (!storedUser.idUser) {
                 alert("Veuillez vous connecter pour acheter cette formation.");
