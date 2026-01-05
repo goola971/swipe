@@ -1,11 +1,9 @@
-import { Outlet } from "react-router-dom";
-
 import "./overview.scss";
 import { type JSX } from "react";
 
 export default function Overview(): JSX.Element {
 	return (
-		<div>
+		<div className="overview">
 			<h1>Indicateurs clés</h1>
 
 			<div className="card">
@@ -21,7 +19,7 @@ export default function Overview(): JSX.Element {
 					</p>
 				</div>
 			</div>
-<<<<<<< HEAD
+
 			<div className="Activity">
 				<div className="recent">
 					<h2>Activité récente</h2>
@@ -30,21 +28,26 @@ export default function Overview(): JSX.Element {
 					</section>
 					<button>Voir plus</button>
 				</div>
+
 				<div className="shortcut">
 					<h2>Raccourcis</h2>
+
 					<button className="addFormation">
 						<img src="icon/admin/create.svg" alt="" />
 						Créer une formation
 					</button>
+
 					<button className="addFormation">
 						<img src="icon/admin/calendar.svg" alt="" />
 						Ajouter une session
 					</button>
+
 					<button className="addFormation">
 						<img src="icon/admin/reglage.svg" alt="" />
 						Gérer les utilisateurs
 					</button>
-=======
+				</div>
+			</div>
 
 			<div className="card">
 				<div className="cardHeader">
@@ -71,7 +74,6 @@ export default function Overview(): JSX.Element {
 						<img className="icon" src="icon/admin/tot.svg" alt="" />
 						30 000 / an
 					</p>
->>>>>>> e175fa281b314652ca4ef90fad82836cea82d869
 				</div>
 			</div>
 		</div>
