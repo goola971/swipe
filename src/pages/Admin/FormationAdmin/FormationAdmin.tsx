@@ -1,6 +1,5 @@
 import "./formationAdmin.scss";
 import { type JSX } from "react";
-import addFormation from "../../admin/addFormation/addFormation";
 
 export default function FormationAdmin(): JSX.Element {
 	return (
@@ -23,12 +22,6 @@ export default function FormationAdmin(): JSX.Element {
 					<button className="edit">Modifier</button>
 				</div>
 			</div> */}
-			<addFormation
-				titre="Ajouter une formation"
-				soustitre="primary"
-				delete=""
-				edit=""
-			/>
 		</div>
 	);
 }

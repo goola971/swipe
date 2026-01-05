@@ -21,7 +21,7 @@ import { type JSX } from "react";
 	<div>
 		<button className="delete">Supprimer</button>
 		<button className="edit">Modifier</button>
-		</div>
+	</div>
 </div>; */
 }
 
@@ -42,8 +42,8 @@ const addFormation = ({
 			<h2>{titre}</h2>
 			<p>{soustitre}</p>
 			<div className="actions">
-				<button className="delete">{delete}</button>
-				<button className="edit">{edit}</button>
+				<button className="delete">Supprimer</button>
+				<button className="edit">Modifier</button>
 			</div>
 		</div>
 	);
