@@ -39,50 +39,50 @@ function Formations(): JSX.Element {
 			});
 	}, []);
 
-	// return (
-	// 	<>
-	// 		<section className="formations">
-	// 			{}
-	// 			<ExploreCategory title="Explorez nos catégories" />
+	return (
+		<>
+			<section className="formations">
+				{}
+				<ExploreCategory title="Explorez nos catégories" />
 
-	// 			<article className="toutesNosFormations">
-	// 				<div className="entete">
-	// 					<h2>Toutes nos formations</h2>
-	// 				</div>
+				<article className="toutesNosFormations">
+					<div className="entete">
+						<h2>Toutes nos formations</h2>
+					</div>
 
-	// 				<div className="cards">
-	// 					{loading ? (
-	// 						<p>Chargement des formations...</p>
-	// 					) : formations.length > 0 ? (
-	// 						formations.map((f, index) => (
-	// 							<FormationCard
-	// 								key={f.id || index}
-	// 								image={f.image || "img/cours/cours.png"}
-	// 								titles={f.titles}
-	// 								niveau={f.niveau}
-	// 								description={f.description}
-	// 								endroit={f.endroit}
-	// 								salle={f.salle}
-	// 								date={f.date}
-	// 								heureDebut={f.heureDebut}
-	// 								heureFin={f.heureFin}
-	// 								voirSessionLink={f.voirSessionLink}
-	// 								voirDetailsLink={f.voirDetailsLink}
-	// 							/>
-	// 						))
-	// 					) : (
-	// 						<p className="aucuneFormation">
-	// 							Aucune formation disponible pour le moment.
-	// 						</p>
-	// 					)}
-	// 				</div>
-	// 			</article>
+					<div className="cards">
+						{loading ? (
+							<p>Chargement des formations...</p>
+						) : formations.length > 0 ? (
+							formations.map((f, index) => (
+								<FormationCard
+									key={f.id || index}
+									image={f.image || "img/cours/cours.png"}
+									titles={f.titles}
+									niveau={f.niveau}
+									description={f.description}
+									endroit={f.endroit}
+									salle={f.salle}
+									date={f.date}
+									heureDebut={f.heureDebut}
+									heureFin={f.heureFin}
+									voirSessionLink={f.voirSessionLink}
+									voirDetailsLink={f.voirDetailsLink}
+								/>
+							))
+						) : (
+							<p className="aucuneFormation">
+								Aucune formation disponible pour le moment.
+							</p>
+						)}
+					</div>
+				</article>
 
 	// 			{}
 	// 			<section className="certification">{}</section>
 	// 		</section>
 	// 	</>
-	// );
+	 );
 	// const formations = [
 	// 	{
 	// 		image: "img/cours/cours.png",
