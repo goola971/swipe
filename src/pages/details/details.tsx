@@ -79,7 +79,7 @@ const handlePayment = async () => {
                         <div className="header">
                             <h2> {formation.titre} - Niveau {formation.categorie} </h2>
                             <div className="badges">
-                                <span className="badge">Durée : {formation.duree_jour} </span>
+                                <span className="badge">Durée : {formation.dureeJour} </span>
                                 <span className="badge">Catégorie : {formation.categorie} </span>
                             </div>
                         </div>
