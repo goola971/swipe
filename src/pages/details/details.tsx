@@ -1,10 +1,10 @@
 import "./details.scss";
-import {type JSX, useEffect, useState } from "react";
+import { type JSX, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
 function Details(): JSX.Element {
-    const { id } = useParams(); 
+    const { id } = useParams();
     const [formation, setFormation] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
@@ -23,12 +23,12 @@ function Details(): JSX.Element {
         }
     }, [id]);
 
-const handlePayment = async () => {
+    const handlePayment = async () => {
         try {
-            
+
             const storedUser = JSON.parse(sessionStorage.getItem("user") || "{}");
 
-            if (!storedUser.idUser) {
+            if (!storedUser.id) {
                 alert("Veuillez vous connecter pour acheter cette formation.");
                 return;
             }
@@ -37,15 +37,15 @@ const handlePayment = async () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    userId: storedUser.idUser,
-                    sessionId: formation.idFormation 
+                    userId: storedUser.id,
+                    sessionId: formation.idFormation
                 }),
             });
 
             const data = await response.json();
 
             if (data.url) {
-                
+
                 window.location.href = data.url;
             } else {
                 alert("Erreur lors de la génération du paiement.");
@@ -93,7 +93,7 @@ const handlePayment = async () => {
                         <div className="section">
                             <h3>Description</h3>
                             <p>
-                             {formation.description}
+                                {formation.description}
                             </p>
                         </div>
 
@@ -153,7 +153,7 @@ const handlePayment = async () => {
                         <div className="buttons">
                             <button className="payButton" aria-label="Payer directement" onClick={handlePayment} >
                                 Payer directement
-                                <img src="/icon/arrowLeft.svg" alt="arrow icon"/>
+                                <img src="/icon/arrowLeft.svg" alt="arrow icon" />
                             </button>
                             <button className="cartButton" aria-label="Ajouter au panier">
                                 <img src="/icon/cart.svg" alt="cart icon" />
