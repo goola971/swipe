@@ -40,7 +40,7 @@ function Profile(): JSX.Element {
 
     const saveChanges = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${user.id}`, {
+            const response = await fetch(`https://api-ccxi.onrender.com/api/users/${user.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(editForm),
