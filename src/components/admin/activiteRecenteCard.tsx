@@ -19,26 +19,24 @@ import { type JSX } from "react";
 // 	</div>;
 // }
 const activiteRecenteCard = ({
-	titre,
-	date,
-	type,
-	heure,
+    titre,
+    date,
+    heure,
 }: {
-	titre: string;
-	date: string;
-	type: string;
-	heure: string;
+    titre: string;
+    date: string;
+    heure: string;
 }): JSX.Element => {
-	return (
-		<div className="activiteRecenteCard">
-			<div>
-				<span>{titre}</span>
-				<p>
-					Le {date} à {heure}
-				</p>
-			</div>
-		</div>
-	);
+    return (
+        <div className="activiteRecenteCard">
+            <div>
+                <span>{titre}</span>
+                <p>
+                    Le {date} à {heure}
+                </p>
+            </div>
+        </div>
+    );
 };
 
 export default activiteRecenteCard;

@@ -1,0 +1,44 @@
+@use "../../Mixin.scss" as *;
+
+.formationcard {
+	width: 40%;
+	@include dflex(start, center, 2vh, column);
+	border-radius: 1vw;
+	border: #d9d9d9 0.1vw solid;
+	background-color: #ffffff;
+	padding: 2vh 1vw;
+	h2 {
+		font-weight: 500;
+		width: 80%;
+	}
+	img {
+		width: 100%;
+		height: auto;
+	}
+	p {
+		font-size: 1vw;
+		font-weight: 400;
+		color: rgba(0, 0, 0, 0.616);
+		width: 80%;
+	}
+	.delete {
+		background-color: #303030;
+		color: white;
+		border: none;
+		font-weight: 500;
+		font-size: 0.8vw;
+		border-radius: 03vw;
+		padding: 1vh 2vw;
+		cursor: pointer;
+	}
+	.edit {
+		background-color: rgba(229, 229, 229, 0.5);
+		color: rgba(0, 0, 0, 0.616);
+		border: none;
+		font-weight: 500;
+		font-size: 0.8vw;
+		border-radius: 3vw;
+		padding: 1vh 2vw;
+		cursor: pointer;
+	}
+}
