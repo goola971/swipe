@@ -50,10 +50,9 @@ const Button = ({
     return (
         <Link className={`button ${variante}`} to={onclick} aria-label={texte}>
             {texte}
-            {variante === "primary" &&
-                // <img src="icon/arrowTopLeft.svg" alt="arrow top left icon" />
-                // // si img est pas vide, afficher l'image
-                img && <img src={img} alt="arrow top left icon" />}
+            {variante === "primary" && img && (
+                <img src={img} alt="arrow top left icon" />
+            )}
         </Link>
     );
 };

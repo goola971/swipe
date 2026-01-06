@@ -37,13 +37,13 @@ export default function Admin(): JSX.Element {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="">
                             <img src="icon/admin/stats.svg" alt="" />
                             Statistique
                         </Link>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="">
                             <img src="icon/admin/mail.svg" alt="" />
                             Notification
                         </Link>

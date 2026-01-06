@@ -1,44 +1,46 @@
 @use "../../Mixin.scss" as *;
 
 .formationcard {
-	width: 40%;
-	@include dflex(start, center, 2vh, column);
-	border-radius: 1vw;
-	border: #d9d9d9 0.1vw solid;
-	background-color: #ffffff;
-	padding: 2vh 1vw;
-	h2 {
-		font-weight: 500;
-		width: 80%;
-	}
-	img {
-		width: 100%;
-		height: auto;
-	}
-	p {
-		font-size: 1vw;
-		font-weight: 400;
-		color: rgba(0, 0, 0, 0.616);
-		width: 80%;
-	}
-	.delete {
-		background-color: #303030;
-		color: white;
-		border: none;
-		font-weight: 500;
-		font-size: 0.8vw;
-		border-radius: 03vw;
-		padding: 1vh 2vw;
-		cursor: pointer;
-	}
-	.edit {
-		background-color: rgba(229, 229, 229, 0.5);
-		color: rgba(0, 0, 0, 0.616);
-		border: none;
-		font-weight: 500;
-		font-size: 0.8vw;
-		border-radius: 3vw;
-		padding: 1vh 2vw;
-		cursor: pointer;
-	}
+    width: calc(100% / 3.09);
+    height: 100%;
+    @include dflex(start, start, 2vh, column);
+    border-radius: 1vw;
+    border: #d9d9d9 0.1vw solid;
+    background-color: #ffffff;
+    padding: 2vh 1vw;
+    h2 {
+        font-weight: 500;
+        font-size: 1.05vw;
+    }
+    img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+        border-radius: 1vw;
+    }
+    p {
+        font-size: 0.7vw;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.616);
+    }
+    .actions {
+        @include dflex(end, end, 1vw);
+        width: 100%;
+        button {
+            padding: 1.2dvh 2vw;
+            border-radius: 20vw;
+            border: none;
+            font-weight: 500;
+            font-size: 0.8vw;
+            cursor: pointer;
+            &.delete {
+                background-color: #303030;
+                color: white;
+            }
+            &.edit {
+                background-color: rgba(229, 229, 229, 0.5);
+                color: rgba(0, 0, 0, 0.616);
+            }
+        }
+    }
 }
