@@ -1,27 +1,55 @@
 import "./formationAdmin.scss";
-import { type JSX } from "react";
+import { type JSX, useEffect, useState } from "react";
 
 export default function FormationAdmin(): JSX.Element {
-	return (
-		<div className="formationAdmin">
-			<div className="headerformation">
-				<h2>Formations</h2>
-				<button>Ajouter une formation</button>
-			</div>
+    const [formations, setFormations] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
-			<div className="formationcard">
-				<img src="img/cours/cours.png" alt="" />
-				<h2>Cours de Cybersécurité — Niveau Débutant</h2>
-				<p>
-					Découvrez les bases de la sécurité informatique : attaques
-					courantes, bonnes pratiques, premiers réflexes de défense.
-					Un cours clair, accessible et orienté pratique.
-				</p>
-				<div>
-					<button className="delete">Supprimer</button>
-					<button className="edit">Modifier</button>
-				</div>
-			</div>
-		</div>
-	);
+    useEffect(() => {
+        // Récupération des formations depuis votre API
+        fetch("https://api-ccxi.onrender.com/api/admin/formations")
+            .then((res) => res.json())
+            .then((data) => {
+                setFormations(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Erreur lors du chargement des formations:", err);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) return <div className="loading">Chargement des formations...</div>;
+
+    return (
+        <div className="formationAdmin">
+            <div className="headerformation">
+                <h2>Formations ({formations.length})</h2>
+                <button className="add-btn">Ajouter une formation</button>
+            </div>
+
+            <div className="formationList">
+                {formations.map((f) => (
+                    <div className="formationcard" key={f.idFormation || f.id}>
+                        {}
+                        <img src={f.image || "img/cours/cours.png"} alt={f.titre} />
+                        
+                        <h2>{f.titre}</h2>
+                        <p className="category">Niveau : {f.categorie}</p>
+                        <p className="description">{f.description}</p>
+                        <p className="price"><strong>Prix : {f.prix} €</strong></p>
+                        
+                        <div className="actions">
+                            <button className="delete">Supprimer</button>
+                            <button className="edit">Modifier</button>
+                        </div>
+                    </div>
+                ))}
+
+                {formations.length === 0 && (
+                    <p>Aucune formation trouvée dans la base de données.</p>
+                )}
+            </div>
+        </div>
+    );
 }
