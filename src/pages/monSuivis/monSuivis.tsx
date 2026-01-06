@@ -94,7 +94,7 @@ function MonSuivis(): JSX.Element {
                             <h3>{paiement.formation.titre}</h3>
                             
                             <p className="label">
-                                Statut : {paiement.statut ? "✅ Validé" : "⏳ En attente de paiement"}
+                                Statut : {paiement.statut ? "✅ Validé" : "Validé"}
                             </p>
 
                             <div className="progressBar">
