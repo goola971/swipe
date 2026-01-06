@@ -170,7 +170,7 @@ function MonSuivis(): JSX.Element {
 						<div className="courseCard" key={index}>
 							<h3>{p.formation.titre}</h3>
 							<p className="label">
-								Statut : {p.statut ? "✅ Payé" : "⏳ En attente de paiement"}
+								Statut : {p.statut ? "Payé" : "Payé"}
 							</p>
 
 							{/* Affiche la date la plus proche (sauvegardée ou sélectionnée) */}
