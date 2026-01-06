@@ -9,13 +9,33 @@ function MonSuivis(): JSX.Element {
 	const [selectedDays, setSelectedDays] = useState<number[]>([4, 5, 6]);
 	const [currentMonth, setCurrentMonth] = useState<number>(0);
 	const [currentYear, setCurrentYear] = useState<number>(2026);
+    const [mesPaiements, setMesPaiements] = useState<any[]>([]); // Liste des paiements
+    const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const storedUser = sessionStorage.getItem("user");
-		if (storedUser) {
-			setUser(JSON.parse(storedUser));
-		}
-	}, []);
+        const storedUser = sessionStorage.getItem("user");
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            setUser(parsedUser);
+
+            // Appel API pour récupérer les paiements avec l'ID de l'image (ID: 28)
+            fetch(`https://api-ccxi.onrender.com/api/admin/user/${parsedUser.id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setMesPaiements(data); // On stocke la liste
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    console.error("Erreur API:", err);
+                    setLoading(false);
+                });
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
+	if (loading) return <div className="loading">Chargement...</div>;
+    if (!user) return <div className="error">Veuillez vous connecter.</div>;
 
 	const months = [
 		"Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -67,42 +87,29 @@ function MonSuivis(): JSX.Element {
 			</div>
 
 			<article className="monSuivisTop">
-				{selectedDays.length > 0 ? (
-					<div className="courseCard">
-						<h3>Cours de Cybersécurité — Niveau Débutant</h3>
-						<span>
-							Dernière session suivie : {lastSession}{" "}
-							{months[currentMonth]}
-						</span>
+{mesPaiements.length > 0 ? (
+                    mesPaiements.map((paiement, index) => (
+                        <div className="courseCard" key={index}>
+                            {/* ON UTILISE LE TITRE VENANT DIRECTEMENT DE TON JSON */}
+                            <h3>{paiement.formation.titre}</h3>
+                            
+                            <p className="label">
+                                Statut : {paiement.statut ? "✅ Validé" : "⏳ En attente de paiement"}
+                            </p>
 
-						<p className="label">Progression totale</p>
-
-						<div className="progressBar">
-							{[...Array(5)].map((_, i) => (
-								<span
-									key={i}
-									className={
-										i < selectedDays.length ? "active" : ""
-									}
-								/>
-							))}
-						</div>
-
-						<small>
-							{selectedDays.length} sessions réservées · 0 cours
-							terminés · 0 certificats obtenus
-						</small>
-					</div>
-				) : (
-					<div className="emptyCourse">
-						Oups… Il semblerait que vous n’ayez aucune réservation
-						pour le moment
-						<small>
-							0 cours réservés · 0 cours terminés · 0 certificats
-							obtenus
-						</small>
-					</div>
-				)}
+                            <div className="progressBar">
+                                {[...Array(5)].map((_, i) => (
+                                    <span key={i} className={i < selectedDays.length ? "active" : ""} />
+                                ))}
+                            </div>
+                            <small>Prix : {paiement.montant} €</small>
+                        </div>
+                    ))
+                ) : (
+                    <div className="emptyCourse">
+                        Aucune formation trouvée.
+                    </div>
+                )}
 
 				<div className="notificationsCard">
 					<h4>Notifications</h4>
