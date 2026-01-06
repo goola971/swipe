@@ -30,8 +30,6 @@ function Details(): JSX.Element {
             const storedUser = JSON.parse(sessionStorage.getItem("user") || "{}");
 
 
-
-
             if (!storedUser.id) {
                 alert("Veuillez vous connecter pour acheter cette formation.");
                 return;
