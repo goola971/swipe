@@ -40,7 +40,7 @@ function Details(): JSX.Element {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     userId: storedUser.id,
-                    sessionId: formation.idFormation
+                    formationId: formation.idFormation
                 }),
             });
 
