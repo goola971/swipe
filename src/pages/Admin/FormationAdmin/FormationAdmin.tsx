@@ -66,6 +66,10 @@ export default function FormationAdmin(): JSX.Element {
                         image={f.image}
                         soustitre={f.description}
                         prix={f.prix}
+                        dureeJour={f.dureeJour}
+                        placeMax={f.placeMax}
+                        placeOccupe={f.placeOccupe}
+                        
                     />
                 ))}
             </div>
