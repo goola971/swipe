@@ -1,7 +1,28 @@
 import "./overview.scss";
-import { type JSX } from "react";
+import { type JSX, useEffect, useState } from "react";
+
 
 export default function Overview(): JSX.Element {
+    const [totalUsers, setTotalUsers] = useState<number>(0);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+
+        fetch("https://api-ccxi.onrender.com/api/admin/users")
+            .then((res) => res.json())
+            .then((data) => {
+
+                if (Array.isArray(data)) {
+                    setTotalUsers(data.length);
+                }
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Erreur stats inscriptions:", err);
+                setLoading(false);
+            });
+    }, []);
+
+    
     return (
         <div className="overview">
             <div className="framee">
@@ -22,7 +43,7 @@ export default function Overview(): JSX.Element {
                                 src="icon/admin/tot.svg"
                                 alt=""
                             />
-                            <p>30</p>
+                            <p>{loading ? "..." : totalUsers}</p>
                         </div>
                     </div>
                     <div className="card">
