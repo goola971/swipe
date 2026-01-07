@@ -1,16 +1,13 @@
 import "./overview.scss";
 import { type JSX, useEffect, useState } from "react";
 
-
 export default function Overview(): JSX.Element {
     const [totalUsers, setTotalUsers] = useState<number>(0);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-
         fetch("https://api-ccxi.onrender.com/api/admin/users")
             .then((res) => res.json())
             .then((data) => {
-
                 if (Array.isArray(data)) {
                     setTotalUsers(data.length);
                 }
@@ -22,7 +19,6 @@ export default function Overview(): JSX.Element {
             });
     }, []);
 
-    
     return (
         <div className="overview">
             <div className="framee">
