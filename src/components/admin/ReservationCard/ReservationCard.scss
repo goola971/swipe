@@ -1,0 +1,42 @@
+@use "../../../Mixin.scss" as *;
+
+.reservationListCard {
+    @include dflex(center, space-between);
+    width: 100%;
+    padding: 2vh 1.5vw;
+    border: #d9d9d9 0.15vw solid;
+    border-radius: 1vw;
+    background-color: #ffffff;
+    h3 {
+        font-size: 1.3vw;
+        font-weight: 500;
+    }
+    p {
+        font-size: 1vw;
+        font-weight: 500;
+    }
+    button {
+        @include dflex(center, start, 1vw);
+        padding: 1vh 1vw;
+        border-radius: 0.5vw;
+        width: 8vw;
+
+        img {
+            width: 1vw;
+            height: 1vw;
+        }
+        &.Annuler {
+            background-color: #e8e8e8;
+            color: #ff0000;
+            font-weight: bold;
+
+            border: none;
+        }
+        &.Reservation {
+            background-color: #e8e8e8;
+            color: #489406;
+            font-weight: bold;
+            border: none;
+        }
+    }
+}
