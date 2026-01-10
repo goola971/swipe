@@ -75,7 +75,6 @@ $bg-light: #f1f2f6;
         }
     }
 
-    // Design de la cellule utilisateur
     .user-info {
         display: flex;
         align-items: center;
@@ -106,7 +105,6 @@ $bg-light: #f1f2f6;
         }
     }
 
-    // Badges de rôle
     .badge {
         padding: 4px 10px;
         border-radius: 6px;
@@ -116,11 +114,11 @@ $bg-light: #f1f2f6;
         &.client { background: #e8f5e9; color: #2e7d32; }
     }
 
-    // Informations secondaires
+    
     .mail { font-weight: 500; color: $text-main; }
     .phone, .address { font-size: 0.85rem; color: $text-light; margin-top: 2px; }
 
-    // Boutons d'action
+    
     .action-buttons {
         display: flex;
         gap: 8px;
@@ -150,7 +148,7 @@ $bg-light: #f1f2f6;
     }
 }
 
-// Variables de design
+
 $primary: #4a90e2;
 $secondary: #2ecc71;
 $dark: #1e272e;
@@ -158,7 +156,7 @@ $light-bg: #f5f6fa;
 $white: #ffffff;
 $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
-// Overlay (Fond flouté)
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -166,7 +164,7 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px); // Effet de flou moderne
+    backdrop-filter: blur(8px); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,7 +172,7 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     animation: fadeIn 0.3s ease-out;
 }
 
-// Conteneur de la Modale
+
 .user-modal {
     background: $white;
     width: 100%;
@@ -205,7 +203,7 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             gap: 15px;
         }
 
-        // Champs de saisie stylisés
+        
         input, select {
             width: 100%;
             padding: 12px 15px;
@@ -223,14 +221,14 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             }
         }
 
-        // Wrapper spécifique pour le mot de passe
+        
         .password-wrapper {
             position: relative;
             display: flex;
             align-items: center;
 
             input {
-                padding-right: 45px; // Espace pour l'oeil
+                padding-right: 45px; 
             }
 
             .eye-btn {
@@ -252,7 +250,7 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             }
         }
 
-        // Actions (Boutons)
+        
         .form-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -298,7 +296,7 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 
-// Keyframes pour les animations
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
