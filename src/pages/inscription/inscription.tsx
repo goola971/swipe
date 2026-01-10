@@ -148,7 +148,6 @@ const handleSubmit = async (e: React.FormEvent) => {
                                     required 
                                 />
 
-
                                 <input 
                                     type="text" 
                                     name="telephone" 
@@ -156,12 +155,21 @@ const handleSubmit = async (e: React.FormEvent) => {
                                     value={formData.telephone}
                                     onChange={handleChange}
                                 />
+
                                 <input 
                                 type="date" 
                                 name="dateNaissance"
                                 value={formData.dateNaissance}
                                 onChange={handleChange} />
 
+                                
+                                <input 
+                                    type="text" 
+                                    name="Ville" 
+                                    placeholder="Ville/Region" 
+                                    value={formData.villeRegion}
+                                    onChange={handleChange}
+                                />
 
                                 <input 
                                     type="text" 
