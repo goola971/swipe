@@ -209,7 +209,7 @@ function MonSuivis(): JSX.Element {
 						{mesPaiements.some(p => !p.statut) && (
 							<div className="notifItem">
 								<i className="bi bi-exclamation-circle-fill text-warning"></i>
-								<p>Un paiement est en attente de validation.</p>
+								<p>Auncune notification</p>
 							</div>
 						)}
 						{savedSessions.length === 0 && !mesPaiements.some(p => !p.statut) && (

@@ -5,9 +5,20 @@ import AddFormation from "../../../components/admin/addformation";
 export default function FormationAdmin(): JSX.Element {
     const [formations, setFormations] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    
+    // États pour le formulaire
+    const [showForm, setShowForm] = useState(false);
+    const [newFormation, setNewFormation] = useState({
+        titre: "",
+        description: "",
+        categorie: "",
+        prix: 0,
+        dureeJour: 0,
+        placeMax: 0,
+        image: "" // Contiendra la chaîne Base64
+    });
 
-    useEffect(() => {
-        // Récupération des formations depuis votre API
+    const fetchFormations = () => {
         fetch("https://api-ccxi.onrender.com/api/admin/formations")
             .then((res) => res.json())
             .then((data) => {
@@ -15,61 +26,106 @@ export default function FormationAdmin(): JSX.Element {
                 setLoading(false);
             })
             .catch((err) => {
-                console.error("Erreur lors du chargement des formations:", err);
+                console.error("Erreur:", err);
                 setLoading(false);
             });
+    };
+
+    useEffect(() => {
+        fetchFormations();
     }, []);
 
-    if (loading)
-        return <div className="loading">Chargement des formations...</div>;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setNewFormation(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Fonction pour convertir l'image uploadée en Base64
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setNewFormation(prev => ({ ...prev, image: reader.result as string }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+
+        const formationToSend = {
+            ...newFormation,
+            placeOccupe: 0 
+        };
+
+        try {
+            const response = await fetch("https://api-ccxi.onrender.com/api/admin/formations", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formationToSend),
+            });
+
+            if (response.ok) {
+                setShowForm(false);
+                setNewFormation({ titre: "", description: "", categorie: "", prix: 0, dureeJour: 0, placeMax: 0, image: "" });
+                fetchFormations();
+                alert("Formation créée avec succès !");
+            }
+        } catch (error) {
+            console.error("Erreur lors de la création:", error);
+        }
+    };
+
+    if (loading) return <div className="loading">Chargement...</div>;
 
     return (
         <section className="formationAdmin">
             <div className="headerformation">
                 <h2>Formations ({formations.length})</h2>
-                <button className="add-btn">Ajouter une formation</button>
+                <button className="add-btn" onClick={() => setShowForm(true)}>Ajouter une formation</button>
             </div>
 
-            {/* <div className="formationList">
-                {formations.map((f) => (
-                    <div className="formationcard" key={f.idFormation || f.id}>
-                        {}
-                        <img
-                            src={f.image || "img/cours/cours.png"}
-                            alt={f.titre}
-                        />
+            {showForm && (
+                <div className="modal-overlay">
+                    <div className="add-modal">
+                        <h3>Créer une nouvelle formation</h3>
+                        <form onSubmit={handleSubmit}>
+                            <input type="text" name="titre" placeholder="Titre" onChange={handleChange} required />
+                            <textarea name="description" placeholder="Description détaillée" onChange={handleChange} required />
+                            <input type="text" name="categorie" placeholder="Catégorie / Niveau" onChange={handleChange} required />
+                            
+                            <div className="row">
+                                <input type="number" name="prix" placeholder="Prix (€)" onChange={handleChange} required />
+                                <input type="number" name="dureeJour" placeholder="Durée (jours)" onChange={handleChange} required />
+                                <input type="number" name="placeMax" placeholder="Places Max" onChange={handleChange} required />
+                            </div>
 
-                        <h2>{f.titre}</h2>
-                        <p className="category">Niveau : {f.categorie}</p>
-                        <p className="description">{f.description}</p>
-                        <p className="price">
-                            <strong>Prix : {f.prix} €</strong>
-                        </p>
+                            <div className="file-input">
+                                <label>Image de la formation :</label>
+                                <input type="file" accept="image/*" onChange={handleImageChange} required />
+                                {newFormation.image && <img src={newFormation.image} alt="Preview" className="preview-img" />}
+                            </div>
 
-                        <div className="actions">
-                            <button className="delete">Supprimer</button>
-                            <button className="edit">Modifier</button>
-                        </div>
+                            <div className="form-actions">
+                                <button type="submit" className="save-btn">Publier la formation</button>
+                                <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>Annuler</button>
+                            </div>
+                        </form>
                     </div>
-                ))}
+                </div>
+            )}
 
-                {formations.length === 0 && (
-                    <p>Aucune formation trouvée dans la base de données.</p>
-                )}
-            </div> */}
             <div className="formationLists">
                 {formations.map((f) => (
                     <AddFormation
-                        titre={f.titre}
+                        key={f.id}
+                        {...f} // Passe toutes les props automatiquement
                         id={f.idFormation || f.id}
                         niveau={f.categorie}
-                        image={f.image}
                         soustitre={f.description}
-                        prix={f.prix}
-                        dureeJour={f.dureeJour}
-                        placeMax={f.placeMax}
-                        placeOccupe={f.placeOccupe}
-                        
                     />
                 ))}
             </div>
