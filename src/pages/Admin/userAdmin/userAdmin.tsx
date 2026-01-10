@@ -30,6 +30,9 @@ export default function UserAdmin(): JSX.Element {
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Email</th>
+                        <th>Telephone</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
                         <th>Rôle</th>
                     </tr>
                 </thead>
@@ -43,6 +46,9 @@ export default function UserAdmin(): JSX.Element {
                                 <td>{user.nom}</td>
                                 <td>{user.prenom}</td>
                                 <td>{user.mail}</td>
+                                <td>{user.telephone}</td>
+                                <td>{user.adressePostale}</td>
+                                <td>{user.villeRegion}</td>
                                 <td>{user.role || "Utilisateur"}</td>
                             </tr>
                         ))

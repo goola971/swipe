@@ -11,6 +11,7 @@ type Props = {
     dureeJour: number;
     placeMax: number;
     placeOccupe: number;
+    formationImage: string;
 };
 
 export default function AddFormation(props: Props): JSX.Element {
@@ -33,7 +34,7 @@ export default function AddFormation(props: Props): JSX.Element {
                     dureeJour: formData.dureeJour,
                     placeMax: formData.placeMax,
                     placeOccupe: formData.placeOccupe,
-                    image: formData.image
+                    formationImage: formData.formationImage,
                 }),
             });
 

@@ -15,7 +15,7 @@ export default function FormationAdmin(): JSX.Element {
         prix: 0,
         dureeJour: 0,
         placeMax: 0,
-        image: "" // Contiendra la chaîne Base64
+        formationImage:"" // Contiendra la chaîne Base64
     });
 
     const fetchFormations = () => {
@@ -70,7 +70,7 @@ export default function FormationAdmin(): JSX.Element {
 
             if (response.ok) {
                 setShowForm(false);
-                setNewFormation({ titre: "", description: "", categorie: "", prix: 0, dureeJour: 0, placeMax: 0, image: "" });
+                setNewFormation({ titre: "", description: "", categorie: "", prix: 0, dureeJour: 0, placeMax: 0, formationImage: "" });
                 fetchFormations();
                 alert("Formation créée avec succès !");
             }
@@ -106,7 +106,7 @@ export default function FormationAdmin(): JSX.Element {
                             <div className="file-input">
                                 <label>Image de la formation :</label>
                                 <input type="file" accept="image/*" onChange={handleImageChange} required />
-                                {newFormation.image && <img src={newFormation.image} alt="Preview" className="preview-img" />}
+                                {newFormation.formationImage && <img src={newFormation.formationImage} alt="Preview" className="preview-img" />}
                             </div>
 
                             <div className="form-actions">
