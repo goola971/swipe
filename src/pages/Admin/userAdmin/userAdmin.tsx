@@ -5,7 +5,7 @@ export default function UserAdmin(): JSX.Element {
     const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
-    // --- ÉTATS POUR LA MODALE (AJOUTÉS POUR CORRIGER LE ROUGE) ---
+
     const [showModal, setShowModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState<any>(null);
     const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ export default function UserAdmin(): JSX.Element {
         role: "USER"
     });
 
-    // --- LOGIQUE ---
+
 
     const fetchUsers = () => {
         setLoading(true);
@@ -98,7 +98,7 @@ export default function UserAdmin(): JSX.Element {
                 <span className="user-count">{users.length} inscrits</span>
             </div>
 
-            {/* MODALE DE MODIFICATION */}
+            {}
             {showModal && (
                 <div className="modal-overlay">
                     <div className="user-modal">

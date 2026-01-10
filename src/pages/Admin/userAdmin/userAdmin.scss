@@ -277,8 +277,9 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
                         background: darken($primary, 10%);
                         transform: translateY(-2px);
                     }
-                }
-
+                }                
+                
+                
                 &.cancel-btn {
                     background: #f1f2f6;
                     color: #57606f;
@@ -295,6 +296,7 @@ $shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
     }
 }
+
 
 // Keyframes pour les animations
 @keyframes fadeIn {
