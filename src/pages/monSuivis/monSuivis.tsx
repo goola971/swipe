@@ -54,10 +54,8 @@ function MonSuivis(): JSX.Element {
 		}
 	}, []);
 
-	// --- LOGIQUE DU CALENDRIER ---
 
 	function toggleDay(day: number) {
-		// On vérifie si le jour est déjà enregistré (noir)
 		const isAlreadySaved = savedSessions.some(s => new Date(s.date).getDate() === day);
 
 		if (isAlreadySaved) {
@@ -68,13 +66,13 @@ function MonSuivis(): JSX.Element {
 			return;
 		}
 
-		// Sinon, on toggle la sélection temporaire (gris)
+
 		setSelectedDays((prev) =>
 			prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
 		);
 	}
 
-	// --- ACTIONS (AJOUTER / ANNULER) ---
+	
 
 	const handleSaveSessions = async () => {
 		if (selectedDays.length === 0) {
@@ -103,9 +101,9 @@ function MonSuivis(): JSX.Element {
 				}
 			}
 
-			// Mise à jour de l'interface
+			
 			setSavedSessions((prev) => [...prev, ...newSessionsFromApi]);
-			setSelectedDays([]); // On vide les jours gris
+			setSelectedDays([]); 
 			setMessage({ text: "Sessions enregistrées avec succès !", type: "success" });
 			setTimeout(() => setMessage(null), 5000);
 
@@ -120,7 +118,6 @@ function MonSuivis(): JSX.Element {
 			return;
 		}
 
-		// On annule la dernière session enregistrée pour l'exemple
 		const sessionToCancel = savedSessions[savedSessions.length - 1];
 
 		try {
@@ -140,7 +137,7 @@ function MonSuivis(): JSX.Element {
 		setTimeout(() => setMessage(null), 5000);
 	};
 
-	// --- NAVIGATION CALENDRIER ---
+	
 
 	function prevMonth() {
 		setCurrentMonth((m) => (m === 0 ? 11 : m - 1));
@@ -173,7 +170,7 @@ function MonSuivis(): JSX.Element {
 								Statut : {p.statut ? " Payé" : "Payé"}
 							</p>
 
-							{/* Affiche la date la plus proche (sauvegardée ou sélectionnée) */}
+							{}
 							{(savedSessions.length > 0 || selectedDays.length > 0) && (
 								<p className="sessionDate" style={{ fontWeight: 'bold', color: '#1a1a1a', marginTop: '10px' }}>
 									Prochaine session : {
