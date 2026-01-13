@@ -191,7 +191,10 @@ function MonSuivis(): JSX.Element {
 						</div>
 					))
 				) : (
-					<div className="emptyCourse">Aucune formation trouvée.</div>
+					<div className="emptyCourse">Oups… Il semblerait que vous n’ayez aucune réservation
+						pour le moment
+						</div>
+						
 				)}
 
 				<div className="notificationsCard">
@@ -224,12 +227,68 @@ function MonSuivis(): JSX.Element {
 							<span className="label">Justificatif de paiement</span>
 							<span className="value">Obtenu le {new Date().toLocaleDateString()}</span>
 						</div>
-						<div className="actions">
-							<i className="bi bi-eye"></i>
-							<i className="bi bi-download"></i>
+                          <div className="actions">
+								<a
+									href="/img/pdf/justificatif.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="iconAction apercu"
+									title="Aperçu"
+								>
+									<img src="/icon/eye.svg" alt="Aperçu" />
+								</a>
+
+								<a
+									href="/img/pdf/justificatif.pdf"
+									download
+									className="iconAction fleche"
+									title="Télécharger"
+								>
+									<img
+										src="/icon/fleche-vers-le-bas.svg"
+										alt="Télécharger"
+									/>
+								</a>
+							</div>
+
 						</div>
-					</div>
-				</div>
+					<div className="documentItem">
+					<div className="info">
+								<strong>
+									Certification cours de cybersécurité
+								</strong>
+								<span>Obtenue le 00/00/2025</span>
+							</div>
+
+							<div className="actions">
+								<a
+									href="/img/pdf/certification.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="iconAction apercu"
+									title="Aperçu"
+								>
+									<img src="/icon/eye.svg" alt="Aperçu" />
+								</a>
+
+								<a
+									href="/img/pdf/certification.pdf"
+									download
+									className="iconAction fleche"
+									title="Télécharger"
+								>
+									<img
+										src="/icon/fleche-vers-le-bas.svg"
+										alt="Télécharger"
+									/>
+								</a>
+							</div>
+						</div>
+					</div>	
+					
+					
+				
+				
 
 				<div className="sessions">
 					<h3>Mes sessions</h3>
