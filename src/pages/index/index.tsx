@@ -87,13 +87,13 @@ function Index(): JSX.Element {
                         texte="Commencer maintenant"
                         variante="primary"
                         img="icon/arrowTopLeft.svg"
-                        onclick=""
+                        onclick="/connexion"
                     />
                     <Button
                         texte="Voir les formations"
                         variante="secondary"
                         img=""
-                        onclick=""
+                        onclick="/ressources"
                     />
                 </div>
                 <div className="heroImgContainer">
@@ -227,7 +227,7 @@ function Index(): JSX.Element {
                     texte="voir plus"
                     variante="primary"
                     img="icon/arrowTopLeft.svg"
-                    onclick=""
+                    onclick="/ressources"
                 />
             </section>
             {/* ============================================================= */}

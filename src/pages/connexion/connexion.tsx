@@ -58,7 +58,7 @@ function Connexion(): JSX.Element {
             <div className="connexionContainer">
                 <div className="titleContainer">
                     <button onClick={() => navigate("/")} aria-label="button retour">
-                        <img src="icon/arrowLeft.svg" alt="icon arrow left" />
+                        <img src="icon/arrowRight.svg" alt="icon arrow left" />
                         Retour
                     </button>
                     <h2>Connexion</h2>
