@@ -1,6 +1,7 @@
 import "./monSuivis.scss";
 import { useState, useEffect, type JSX } from "react";
 import { useNavigate } from "react-router-dom";
+import { jsPDF } from "jspdf";
 
 function MonSuivis(): JSX.Element {
 	const navigate = useNavigate();
@@ -14,10 +15,32 @@ function MonSuivis(): JSX.Element {
 	const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
 	// États pour le calendrier et les sessions
-	const [selectedDays, setSelectedDays] = useState<number[]>([]); // Jours cliqués (gris)
-	const [savedSessions, setSavedSessions] = useState<any[]>([]);  // Jours en BDD (noir)
+	const [selectedDays, setSelectedDays] = useState<number[]>([]);
+	const [savedSessions, setSavedSessions] = useState<any[]>([]);
 	const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth());
 	const [currentYear, setCurrentYear] = useState<number>(2026);
+
+	const genererPDF = (paiement: any) => {
+		const doc = new jsPDF();
+
+		// Design simple du justificatif
+		doc.setFontSize(22);
+		doc.text("JUSTIFICATIF DE PAIEMENT", 20, 20);
+
+		doc.setFontSize(12);
+		doc.text(`Émis le : ${new Date().toLocaleDateString()}`, 20, 30);
+		doc.text(`--------------------------------------------------`, 20, 35);
+
+		doc.text(`Nom de l'étudiant : ${user.prenom} ${user.nom}`, 20, 50);
+		doc.text(`Formation : ${paiement.formation.titre}`, 20, 60);
+		doc.text(`Montant payé : ${paiement.montant} €`, 20, 70);
+		doc.text(`Statut : Confirmé`, 20, 80);
+
+		doc.text(`--------------------------------------------------`, 20, 90);
+		doc.text("Merci pour votre confiance, l'équipe Swipe.", 20, 100);
+
+		doc.save(`Justificatif_${paiement.formation.titre}.pdf`);
+	};
 
 	const months = [
 		"Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -54,7 +77,6 @@ function MonSuivis(): JSX.Element {
 		}
 	}, []);
 
-
 	function toggleDay(day: number) {
 		const isAlreadySaved = savedSessions.some(s => new Date(s.date).getDate() === day);
 
@@ -66,13 +88,10 @@ function MonSuivis(): JSX.Element {
 			return;
 		}
 
-
 		setSelectedDays((prev) =>
 			prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
 		);
 	}
-
-	
 
 	const handleSaveSessions = async () => {
 		if (selectedDays.length === 0) {
@@ -101,9 +120,8 @@ function MonSuivis(): JSX.Element {
 				}
 			}
 
-			
 			setSavedSessions((prev) => [...prev, ...newSessionsFromApi]);
-			setSelectedDays([]); 
+			setSelectedDays([]);
 			setMessage({ text: "Sessions enregistrées avec succès !", type: "success" });
 			setTimeout(() => setMessage(null), 5000);
 
@@ -137,8 +155,6 @@ function MonSuivis(): JSX.Element {
 		setTimeout(() => setMessage(null), 5000);
 	};
 
-	
-
 	function prevMonth() {
 		setCurrentMonth((m) => (m === 0 ? 11 : m - 1));
 		if (currentMonth === 0) setCurrentYear((y) => y - 1);
@@ -170,7 +186,6 @@ function MonSuivis(): JSX.Element {
 								Statut : {p.statut ? " Payé" : "Payé"}
 							</p>
 
-							{}
 							{(savedSessions.length > 0 || selectedDays.length > 0) && (
 								<p className="sessionDate" style={{ fontWeight: 'bold', color: '#1a1a1a', marginTop: '10px' }}>
 									Prochaine session : {
@@ -191,10 +206,9 @@ function MonSuivis(): JSX.Element {
 						</div>
 					))
 				) : (
-					<div className="emptyCourse">Oups… Il semblerait que vous n’ayez aucune réservation
-						pour le moment
-						</div>
-						
+					<div className="emptyCourse">
+						Oups… Il semblerait que vous n’ayez aucune réservation pour le moment
+					</div>
 				)}
 
 				<div className="notificationsCard">
@@ -209,7 +223,7 @@ function MonSuivis(): JSX.Element {
 						{mesPaiements.some(p => !p.statut) && (
 							<div className="notifItem">
 								<i className="bi bi-exclamation-circle-fill text-warning"></i>
-								<p>Auncune notification</p>
+								<p>Aucune notification à afficher</p>
 							</div>
 						)}
 						{savedSessions.length === 0 && !mesPaiements.some(p => !p.statut) && (
@@ -222,73 +236,44 @@ function MonSuivis(): JSX.Element {
 			<article className="monSuivisBottom">
 				<div className="documents">
 					<h3>Mes documents</h3>
-					<div className="documentItem">
-						<div>
-							<span className="label">Justificatif de paiement</span>
-							<span className="value">Obtenu le {new Date().toLocaleDateString()}</span>
-						</div>
-                          <div className="actions">
-								<a
-									href="/img/pdf/justificatif.pdf"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="iconAction apercu"
-									title="Aperçu"
-								>
-									<img src="/icon/eye.svg" alt="Aperçu" />
-								</a>
+					<div className="documents-container">
+						{mesPaiements.map((p, index) => (
+							p.statut === false && (
+								<div className="documentItem" key={index}>
+									<div className="info">
+										<strong>Justificatif de paiement - {p.formation.titre}</strong>
+										<span>Apprennant : {user.prenom} {user.nom} • Montant : {p.montant}€</span>
+									</div>
 
-								<a
-									href="/img/pdf/justificatif.pdf"
-									download
-									className="iconAction fleche"
-									title="Télécharger"
-								>
-									<img
-										src="/icon/fleche-vers-le-bas.svg"
-										alt="Télécharger"
-									/>
-								</a>
-							</div>
+									<div className="actions">
+										<a
+											onClick={() => genererPDF(p)}
+											className="iconAction fleche"
+											title="Télécharger mon justificatif"
+										>
+											<img src="/icon/fleche-vers-le-bas.svg" alt="Télécharger" />
+										</a>
+									</div>
+								</div>
+							)
+						))}
 
-						</div>
-					<div className="documentItem">
-					<div className="info">
-								<strong>
-									Certification cours de cybersécurité
-								</strong>
+						<div className="documentItem">
+							<div className="info">
+								<strong>Certification cours de cybersécurité</strong>
 								<span>Obtenue le 00/00/2025</span>
 							</div>
-
 							<div className="actions">
-								<a
-									href="/img/pdf/certification.pdf"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="iconAction apercu"
-									title="Aperçu"
-								>
+								<a href="/img/pdf/certification.pdf" target="_blank" className="iconAction apercu">
 									<img src="/icon/eye.svg" alt="Aperçu" />
 								</a>
-
-								<a
-									href="/img/pdf/certification.pdf"
-									download
-									className="iconAction fleche"
-									title="Télécharger"
-								>
-									<img
-										src="/icon/fleche-vers-le-bas.svg"
-										alt="Télécharger"
-									/>
+								<a href="/img/pdf/certification.pdf" download className="iconAction fleche">
+									<img src="/icon/fleche-vers-le-bas.svg" alt="Télécharger" />
 								</a>
 							</div>
 						</div>
-					</div>	
-					
-					
-				
-				
+					</div>
+				</div>
 
 				<div className="sessions">
 					<h3>Mes sessions</h3>

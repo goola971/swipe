@@ -1,61 +1,107 @@
 .monSuivis {
-	align-self: flex-start;
-	margin-bottom: auto;
-
-	max-width: 75rem;
-	width: 100%;
-	margin-inline: auto;
-	padding: 2rem;
-
-	display: flex;
-	flex-direction: column;
-	gap: 1.25rem;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem; 
+    // background-color: #f8f9fa;
+    box-sizing: border-box;
 }
+
+.monSuivisHeader {
+    width: 100%;
+    text-align: left; 
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #111827;
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #6b7280;
+        margin-top: 0.5rem;
+    }
+}
+
+.monSuivisTop {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-self: flex-start; 
+}
+
+// .monSuivis {
+// 	align-self: flex-start;
+// 	margin-bottom: auto;
+
+// 	max-width: 75rem;
+// 	width: 100%;
+// 	margin-inline: auto;
+// 	padding: 2rem;
+
+// 	display: flex;
+// 	flex-direction: column;
+// 	gap: 1.25rem;
+// }
 
 /* HEADER */
-.monSuivisHeader {
-	h1 {
-		font-size: 2rem;
-		margin-bottom: 0.4rem;
-	}
+// .monSuivisHeader {
+// 	h1 {
+// 		font-size: 2rem;
+// 		margin-bottom: 0.4rem;
+// 	}
 
-	p {
-		color: #6b7280;
-		max-width: 40rem;
-	}
-}
+// 	p {
+// 		color: #6b7280;
+// 		max-width: 40rem;
+// 	}
+// }
 
-/* TOP */
-.monSuivisTop {
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: 1rem;
+// /* TOP */
+// .monSuivisTop {
+// 	display: grid;
+// 	grid-template-columns: 2fr 1fr;
+// 	gap: 1rem;
 
-	@media (max-width: 48rem) {
-		grid-template-columns: 1fr;
-	}
-}
+// 	@media (max-width: 48rem) {
+// 		grid-template-columns: 1fr;
+// 	}
+// }
+
 
 /* BOTTOM */
 .monSuivisBottom {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1.5rem;
-
-	@media (max-width: 48rem) {
-		grid-template-columns: 1fr;
-	}
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem;
+    width: 100%; 
+    align-items: stretch; 
 }
 
 /* CARDS */
 .courseCard,
 .notificationsCard,
-.documents,
 .sessions {
 	background: #f8f9fb;
 	border-radius: 0.75rem;
 	padding: 1rem;
 }
+.sessions{
+	width: 60%;     
+    height: auto;    
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
 
 /* COURSE */
 .courseCard {
@@ -103,13 +149,37 @@
 	font-size: 0.85rem;
 }
 
-/* DOCUMENTS */
-.documents {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
+.notifItem{
+text-align: center;
 }
 
+/* DOCUMENTS */
+.documents {
+    width: 100%; 
+	height: 80%;
+    display: flex;
+    flex-direction: column;
+	border: solid black;
+	border-radius: 0.75rem;
+	padding: 1rem;
+	gap: 0.75rem;
+    
+    .documents-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .documentItem {
+        width: 100%; 
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding: 1.5rem 2rem; 
+        box-sizing: border-box;
+    }
+}
 .documentsList {
 	display: flex;
 	flex-direction: column;
@@ -132,11 +202,12 @@
 .documentItem {
 	background: #f3f4f6;
 	border-radius: 0.5rem;
-	padding: 0.75rem 1rem;
-
+    padding: 1.5rem 2rem; 
+    box-sizing: border-box;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100%; 
 
 	.info span {
 		display: block;
@@ -163,6 +234,9 @@
 /* CALENDAR */
 .calendar {
 	margin-top: 0.5rem;
+	        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
 }
 
 .calendarHeader {
@@ -183,6 +257,8 @@
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	gap: 0.4rem;
+	        flex-grow: 1; 
+        gap: 10px;
 }
 
 .calendarGrid .day {
@@ -203,6 +279,10 @@
 	background: #111827;
 	color: #fff;
 }
+
+
+
+
 
 /* ACTIONS */
 .sessionActions {
@@ -263,11 +343,11 @@
 
 .day {
     &.active {
-        background-color: #555; // Gris pour ce qu'on vient de cliquer
+        background-color: #555; 
         color: white;
     }
     &.saved {
-        background-color: black; // Noir total pour ce qui est déjà en base (verrouillé)
+        background-color: black; 
         cursor: not-allowed;
         font-weight: bold;
     }
