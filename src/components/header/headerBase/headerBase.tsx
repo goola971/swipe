@@ -44,6 +44,7 @@ function HeaderBase(): JSX.Element {
                         onClick={handleLogout} 
                         className="connexion" 
                         style={{ border: 'none', cursor: 'pointer' }} 
+                        
                     >
                         Déconnexion
                         <img 
