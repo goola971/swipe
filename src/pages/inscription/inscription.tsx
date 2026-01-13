@@ -165,7 +165,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                 
                                 <input 
                                     type="text" 
-                                    name="Ville" 
+                                    name="villeRegion" 
                                     placeholder="Ville/Region" 
                                     value={formData.villeRegion}
                                     onChange={handleChange}

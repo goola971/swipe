@@ -32,7 +32,7 @@ function HeaderConnect(): JSX.Element {
 							<Link to="/nossalles">Nos salles</Link>
 						</li>
 						<li>
-							<Link to="/ressources">Nos formations</Link>
+							<Link to="/ressources">Ressources</Link>
 						</li>
 					</ul>
 				</nav>

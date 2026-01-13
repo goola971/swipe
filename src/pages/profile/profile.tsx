@@ -148,7 +148,7 @@ function Profile(): JSX.Element {
                         </div>
                         <div className="infoItem">
                             <span className="label">Rôle</span>
-                            <span className="value role-text">{user.role || "Étudiant"}</span>
+                            <span className="value role-text">{user.role || "Apprenant"}</span>
                         </div>
                     </div>
                 </div>

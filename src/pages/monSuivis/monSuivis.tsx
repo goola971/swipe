@@ -157,7 +157,7 @@ function MonSuivis(): JSX.Element {
 	return (
 		<section className="monSuivis">
 			<div className="monSuivisHeader">
-				<h1>Bienvenue, {user.prenom} !</h1>
+				<h1>Bienvenue, {user.prenom} {user.nom} !</h1>
 				<p>Accédez à vos cours, vos réservations et vos documents.</p>
 			</div>
 
