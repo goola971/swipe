@@ -23,7 +23,6 @@ function MonSuivis(): JSX.Element {
 	const genererPDF = (paiement: any) => {
 		const doc = new jsPDF();
 
-		// Design simple du justificatif
 		doc.setFontSize(22);
 		doc.text("JUSTIFICATIF DE PAIEMENT", 20, 20);
 
