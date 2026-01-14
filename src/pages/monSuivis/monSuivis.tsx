@@ -12,12 +12,17 @@ function MonSuivis(): JSX.Element {
 
 	// États pour les formations et messages
 	const [mesPaiements, setMesPaiements] = useState<any[]>([]);
-	const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
+	const [message, setMessage] = useState<{
+		text: string;
+		type: "success" | "error";
+	} | null>(null);
 
 	// États pour le calendrier et les sessions
 	const [selectedDays, setSelectedDays] = useState<number[]>([]);
 	const [savedSessions, setSavedSessions] = useState<any[]>([]);
-	const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth());
+	const [currentMonth, setCurrentMonth] = useState<number>(
+		new Date().getMonth()
+	);
 	const [currentYear, setCurrentYear] = useState<number>(2026);
 
 	const genererPDF = (paiement: any) => {
@@ -42,8 +47,18 @@ function MonSuivis(): JSX.Element {
 	};
 
 	const months = [
-		"Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-		"Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
+		"Janvier",
+		"Février",
+		"Mars",
+		"Avril",
+		"Mai",
+		"Juin",
+		"Juillet",
+		"Août",
+		"Septembre",
+		"Octobre",
+		"Novembre",
+		"Décembre",
 	];
 
 	const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -55,7 +70,9 @@ function MonSuivis(): JSX.Element {
 			setUser(parsedUser);
 
 			// 1. Récupérer les paiements/formations de l'utilisateur
-			fetch(`https://api-ccxi.onrender.com/api/admin/user/${parsedUser.id}`)
+			fetch(
+				`https://api-ccxi.onrender.com/api/admin/user/${parsedUser.id}`
+			)
 				.then((res) => res.json())
 				.then((data) => {
 					setMesPaiements(data);
@@ -67,7 +84,9 @@ function MonSuivis(): JSX.Element {
 				});
 
 			// 2. Récupérer les sessions déjà enregistrées en base de données
-			fetch(`https://api-ccxi.onrender.com/api/admin/sessions/user/${parsedUser.id}`)
+			fetch(
+				`https://api-ccxi.onrender.com/api/admin/sessions/user/${parsedUser.id}`
+			)
 				.then((res) => res.json())
 				.then((data) => setSavedSessions(data))
 				.catch((err) => console.error("Erreur API Sessions:", err));
@@ -77,12 +96,14 @@ function MonSuivis(): JSX.Element {
 	}, []);
 
 	function toggleDay(day: number) {
-		const isAlreadySaved = savedSessions.some(s => new Date(s.date).getDate() === day);
+		const isAlreadySaved = savedSessions.some(
+			(s) => new Date(s.date).getDate() === day
+		);
 
 		if (isAlreadySaved) {
 			setMessage({
 				text: "Cette session est déjà validée. Utilisez le bouton 'Annuler' pour la supprimer.",
-				type: "error"
+				type: "error",
 			});
 			return;
 		}
@@ -94,7 +115,10 @@ function MonSuivis(): JSX.Element {
 
 	const handleSaveSessions = async () => {
 		if (selectedDays.length === 0) {
-			setMessage({ text: "Veuillez choisir au moins une date dans le calendrier.", type: "error" });
+			setMessage({
+				text: "Veuillez choisir au moins une date dans le calendrier.",
+				type: "error",
+			});
 			return;
 		}
 
@@ -102,16 +126,23 @@ function MonSuivis(): JSX.Element {
 			const newSessionsFromApi = [];
 
 			for (const day of selectedDays) {
-				const sessionDate = new Date(currentYear, currentMonth, day).toISOString();
+				const sessionDate = new Date(
+					currentYear,
+					currentMonth,
+					day
+				).toISOString();
 
-				const response = await fetch("https://api-ccxi.onrender.com/api/admin/sessions", {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						date: sessionDate,
-						user: { id: user.id }
-					})
-				});
+				const response = await fetch(
+					"https://api-ccxi.onrender.com/api/admin/sessions",
+					{
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							date: sessionDate,
+							user: { id: user.id },
+						}),
+					}
+				);
 
 				if (response.ok) {
 					const data = await response.json();
@@ -121,30 +152,46 @@ function MonSuivis(): JSX.Element {
 
 			setSavedSessions((prev) => [...prev, ...newSessionsFromApi]);
 			setSelectedDays([]);
-			setMessage({ text: "Sessions enregistrées avec succès !", type: "success" });
+			setMessage({
+				text: "Sessions enregistrées avec succès !",
+				type: "success",
+			});
 			setTimeout(() => setMessage(null), 5000);
-
 		} catch (error) {
-			setMessage({ text: "Erreur lors de la sauvegarde.", type: "error" });
+			setMessage({
+				text: "Erreur lors de la sauvegarde.",
+				type: "error",
+			});
 		}
 	};
 
 	const handleCancelSession = async () => {
 		if (savedSessions.length === 0) {
-			setMessage({ text: "Aucune session enregistrée à annuler.", type: "error" });
+			setMessage({
+				text: "Aucune session enregistrée à annuler.",
+				type: "error",
+			});
 			return;
 		}
 
 		const sessionToCancel = savedSessions[savedSessions.length - 1];
 
 		try {
-			const response = await fetch(`https://api-ccxi.onrender.com/api/admin/sessions/${sessionToCancel.id}`, {
-				method: "DELETE"
-			});
+			const response = await fetch(
+				`https://api-ccxi.onrender.com/api/admin/sessions/${sessionToCancel.id}`,
+				{
+					method: "DELETE",
+				}
+			);
 
 			if (response.ok) {
-				setSavedSessions((prev) => prev.filter(s => s.id !== sessionToCancel.id));
-				setMessage({ text: "La session a été annulée.", type: "success" });
+				setSavedSessions((prev) =>
+					prev.filter((s) => s.id !== sessionToCancel.id)
+				);
+				setMessage({
+					text: "La session a été annulée.",
+					type: "success",
+				});
 			} else {
 				throw new Error();
 			}
@@ -172,7 +219,9 @@ function MonSuivis(): JSX.Element {
 	return (
 		<section className="monSuivis">
 			<div className="monSuivisHeader">
-				<h1>Bienvenue, {user.prenom} {user.nom} !</h1>
+				<h1>
+					Bienvenue, {user.prenom} {user.nom} !
+				</h1>
 				<p>Accédez à vos cours, vos réservations et vos documents.</p>
 			</div>
 
@@ -185,20 +234,39 @@ function MonSuivis(): JSX.Element {
 								Statut : {p.statut ? " Payé" : "Payé"}
 							</p>
 
-							{(savedSessions.length > 0 || selectedDays.length > 0) && (
-								<p className="sessionDate" style={{ fontWeight: 'bold', color: '#1a1a1a', marginTop: '10px' }}>
-									Prochaine session : {
-										Math.min(
-											...savedSessions.map(s => new Date(s.date).getDate()),
-											...selectedDays
-										)
-									} {months[currentMonth]} {currentYear}
+							{(savedSessions.length > 0 ||
+								selectedDays.length > 0) && (
+								<p
+									className="sessionDate"
+									style={{
+										fontWeight: "bold",
+										color: "#1a1a1a",
+										marginTop: "10px",
+									}}
+								>
+									Prochaine session :{" "}
+									{Math.min(
+										...savedSessions.map((s) =>
+											new Date(s.date).getDate()
+										),
+										...selectedDays
+									)}{" "}
+									{months[currentMonth]} {currentYear}
 								</p>
 							)}
 
 							<div className="progressBar">
 								{[...Array(5)].map((_, i) => (
-									<span key={i} className={i < (savedSessions.length + selectedDays.length) ? "active" : ""} />
+									<span
+										key={i}
+										className={
+											i <
+											savedSessions.length +
+												selectedDays.length
+												? "active"
+												: ""
+										}
+									/>
 								))}
 							</div>
 							<small>Prix : {p.montant} €</small>
@@ -206,7 +274,8 @@ function MonSuivis(): JSX.Element {
 					))
 				) : (
 					<div className="emptyCourse">
-						Oups… Il semblerait que vous n’ayez aucune réservation pour le moment
+						Oups… Il semblerait que vous n’ayez aucune réservation
+						pour le moment
 					</div>
 				)}
 
@@ -216,18 +285,23 @@ function MonSuivis(): JSX.Element {
 						{savedSessions.length > 0 && (
 							<div className="notifItem">
 								<i className="bi bi-calendar-check-fill text-success"></i>
-								<p>Vous avez <strong>{savedSessions.length}</strong> session(s) réservée(s).</p>
+								<p>
+									Vous avez{" "}
+									<strong>{savedSessions.length}</strong>{" "}
+									session(s) réservée(s).
+								</p>
 							</div>
 						)}
-						{mesPaiements.some(p => !p.statut) && (
+						{mesPaiements.some((p) => !p.statut) && (
 							<div className="notifItem">
 								<i className="bi bi-exclamation-circle-fill text-warning"></i>
 								<p>Aucune notification à afficher</p>
 							</div>
 						)}
-						{savedSessions.length === 0 && !mesPaiements.some(p => !p.statut) && (
-							<div className="empty">Tout est à jour.</div>
-						)}
+						{savedSessions.length === 0 &&
+							!mesPaiements.some((p) => !p.statut) && (
+								<div className="empty">Tout est à jour.</div>
+							)}
 					</div>
 				</div>
 			</article>
@@ -236,38 +310,62 @@ function MonSuivis(): JSX.Element {
 				<div className="documents">
 					<h3>Mes documents</h3>
 					<div className="documents-container">
-						{mesPaiements.map((p, index) => (
-							p.statut === false && (
-								<div className="documentItem" key={index}>
-									<div className="info">
-										<strong>Justificatif de paiement - {p.formation.titre}</strong>
-										<span>Apprennant : {user.prenom} {user.nom} • Montant : {p.montant}€</span>
-									</div>
+						{mesPaiements.map(
+							(p, index) =>
+								p.statut === false && (
+									<div className="documentItem" key={index}>
+										<div className="info">
+											<strong>
+												Justificatif de paiement -{" "}
+												{p.formation.titre}
+											</strong>
+											<span>
+												Apprennant : {user.prenom}{" "}
+												{user.nom} • Montant :{" "}
+												{p.montant}€
+											</span>
+										</div>
 
-									<div className="actions">
-										<a
-											onClick={() => genererPDF(p)}
-											className="iconAction fleche"
-											title="Télécharger mon justificatif"
-										>
-											<img src="/icon/fleche-vers-le-bas.svg" alt="Télécharger" />
-										</a>
+										<div className="actions">
+											<a
+												onClick={() => genererPDF(p)}
+												className="iconAction fleche"
+												title="Télécharger mon justificatif"
+											>
+												<img
+													src="/icon/fleche-vers-le-bas.svg"
+													alt="Télécharger"
+												/>
+											</a>
+										</div>
 									</div>
-								</div>
-							)
-						))}
+								)
+						)}
 
 						<div className="documentItem">
 							<div className="info">
-								<strong>Certification cours de cybersécurité</strong>
+								<strong>
+									Certification cours de cybersécurité
+								</strong>
 								<span>Obtenue le 00/00/2025</span>
 							</div>
 							<div className="actions">
-								<a href="/img/pdf/certification.pdf" target="_blank" className="iconAction apercu">
+								<a
+									href="/img/pdf/certification.pdf"
+									target="_blank"
+									className="iconAction apercu"
+								>
 									<img src="/icon/eye.svg" alt="Aperçu" />
 								</a>
-								<a href="/img/pdf/certification.pdf" download className="iconAction fleche">
-									<img src="/icon/fleche-vers-le-bas.svg" alt="Télécharger" />
+								<a
+									href="/img/pdf/certification.pdf"
+									download
+									className="iconAction fleche"
+								>
+									<img
+										src="/icon/fleche-vers-le-bas.svg"
+										alt="Télécharger"
+									/>
 								</a>
 							</div>
 						</div>
@@ -279,20 +377,26 @@ function MonSuivis(): JSX.Element {
 					<div className="calendar">
 						<div className="calendarHeader">
 							<button onClick={prevMonth}>‹</button>
-							<strong>{months[currentMonth]} {currentYear}</strong>
+							<strong>
+								{months[currentMonth]} {currentYear}
+							</strong>
 							<button onClick={nextMonth}>›</button>
 						</div>
 
 						<div className="calendarGrid">
 							{[...Array(daysInMonth)].map((_, i) => {
 								const day = i + 1;
-								const isSaved = savedSessions.some(s => new Date(s.date).getDate() === day);
+								const isSaved = savedSessions.some(
+									(s) => new Date(s.date).getDate() === day
+								);
 								const isSelected = selectedDays.includes(day);
 
 								return (
 									<span
 										key={day}
-										className={`day ${isSaved ? "saved" : ""} ${isSelected ? "active" : ""}`}
+										className={`day ${
+											isSaved ? "saved" : ""
+										} ${isSelected ? "active" : ""}`}
 										onClick={() => toggleDay(day)}
 									>
 										{day}
@@ -308,8 +412,15 @@ function MonSuivis(): JSX.Element {
 								{message.text}
 							</div>
 						)}
-						<button onClick={handleSaveSessions}>Choisir mes prochaines sessions</button>
-						<button className="danger" onClick={handleCancelSession}>Annuler une session</button>
+						<button onClick={handleSaveSessions}>
+							Choisir mes prochaines sessions
+						</button>
+						<button
+							className="danger"
+							onClick={handleCancelSession}
+						>
+							Annuler une session
+						</button>
 					</div>
 				</div>
 			</article>

@@ -1,121 +1,122 @@
 @use "../../../Mixin.scss" as *;
 
 .admin {
-    @include dflex(start, center);
-    width: 100%;
-    height: 100dvh;
-    position: relative;
-    padding: 0;
+	@include dflex(start, center);
+	width: 100%;
+	height: 100dvh;
+	position: relative;
+	padding: 0;
 }
 .framee {
-    h2 {
-        font-weight: 500;
-    }
-    padding: 5vh 3vw;
-    width: 100%;
-    // height: 100dvh;
-    @include dflex(start, center, 2vh, column);
+	h2 {
+		font-weight: 500;
+	}
+	padding: 5vh 3vw;
+	width: 100%;
+	// height: 100dvh;
+	@include dflex(start, center, 2vh, column);
 }
 .Activity {
-    h2 {
-        font-weight: 500;
-    }
-    width: 100%;
-    @include dflex(start, space-between, 25vw);
-    padding: 5vh 3vw;
+	h2 {
+		font-weight: 500;
+	}
+	width: 100%;
+	@include dflex(start, space-between, 25vw);
+	padding: 5vh 3vw;
 }
 .cards {
-    width: 100%;
-    height: auto;
-    @include dgrid(3, 1, 2vh);
-    // @include dflex(start, space-between, 2vh);
+	width: 100%;
+	height: auto;
+	@include dgrid(3, 1, 2vh);
+	// @include dflex(start, space-between, 2vh);
 }
 .card {
-    @include dflex(start, space-between, 1vw, column);
-    //
-    padding: 0;
-    height: 100%;
-    border-radius: 0.5vw;
-    border: #d9d9d9 0.1vw solid;
-    img {
-        width: 2vw;
-        height: auto;
-        border-radius: 1vw;
-    }
-    .cardHeader {
-        padding: 0.7vh 1.7vw;
-        @include dflex(start, start, 1vh, column);
-        width: 100%;
-        h3 {
-            font-size: 1.5vw;
-            font-weight: 400;
-        }
-        p {
-            color: rgba(0, 0, 0, 0.46);
-            font-size: 1vw;
-            font-weight: 400;
-        }
-    }
-    .cardBody {
-        @include dflex(center, start, 1vw);
-        padding: 3vh 1.7vw;
-        width: 100%;
-        background-color: #e2e2e2;
-        color: rgba(0, 0, 0, 0.5);
-        border-bottom-left-radius: 0.5vw;
-        border-bottom-right-radius: 0.5vw;
-        p {
-            font-size: 1.5vw;
-            font-weight: 400;
-        }
-        img {
-            width: 2vw;
-            height: auto;
-        }
-    }
+	@include dflex(start, space-between, 1vw, column);
+	//
+	padding: 0;
+	height: 100%;
+	border-radius: 0.5vw;
+	border: #d9d9d9 0.1vw solid;
+	img {
+		width: 2vw;
+		height: auto;
+		border-radius: 1vw;
+	}
+	.cardHeader {
+		padding: 0.7vh 1.7vw;
+		@include dflex(start, start, 1vh, column);
+		width: 100%;
+		h3 {
+			font-size: 1.5vw;
+			font-weight: 400;
+		}
+		p {
+			color: rgba(0, 0, 0, 0.46);
+			font-size: 1vw;
+			font-weight: 400;
+		}
+	}
+	.cardBody {
+		@include dflex(center, start, 1vw);
+		padding: 3vh 1.7vw;
+		width: 100%;
+		background-color: #e2e2e2;
+		color: rgba(0, 0, 0, 0.5);
+		border-bottom-left-radius: 0.5vw;
+		border-bottom-right-radius: 0.5vw;
+		p {
+			font-size: 1.5vw;
+			font-weight: 400;
+		}
+		img {
+			width: 2vw;
+			height: auto;
+		}
+	}
 }
 .Activity {
-    width: 100%;
-    @include dflex(start, space-between, 25vw);
+	width: 100%;
+	@include dflex(start, space-between, 25vw);
 
-    .recent {
-        @include dflex(start, center, 1vh, column);
-        width: 50vw;
-        height: 100%;
-        section {
-            @include dflex(start, center, 1vh, column);
-            width: 100%;
-            height: 100%;
-            h3 {
-                font-size: 1vw;
-                font-weight: 400;
-                color: rgba(0, 0, 0, 0.4);
-            }
-        }
+	.recent {
+		@include dflex(start, center, 1vh, column);
+		width: 50vw;
+		height: 100%;
+		section {
+			@include dflex(start, center, 1vh, column);
+			width: 100%;
+			height: 100%;
+			h3 {
+				font-size: 1vw;
+				font-weight: 400;
+				color: rgba(0, 0, 0, 0.4);
+			}
+		}
 
-        button {
-            @include dflex(center, center, 1vh);
-            background-color: #e5e5e5;
-            color: rgba(0, 0, 0, 0.4);
-            border: none;
-            border-radius: 2vw;
-            font-size: 1vw;
-            padding: 0.8vh 2vw;
-            cursor: pointer;
-        }
-    }
-    .shortcut {
-        width: 45vw;
-        @include dflex(start, center, 1vh, column);
-        button {
-            @include dflex(center, center, 1vh);
-            color: rgba(0, 0, 0, 0.42);
-            background-color: #ffffff;
-            border: #d9d9d9 0.1vw solid;
-            border-radius: 0.5vw;
-            font-size: 1vw;
-            padding: 1.4vh 5vw;
-            cursor: pointer;
-        }
-    }
+		button {
+			@include dflex(center, center, 1vh);
+			background-color: #e5e5e5;
+			color: rgba(0, 0, 0, 0.4);
+			border: none;
+			border-radius: 2vw;
+			font-size: 1vw;
+			padding: 0.8vh 2vw;
+			cursor: pointer;
+		}
+	}
+	.shortcut {
+		width: 45vw;
+		@include dflex(start, center, 1vh, column);
+		.addFormation {
+			@include dflex(center, center, 1vh);
+			color: rgba(0, 0, 0, 0.42);
+			background-color: #ffffff;
+			border: #d9d9d9 0.1vw solid;
+			border-radius: 0.5vw;
+			font-size: 1vw;
+			padding: 1.4vh 5vw;
+			cursor: pointer;
+			text-decoration: none;
+		}
+	}
 }
