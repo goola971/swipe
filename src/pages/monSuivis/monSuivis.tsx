@@ -1,6 +1,7 @@
 import "./monSuivis.scss";
 import { useState, useEffect, type JSX } from "react";
 import { useNavigate } from "react-router-dom";
+import { jsPDF } from "jspdf";
 
 function MonSuivis(): JSX.Element {
 	const navigate = useNavigate();
